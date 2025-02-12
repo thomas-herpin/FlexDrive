@@ -1,0 +1,1 @@
+Flexdrive adalah aplikasi berbasis web yang mempermudah menyewa mobil bagi pengguna dan mempermudah pemilik rental untuk tracking mobil apa saja yang disewa, mobil apa saja yang masih tersedia, posisi mobil dimana saja, dan info tentang mobil tersebut.
