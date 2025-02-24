@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #3E92CC;
+            color: white;
+            padding: 50px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .login-container img{
+            width: 200px;
+        }
+
+        .login-container input[type="email"],
+        .login-container input[type="password"]{
+            width: 250px;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .login-container input[type="submit"] {
+            background-color: #0A2463;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 40%;
+            margin-top: 20px;
+        }
+
+        .login-container a {
+            color: #f8f9fa;
+            text-decoration: none;
+        }
+
+        #linkSignIn{
+            color: #0A2463;
+        }
+
+        .adminLink{
+            position: absolute;
+            top: 5px;
+            right: 20px;
+            font-size: 16px;
+        }
+
+        .adminLink a{
+            color: black;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+    <p class="adminLink"><a href="sign in admin.html">Admin</a></p>
+    <div class="login-container">
+        <img src="images/logo_horizontal.png" alt="logoFlexDrive"><br>
+        <h2>Selamat Datang!</h2>
+        <p>Sudah punya akun? <a href="sign in.html" id="linkSignIn">Sign in</a></p>
+        <form>
+            <label for="email">Email Address</label><br>
+            <input type="email" required><br>
+            <label for="password">Password</label><br>
+            <input type="password" required><br>
+            <label for="password">Confirm password</label><br>
+            <input type="password" required><br>
+            <input type="submit" value="SIGN IN">
+        </form>
+    </div>
+</body>
+</html>
