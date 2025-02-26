@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #3E92CC;
+            color: white;
+            padding: 50px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .login-container img{
+            width: 200px;
+        }
+
+        .login-container input[type="email"],
+        .login-container input[type="password"]{
+            width: 250px;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .login-container input[type="submit"] {
+            background-color: #0A2463;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 40%;
+            margin-top: 20px;
+        }
+
+        #linkSignUp{
+            color: #0A2463;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="images/logo_horizontal.png" alt="logoFlexDrive"><br>
+        <h2>Selamat Datang!</h2>
+        <p>Belum punya akun? <a href="sign up.html" id="linkSignUp">Sign up</a></p>
+        <form onsubmit="return validateSignIn()">
+            <label>Email Address</label><br>
+            <input type="email" id="email" required><br>
+            <label>Password</label><br>
+            <input type="password" id="password" required><br>
+            <input type="submit" value="SIGN IN">
+        </form>
+    </div>
+
+    <script>
+        function validateSignIn() {
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            
+            if (email === "thomas@admin.com" && password === "ApaPassnya@312") {
+                alert("Login berhasil! Selamat datang, Admin.");
+                window.location.href = "home admin.html";
+                return false;
+            }
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            let user = users.find(user => user.email === email && user.password === password);
+
+            if (!user) {
+                alert("Email atau password salah!");
+                return false;
+            }
+
+            window.location.href = "home user.html";
+            return false;
+        }
+    </script>
+</body>
+</html>

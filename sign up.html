@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #3E92CC;
+            color: white;
+            padding: 50px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .login-container img{
+            width: 200px;
+        }
+
+        .login-container input[type="email"],
+        .login-container input[type="password"]{
+            width: 250px;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .login-container input[type="submit"] {
+            background-color: #0A2463;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 40%;
+            margin-top: 20px;
+        }
+
+        #linkSignIn{
+            color: #0A2463;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="images/logo_horizontal.png" alt="logoFlexDrive"><br>
+        <h2>Daftar Akun Baru</h2>
+        <p>Sudah punya akun? <a href="sign in.html" id="linkSignIn">Sign in</a></p>
+        <form onsubmit="return registerUser()">
+            <label>Email Address</label><br>
+            <input type="email" id="regEmail" required><br>
+            <label>Password</label><br>
+            <input type="password" id="regPassword" required><br>
+            <label>Confirm Password</label><br>
+            <input type="password" id="confirmPassword" required><br>
+            <input type="submit" value="SIGN UP">
+        </form>
+    </div>
+
+    <script>
+        function registerUser() {
+            let email = document.getElementById("regEmail").value;
+            let password = document.getElementById("regPassword").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+            
+            if (password !== confirmPassword) {
+                alert("Password dan konfirmasi password tidak cocok!");
+                return false;
+            }
+            
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            users.push({ email, password });
+            localStorage.setItem("users", JSON.stringify(users));
+            
+            alert("Registrasi berhasil! Silakan login.");
+            window.location.href = "sign in.html";
+            return false;
+        }
+    </script>
+</body>
+</html>
