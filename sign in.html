@@ -44,42 +44,49 @@
             margin-top: 20px;
         }
 
-        .login-container a {
-            color: #f8f9fa;
-            text-decoration: none;
-        }
-
         #linkSignUp{
             color: #0A2463;
-        }
-
-        .adminLink{
-            position: absolute;
-            top: 5px;
-            right: 20px;
-            font-size: 16px;
-        }
-
-        .adminLink a{
-            color: black;
             text-decoration: none;
         }
 
     </style>
 </head>
 <body>
-    <p class="adminLink" ><a href="sign in admin.html">Admin</a></p>
     <div class="login-container">
         <img src="images/logo_horizontal.png" alt="logoFlexDrive"><br>
         <h2>Selamat Datang!</h2>
         <p>Belum punya akun? <a href="sign up.html" id="linkSignUp">Sign up</a></p>
-        <form>
-            <label for="email">Email Address</label><br>
-            <input type="email" required><br>
-            <label for="password">Password</label><br>
-            <input type="password"  required><br>
+        <form onsubmit="return validateSignIn()">
+            <label>Email Address</label><br>
+            <input type="email" id="email" required><br>
+            <label>Password</label><br>
+            <input type="password" id="password" required><br>
             <input type="submit" value="SIGN IN">
         </form>
     </div>
+
+    <script>
+        function validateSignIn() {
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            
+            if (email === "thomas@admin.com" && password === "ApaPassnya@312") {
+                alert("Login berhasil! Selamat datang, Admin.");
+                window.location.href = "home admin.html";
+                return false;
+            }
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            let user = users.find(user => user.email === email && user.password === password);
+
+            if (!user) {
+                alert("Email atau password salah!");
+                return false;
+            }
+
+            window.location.href = "home user.html";
+            return false;
+        }
+    </script>
 </body>
 </html>
