@@ -44,44 +44,48 @@
             margin-top: 20px;
         }
 
-        .login-container a {
-            color: #f8f9fa;
-            text-decoration: none;
-        }
-
         #linkSignIn{
             color: #0A2463;
-        }
-
-        .adminLink{
-            position: absolute;
-            top: 5px;
-            right: 20px;
-            font-size: 16px;
-        }
-
-        .adminLink a{
-            color: black;
             text-decoration: none;
         }
 
     </style>
 </head>
 <body>
-    <p class="adminLink"><a href="sign in admin.html">Admin</a></p>
     <div class="login-container">
         <img src="images/logo_horizontal.png" alt="logoFlexDrive"><br>
-        <h2>Selamat Datang!</h2>
+        <h2>Daftar Akun Baru</h2>
         <p>Sudah punya akun? <a href="sign in.html" id="linkSignIn">Sign in</a></p>
-        <form>
-            <label for="email">Email Address</label><br>
-            <input type="email" required><br>
-            <label for="password">Password</label><br>
-            <input type="password" required><br>
-            <label for="password">Confirm password</label><br>
-            <input type="password" required><br>
-            <input type="submit" value="SIGN IN">
+        <form onsubmit="return registerUser()">
+            <label>Email Address</label><br>
+            <input type="email" id="regEmail" required><br>
+            <label>Password</label><br>
+            <input type="password" id="regPassword" required><br>
+            <label>Confirm Password</label><br>
+            <input type="password" id="confirmPassword" required><br>
+            <input type="submit" value="SIGN UP">
         </form>
     </div>
+
+    <script>
+        function registerUser() {
+            let email = document.getElementById("regEmail").value;
+            let password = document.getElementById("regPassword").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+            
+            if (password !== confirmPassword) {
+                alert("Password dan konfirmasi password tidak cocok!");
+                return false;
+            }
+            
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            users.push({ email, password });
+            localStorage.setItem("users", JSON.stringify(users));
+            
+            alert("Registrasi berhasil! Silakan login.");
+            window.location.href = "sign in.html";
+            return false;
+        }
+    </script>
 </body>
 </html>
