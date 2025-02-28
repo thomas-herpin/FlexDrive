@@ -53,7 +53,7 @@
 </head>
 <body>
     <div class="login-container">
-        <img src="images/logo_horizontal.png" alt="logoFlexDrive"><br>
+        <img src="../images/logo_horizontal.png" alt="logoFlexDrive"><br>
         <h2>Selamat Datang!</h2>
         <p>Belum punya akun? <a href="sign up.html" id="linkSignUp">Sign up</a></p>
         <form onsubmit="return validateSignIn()">
@@ -71,8 +71,8 @@
             let password = document.getElementById("password").value;
             
             if (email === "thomas@admin.com" && password === "ApaPassnya@312") {
-                alert("Login berhasil! Selamat datang, Admin.");
-                window.location.href = "home admin.html";
+                alert("Login berhasil! Selamat datang, admin.");
+                window.location.href = "admin/home admin.html";
                 return false;
             }
 
@@ -84,7 +84,7 @@
                 return false;
             }
 
-            window.location.href = "home user.html";
+            window.location.href = "user/home user.html";
             return false;
         }
     </script>
