@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +14,11 @@
             <li><a href="#" class="hover:text-[#0A2463]">Home</a></li>
             <li><a href="#" class="hover:text-[#0A2463]">Akun</a></li>
             <li><a href="#" class="hover:text-[#0A2463]">List Mobil</a></li>
-            <li><a href="#" class="hover:text-[#0A2463]">Tentang Kami</a></li>
+            <li><a href="#tentang_kami" class="hover:text-[#0A2463] transition duration-300">Tentang Kami</a></li>
         </ul>
+
         <div class="relative flex items-center">
-            <input type="text" placeholder="Cari..." class="text-black rounded-3xl border-solid border-black border-2 py-2 px-8">
+            <input type="text" placeholder="Cari..." class="text-black rounded-3xl border border-gray-500 border-2 py-2 px-8">
             <img src="../../images/search_icon.png" alt="search_icon" width="20" class="absolute left-2">
         </div>
     </nav>
@@ -36,15 +37,143 @@
         </div>
     </section>
 
-     <!-- Search Section -->
-     <section class="bg-gradient-to-r from-[#3E92CC] to-[#1F4966] pt-20 pb-20 text-white">
-        <div class="bg-white p-6 rounded-2xl shadow-lg max-w-7xl mx-auto">
-            <div class="grid grid-cols-4 gap-4">
-                <input type="text" placeholder="Titik pengambilan" class="p-2 rounded text-black border border-gray-300">
-                <input type="text" placeholder="Titik pengembalian" class="p-2 rounded text-black border border-gray-300">
-                <input type="datetime-local" class="p-2 rounded text-black border border-gray-300">
-                <input type="datetime-local" class="p-2 rounded text-black border border-gray-300">
-                <button class="bg-[#1F4966] text-white py-2 mt-5 rounded-2xl font-bold">SEARCH</button>
+    <!-- Search Section -->
+    <section class="bg-gradient-to-r from-[#3E92CC] to-[#1F4966] pt-20 pb-20 text-white">
+        <div class="bg-white p-6 rounded-2xl shadow-xl max-w-7xl mx-auto">
+            <div class="grid grid-cols-4 gap-6 items-center">
+                <div class="flex flex-col">
+                    <label for="titik_pengambilan" class="font-bold text-black">Titik pengambilan</label>
+                    <div class="relative">
+                        <img src="../../images/Location.png" alt="lokasi" 
+                            class="absolute left-3 top-1/2 transform -translate-y-1/2 object-contain">
+                        <input type="text"
+                            class="pl-10 pr-4 py-2 rounded-lg border border-gray-500 text-black w-full">
+                    </div>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="titik_pengembalian" class="font-bold text-black">Titik pengembalian</label>
+                    <div class="relative">
+                        <img src="../../images/Location.png" alt="lokasi" 
+                            class="absolute left-3 top-1/2 transform -translate-y-1/2 object-contain">
+                        <input type="text"
+                            class="pl-10 pr-4 py-2 rounded-lg border border-gray-500 text-black w-full">
+                    </div>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="tanggal_pengambilan" class="font-bold text-black">Tanggal Pengambilan</label>
+                    <input type="datetime-local" 
+                        class="p-2 rounded-lg border border-gray-500 text-black">
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="tanggal_pengembalian" class="font-bold text-black">Tanggal Pengembalian</label>
+                    <input type="datetime-local" 
+                        class="p-2 rounded-lg border border-gray-500 text-black">
+                </div>
+
+                <div class="col-span-4 flex justify-center">
+                    <button class="bg-[#1F4966] text-white px-10 py-2 mt-4 rounded-2xl font-bold hover:bg-[#3E92CC]">SEARCH</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Top Picks -->
+     <section class="p-10">
+        <h2 class="text-3xl font-bold mb-6">Top Picks</h2>
+        <div class="grid grid-cols-3 gap-6">
+            <div class="bg-gradient-to-r from-[#3E92CC] to-[#1F4966] p-6 rounded-2xl text-white relative hover:to-[#06163F]">
+                <span class="absolute top-3 left-3 bg-[#1F4966] text-white px-3 py-1 text-sm rounded-2xl">MPV</span>
+                <img src="../../images/toyota-veloz 2021.png" alt="Toyota Veloz" class="w-full h-64 object-contain mx-auto">
+                <h3 class="font-semibold mt-4">Toyota Veloz (2021)</h3>
+                <p>Automatic</p>
+                <div class="flex items-center gap-1">
+                    <img src="../../images/seat.png" alt="seat" class="w-5 h-5"> 
+                    <span>7</span>
+                    <img src="../../images/star.png" alt="star" class="w-5 h-5"> 
+                    <span>4</span>
+                </div>
+                <p class="mt-2">Start from <br> <span class="text-lg font-bold">Rp.600.000</span></p>
+            </div>
+            
+            <div class="bg-gradient-to-r from-[#3E92CC] to-[#1F4966] p-6 rounded-2xl text-white relative hover:to-[#06163F]">
+                <span class="absolute top-3 left-3 bg-[#1F4966] text-white px-3 py-1 text-sm rounded-2xl">MPV</span>
+                <img src="../../images/toyota-venturer.png" alt="Innova Venturer" class="w-full h-64 object-contain mx-auto">
+                <h3 class="font-semibold mt-4">Innova Venturer (2018)</h3>
+                <p>Automatic</p>
+                <div class="flex items-center gap-1">
+                    <img src="../../images/seat.png" alt="seat" class="w-5 h-5"> 
+                    <span>7</span>
+                    <img src="../../images/star.png" alt="star" class="w-5 h-5"> 
+                    <span>4</span>
+                </div>
+                <p class="mt-2">Start from <br> <span class="text-lg font-bold">Rp.800.000</span></p>
+            </div>
+            
+            <div class="bg-gradient-to-r from-[#3E92CC] to-[#1F4966] p-6 rounded-2xl text-white relative hover:to-[#06163F]">
+                <span class="absolute top-3 left-3 bg-[#1F4966] text-white px-3 py-1 text-sm rounded-xl">Minibus</span>
+                <img src="../../images/Hiiace 2018.png" alt="Hiace Premio" class="w-full h-64 object-contain mx-auto">
+                <h3 class="font-semibold mt-4">Hiace Premio (2018)</h3>
+                <p>Manual</p>
+                <div class="flex items-center gap-1">
+                    <img src="../../images/seat.png" alt="seat" class="w-5 h-5"> 
+                    <span>7</span>
+                    <img src="../../images/star.png" alt="star" class="w-5 h-5"> 
+                    <span>4.5</span>
+                </div>
+                <p class="mt-2">Start from <br> <span class="text-lg font-bold">Rp.1.000.000</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search by Categories -->
+    <section class="p-10">
+        <h2 class="text-3xl font-bold mb-6">Search by Categories</h2>
+        <div class="flex gap-8 mb-10">
+            <button class="bg-[#1F2D5C] hover:bg-[#3E92CC] text-white px-8 py-2 rounded-full">MPV</button>
+            <button class="bg-[#1F2D5C] hover:bg-[#3E92CC] text-white px-8 py-2 rounded-full">MINIBUS</button>
+            <button class="bg-[#1F2D5C] hover:bg-[#3E92CC] text-white px-8 py-2 rounded-full">MANUAL</button>
+            <button class="bg-[#1F2D5C] hover:bg-[#3E92CC] text-white px-8 py-2 rounded-full">AUTO</button>
+            <button class="bg-[#1F2D5C] hover:bg-[#3E92CC] text-white px-8 py-2 rounded-full">BENSIN</button>
+            <button class="bg-[#1F2D5C] hover:bg-[#3E92CC] text-white px-8 py-2 rounded-full">DIESEL</button>
+        </div>
+    </section>
+    
+    <!-- Tentang Kami -->
+    <section id="tentang_kami">
+        <div class="bg-gradient-to-r from-[#3E92CC] to-[#1F4966] p-10 pt-15 pb-15 text-white flex items-center">
+            <div class="w-1/2">
+                <h2 class="text-2xl font-bold mb-4">Tentang Kami</h2>
+                <p class="mb-6 text-justify">FlexDrive hadir untuk memudahkan perjalanan Anda dengan layanan rental mobil cepat, aman, dan tanpa ribet. Dengan berbagai pilihan mobil, kami memastikan pengalaman sewa yang nyaman dan terpercaya.</p>
+                
+                <h3 class="text-lg font-semibold mb-2">Contact</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <img src="../../images/Location putih.png" alt="lokasi" class="w-5 h-5 object-contain"> 
+                        <span>Jalan Gandhi No. 99A</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img src="../../images/Phone.png" alt="telpon" class="w-5 h-5 object-contain"> 
+                        <span>084978652349</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img src="../../images/email.png" alt="email" class="w-5 h-5 object-contain"> 
+                        <span>customerservice@flexdrive.com</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <img src="../../images/jam.png" alt="jam" class="w-5 h-5"> 
+                        <div class="flex flex-col">
+                            <span class="font-bold">Jam Operasional</span>
+                            <span>Senin-Sabtu: 07:00AM - 11:00PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="w-1/2 flex justify-center">
+                <img src="../../images/logoFlexDrive.png" alt="FlexDrive Logo" class="w-1/2 h-auto">
             </div>
         </div>
     </section>
