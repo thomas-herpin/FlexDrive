@@ -6,23 +6,44 @@
     <title>Pemesanan & Pembayaran - FlexDrive</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 p-6">
-    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-center text-xl font-bold mb-4">Form Pemesanan Mobil</h2>
+<body class="bg-gray-100">
+    
+    <!-- Navbar -->
+    <nav class="bg-black text-white p-4 flex justify-between items-center shadow-md">
+        <div>
+            <img src="../../images/logo_horizontal.png" alt="logoFlexDrive" width="150px">
+        </div>
+        <ul class="flex space-x-6">
+            <li><a href="#" class="hover:text-gray-400 transition duration-300">Home</a></li>
+            <li><a href="#" class="hover:text-gray-400 transition duration-300">Akun</a></li>
+            <li><a href="list_mobil.html" class="hover:text-gray-400 transition duration-300">List Mobil</a></li>
+            <li><a href="#tentang_kami" class="hover:text-gray-400 transition duration-300">Tentang Kami</a></li>
+        </ul>
+        <div class="relative">
+            <input type="text" placeholder="Cari..." class="text-black rounded-3xl border border-gray-300 py-2 pl-10 pr-4 focus:ring-2 focus:ring-gray-500">
+            <img src="../../images/search_icon.png" alt="search_icon" width="20" class="absolute left-3 top-2.5">
+        </div>
+    </nav>
+
+    <!-- Form Pemesanan -->
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg mt-5">
+        <h2 class="text-center text-2xl font-bold mb-6">Form Pemesanan Mobil</h2>
         
         <div class="mb-4">
-            <label for="car" class="block font-semibold">Pilih Mobil</label>
-            <select id="car" class="w-full p-2 border rounded mt-1">
-                <option>Toyota Avanza 1.5 Veloz</option>
-                <option>Toyota Innova Reborn 2.4V 2018</option>
-                <option>Hiace 2023</option>
+            <label for="car" class="block font-semibold mb-1">Pilih Mobil</label>
+            <select id="car" class="w-full p-2 border rounded">
+                <option>Toyota Avanza 1.5 Veloz 2021 M/T</option>
+                <option>Toyota Innova Venturer 2018 A/T</option>
+                <option>Toyota Rush 2018 A/T</option>
+                <option>Honda Brio 2022 A/T</option>
+                <option>Hiace 2023 M/T</option>
             </select>
         </div>
         
         <div class="mb-4">
-            <label for="pickup" class="block font-semibold">Lokasi Antar-Jemput</label>
-            <input type="text" id="pickup" class="w-full p-2 border rounded mt-1" placeholder="Masukkan lokasi">
-            <div class="w-full h-40 bg-gray-300 text-center flex items-center justify-center rounded mt-2">Peta Lokasi</div>
+            <label for="pickup" class="block font-semibold mb-1">Lokasi Antar-Jemput</label>
+            <input type="text" id="pickup" class="w-full p-2 border rounded" placeholder="Masukkan lokasi">
+            <div class="w-full h-40 bg-gray-200 text-center flex items-center justify-center rounded mt-2 text-gray-600">Peta Lokasi</div>
         </div>
         
         <h3 class="text-lg font-semibold mb-2">Progres Pembayaran</h3>
@@ -31,14 +52,26 @@
         </div>
         
         <div class="mb-4">
-            <label for="payment" class="block font-semibold">Pilih Metode Pembayaran</label>
-            <select id="payment" class="w-full p-2 border rounded mt-1">
+            <label for="payment" class="block font-semibold mb-1">Pilih Metode Pelunasan</label>
+            <select id="payment" class="w-full p-2 border rounded">
                 <option>DP 50%</option>
                 <option>Pelunasan Langsung</option>
             </select>
         </div>
+
+        <div class="mb-4">
+            <label for="method" class="block font-semibold mb-1">Pilih Metode Pembayaran</label>
+            <select id="method" class="w-full p-2 border rounded">
+                <option>Virtual Account BCA</option>
+                <option>Virtual Account BRI</option>
+                <option>PERMATA</option>
+                <option>DANA</option>
+                <option>Virtual Account MANDIRI</option>
+            </select>
+        </div>
         
-        <button class="w-full bg-black text-white p-2 rounded text-lg hover:bg-gray-800">Lanjutkan Pemesanan</button>
+        <button class="w-full bg-black text-white p-3 rounded text-lg hover:bg-gray-800 transition">Lanjutkan Pemesanan</button>
     </div>
+    
 </body>
 </html>
