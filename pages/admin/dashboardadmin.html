@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>Dashboard Admin</title>
+</head>
+<body class="bg-gray-200">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 text-white p-4 fixed left-0 right-0">
+        <div class="flex justify-between items-center">
+            <img src="logo_horizontal.png" alt="flexdrivelogo" class="h-10">
+            <ul class="flex space-x-6">
+                <li><a href="dashboardadmin.html" class="hover:text-gray-300">Dashboard</a></li>
+                <li><a href="pengaturanharga.html" class="hover:text-gray-300">Harga</a></li>
+                <li><a href="#" class="hover:text-gray-300">Mobil</a></li>
+                <li><a href="#" class="hover:text-gray-300">Pengguna</a></li>
+                <li><a href="#" class="hover:text-gray-300">Pengaturan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="pt-20 p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-[30px] font-semibold">Dashboard Admin</h1>
+            <div class="text-gray-700">
+                <span class="font-bold">Admin1</span>
+                <div class="text-sm text-gray-500">John Doe</div>
+            </div>
+        </div>
+
+        <!-- Statistik -->
+        <div class="grid grid-cols-3 gap-[24px] mb-6">
+            <div class="bg-white p-6 rounded-lg ">
+                <h2 class="text-[20px] font-bold">Total Pengguna</h2>
+                <p class="text-[30px] font-semibold">1,245</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg ">
+                <h2 class="text-[20px] font-bold">Total Mobil</h2>
+                <p class="text-[30px] font-semibold">78</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg ">
+                <h2 class="text-[20px] font-bold">Total Pemesanan</h2>
+                <p class="text-[30px] font-semibold">320</p>
+            </div>
+        </div>
+
+        <!-- Tabel Pemesanan -->
+        <div class="bg-white p-6 rounded-lg login">
+            <h2 class="text-xl font-bold mb-4">Pemesanan Terbaru</h2>
+            <table class="w-full">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="border border-gray-300 p-2">No</th>
+                        <th class="border border-gray-300 p-2">Nama</th>
+                        <th class="border border-gray-300 p-2">Mobil</th>
+                        <th class="border border-gray-300 p-2">Periode</th>
+                        <th class="border border-gray-300 p-2">Status</th>
+                        <th class="border border-gray-300 p-2">No Resi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center border border-gray-300 p-2">1</td>
+                        <td class="text-center border border-gray-300 p-2">Thomas</td>
+                        <td class="text-center border border-gray-300 p-2">Toyota Avanza</td>
+                        <td class="text-center border border-gray-300 p-2">2025/01/02 - 2025/01/04</td>
+                        <td class="text-center border border-gray-300 p-2 text-green-600">Paid</td>
+                        <td class="text-center border border-gray-300 p-2">0001</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center border border-gray-300 p-2">2</td>
+                        <td class="text-center border border-gray-300 p-2">Arron</td>
+                        <td class="text-center border border-gray-300 p-2">Honda Jazz</td>
+                        <td class="text-center border border-gray-300 p-2">2025-03-02</td>
+                        <td class="text-center border border-gray-300 p-2 text-yellow-600">Down Payment</td>
+                        <td class="text-center border border-gray-300 p-2">0002</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center border border-gray-300 p-2">3</td>
+                        <td class="text-center border border-gray-300 p-2">Wilbert</td>
+                        <td class="text-center border border-gray-300 p-2">Mitsubishi Pajero</td>
+                        <td class="text-center border border-gray-300 p-2">2025-03-03</td>
+                        <td class="text-center border border-gray-300 p-2 text-red-600">Unpaid</td>
+                        <td class="text-center border border-gray-300 p-2">0003</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+</html>
