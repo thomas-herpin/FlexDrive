@@ -37,7 +37,7 @@
                 </ul>
             </div>
             <div class="flex items-center gap-6">
-                <input type="text" placeholder="Cari..." class="text-black rounded-3xl border border-gray-500 md:py-2 md:px-8 focus:outline-none focus:ring-2 focus:ring-gray-600 w-[100px] h-[35px] px-2">
+                <input type="text" placeholder="Cari..." class="text-black rounded-3xl border border-gray-500 md:py-2 md:px-8 focus:outline-none focus:ring-2 focus:ring-gray-600 w-[100px] h-[35px] md:w-[200px] px-2">
                 <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer md:hidden"></ion-icon>
             </div>
         </nav>
@@ -52,7 +52,7 @@
         <div class="absolute top-0 right-0 w-1/2 h-full">
             <img src="../../FlexDrive/images/map1.png" alt="Map Background" class="w-full h-full object-cover">
         </div>
-        <div class="flex absolute top-20 right-0 w-1/2 md:top-0 md:-translate-y-20 md:scale-75 md:mx-20">
+        <div class="flex absolute top-20 right-0 w-1/2 sm:top10 md:top-0 lg:-translate-y-20 md:scale-75 md:mx-20">
             <img src="../../FlexDrive/images/toyota-veloz 2021.png" alt="Toyota Veloz" class="w-full pt-5">
         </div>
     </section>
@@ -62,7 +62,7 @@
         <div class="bg-white p-6 rounded-2xl shadow-xl max-w-7xl mx-auto">
             <div class="grid grid-cols-4 gap-6 items-center">
                 <div class="flex flex-col">
-                    <label for="titik_pengambilan" class="font-bold text-black">Titik pengambilan</label>
+                    <label for="titik_pengambilan" class="font-bold text-black text-sm md:text-base">Titik pengambilan</label>
                     <div class="relative">
                         <img src="../../FlexDrive/images/Location.png" alt="lokasi" 
                             class="absolute left-3 top-1/2 transform -translate-y-1/2 object-contain">
@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="flex flex-col">
-                    <label for="titik_pengembalian" class="font-bold text-black">Titik pengembalian</label>
+                    <label for="titik_pengembalian" class="font-bold text-black text-sm md:text-base">Titik pengembalian</label>
                     <div class="relative">
                         <img src="../../FlexDrive/images/Location.png" alt="lokasi" 
                             class="absolute left-3 top-1/2 transform -translate-y-1/2 object-contain">
@@ -82,13 +82,13 @@
                 </div>
 
                 <div class="flex flex-col">
-                    <label for="tanggal_pengambilan" class="font-bold text-black">Tanggal Pengambilan</label>
+                    <label for="tanggal_pengambilan" class="font-bold text-black text-sm md:text-base">Tanggal Pengambilan</label>
                     <input type="datetime-local" 
                         class="p-2 rounded-lg border border-gray-500 text-black">
                 </div>
 
                 <div class="flex flex-col">
-                    <label for="tanggal_pengembalian" class="font-bold text-black">Tanggal Pengembalian</label>
+                    <label for="tanggal_pengembalian" class="font-bold text-black text-sm md:text-base">Tanggal Pengembalian</label>
                     <input type="datetime-local" 
                         class="p-2 rounded-lg border border-gray-500 text-black">
                 </div>
@@ -101,8 +101,8 @@
     </section>
 
      <!-- Top Picks -->
-     <div class="p-10">
-        <h2 class="text-3xl font-bold mb-6">Top Picks</h2>
+    <h2 class="text-3xl font-bold p-10">Top Picks</h2>  
+    <div class="p-10 flex justify-center">
         <div class="grid md:grid-cols-3 gap-6 items-center">
             <div class="bg-white shadow-lg rounded-lg overflow-hidden w-80 border">
                 <img src="../../FlexDrive/images/toyota-veloz 2021.png" alt="Veloz" class="w-full h-40 object-cover mt-2 scale-90">
