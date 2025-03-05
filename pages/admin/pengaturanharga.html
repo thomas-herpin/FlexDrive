@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>Dashboard Admin</title>
+</head>
+<body class="bg-gray-200">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 text-white p-4 fixed left-0 right-0">
+        <div class="flex justify-between items-center">
+            <img src="logo_horizontal.png" alt="flexdrivelogo" class="h-10">
+            <ul class="flex space-x-6">
+                <li><a href="dashboardadmin.html" class="hover:text-gray-300">Dashboard</a></li>
+                <li><a href="pengaturanharga.html" class="hover:text-gray-300">Harga</a></li>
+                <li><a href="#" class="hover:text-gray-300">Mobil</a></li>
+                <li><a href="#" class="hover:text-gray-300">Pengguna</a></li>
+                <li><a href="#" class="hover:text-gray-300">Pengaturan</a></li>
+            </ul>
+        </div>
+    </nav>       
+    
+    <search class="pt-20 p-6">
+        <div class="p-6">
+            <h1 class="text-2xl font-semibold mb-4">Pengaturan Harga Sewa Mobil</h1>
+            <div class="grid grid-cols-1 gap-[24px] mb-6 sm:grid-cols-2 md:grid-cols-3">
+                <div class="bg-white p-4 rounded-lg">
+                    <img src="venturer.jpeg" alt="Innova Venture 2018">
+                    <h2 class="text-[20px] font-semibold mt-2">INNOVA VENTURE (2018)</h2>
+                    <div class="flex items-center mt-2">
+                        <label class="mr-2">Rp</label>
+                        <input type="number" value="700000" class="border p-2 w-full rounded-md">
+                    </div>
+                    <button class="bg-blue-600 text-white mt-4 p-2 w-full rounded-md hover:bg-blue-700">Simpan</button>
+                </div>
+    
+                <div class="bg-white p-4 rounded-lg shadow-lg">
+                    <img src="hiace.jpg" alt="Toyota Hiace 2023">
+                    <h2 class="text-[20px] font-semibold mt-2">TOYOTA HIACE (2023)</h2>
+                    <div class="flex items-center mt-2">
+                        <label class="mr-2">Rp</label>
+                        <input type="number" value="750000" class="border p-2 w-full rounded-md">
+                    </div>
+                    <button class="bg-blue-600 text-white mt-4 p-2 w-full rounded-md hover:bg-blue-700">Simpan</button>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg shadow-lg">
+                    <img src="venturer.jpeg" alt="Innova Venture 2018">
+                    <h2 class="text-[20px] font-semibold mt-2">INNOVA VENTURE (2018)</h2>
+                    <div class="flex items-center mt-2">
+                        <label class="mr-2">Rp</label>
+                        <input type="number" value="800000" class="border p-2 w-full rounded-md">
+                    </div>
+                    <button class="bg-blue-600 text-white mt-4 p-2 w-full rounded-md hover:bg-blue-700">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </search>
+</body>
+</html>
