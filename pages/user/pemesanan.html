@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemesanan & Pembayaran - FlexDrive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-center text-xl font-bold mb-4">Form Pemesanan Mobil</h2>
+        
+        <div class="mb-4">
+            <label for="car" class="block font-semibold">Pilih Mobil</label>
+            <select id="car" class="w-full p-2 border rounded mt-1">
+                <option>Toyota Avanza 1.5 Veloz</option>
+                <option>Toyota Innova Reborn 2.4V 2018</option>
+                <option>Hiace 2023</option>
+            </select>
+        </div>
+        
+        <div class="mb-4">
+            <label for="pickup" class="block font-semibold">Lokasi Antar-Jemput</label>
+            <input type="text" id="pickup" class="w-full p-2 border rounded mt-1" placeholder="Masukkan lokasi">
+            <div class="w-full h-40 bg-gray-300 text-center flex items-center justify-center rounded mt-2">Peta Lokasi</div>
+        </div>
+        
+        <h3 class="text-lg font-semibold mb-2">Progres Pembayaran</h3>
+        <div class="w-full bg-gray-200 rounded-full h-3 mb-4">
+            <div class="bg-green-500 h-3 rounded-full" style="width: 50%;"></div>
+        </div>
+        
+        <div class="mb-4">
+            <label for="payment" class="block font-semibold">Pilih Metode Pembayaran</label>
+            <select id="payment" class="w-full p-2 border rounded mt-1">
+                <option>DP 50%</option>
+                <option>Pelunasan Langsung</option>
+            </select>
+        </div>
+        
+        <button class="w-full bg-black text-white p-2 rounded text-lg hover:bg-gray-800">Lanjutkan Pemesanan</button>
+    </div>
+</body>
+</html>
