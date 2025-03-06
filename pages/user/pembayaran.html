@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfirmasi Pembayaran - FlexDrive</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    
+    <!-- Navbar -->
+    <header class="bg-black fixed w-full z-50 shadow-md">
+        <nav class="flex justify-between items-center w-[90%] mx-auto py-3">
+            <div class="flex items-center gap-2">
+                <img src="/FlexDrive/images/logo_horizontal.png" alt="FlexDrive" class="w-[150px]">
+            </div>
+
+            <!-- Menu -->
+            <div id="nav-links" class="text-gray-300 md:static fixed bg-black md:min-h-fit min-h-[35vh] top-[-100%] md:w-auto w-full left-0 flex flex-col items-center py-3 transition-all duration-500 ease-in-out">
+                <ul class="flex md:flex-row flex-col md:items-center md:gap-10 gap-4">
+                    <li><a class="hover:text-gray-400 transition" href="home_user.html">Beranda</a></li>
+                    <li><a class="hover:text-gray-400 transition" href="akun.html">Akun</a></li>
+                    <li><a class="hover:text-gray-400 transition" href="list_mobil.html">List Mobil</a></li>
+                </ul>
+            </div>
+
+            <!-- Search & Mobile Menu -->
+            <div class="flex items-center gap-4">
+                <input type="text" placeholder="Cari..." class="text-black rounded-full border border-gray-500 px-4 py-1 focus:outline-none focus:ring-2 focus:ring-gray-600 w-[120px] h-[35px] md:w-[200px] transition-all duration-300">
+                <ion-icon id="menu-icon" name="menu" class="text-3xl text-white cursor-pointer md:hidden"></ion-icon>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Form Konfirmasi Pembayaran -->
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold mb-4 mt-20">Konfirmasi Pembayaran</h2>
+        <form id="paymentForm">
+            <div class="mb-4">
+                <label for="name" class="block font-medium mb-1">Nama Pengirim</label>
+                <input type="text" id="name" class="w-full p-2 border rounded" placeholder="Masukkan nama pengirim" required>
+            </div>
+            
+            <div class="mb-4">
+                <label for="bank" class="block font-medium mb-1">Bank Tujuan</label>
+                <select id="bank" class="w-full p-2 border rounded" required>
+                <option>Virtual Account BCA</option>
+                <option>Virtual Account BRI</option>
+                <option>PERMATA</option>
+                <option>DANA</option>
+                <option>Virtual Account MANDIRI</option>
+                </select>
+            </div>
+            
+            <div class="mb-4">
+                <label for="amount" class="block font-medium mb-1">Jumlah Transfer</label>
+                <input type="number" id="amount" class="w-full p-2 border rounded" placeholder="Masukkan jumlah transfer" required>
+            </div>
+            
+            <div class="mb-4">
+                <label for="date" class="block font-medium mb-1">Tanggal Transfer</label>
+                <input type="date" id="date" class="w-full p-2 border rounded" required>
+            </div>
+            
+            <div class="mb-4">
+                <label for="receipt" class="block font-medium mb-1">Upload Bukti Transfer</label>
+                <input type="file" id="receipt" class="w-full p-2 border rounded" accept="image/*" required>
+            </div>
+            
+            <button class="w-full bg-black text-white p-3 rounded text-lg hover:bg-gray-800 transition">Kirim Konfirmasi</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("paymentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let name = document.getElementById("name").value;
+            let bank = document.getElementById("bank").value;
+            let amount = document.getElementById("amount").value;
+            let date = document.getElementById("date").value;
+            let receipt = document.getElementById("receipt").files.length;
+            
+            if (name && bank && amount && date && receipt) {
+                alert("Konfirmasi pembayaran berhasil dikirim!");
+                this.reset(); // Reset form setelah submit
+            } else {
+                alert("Harap isi semua data sebelum mengirim konfirmasi!");
+            }
+        });
+        
+        const navLinks = document.getElementById("nav-links");
+        const menuIcon = document.getElementById("menu-icon");
+
+        menuIcon.addEventListener("click", () => {
+            if (navLinks.classList.contains("top-12")) {
+                navLinks.classList.remove("top-12");
+                navLinks.classList.add("top-[-500px]");
+                menuIcon.name = "menu";
+            } else {
+                navLinks.classList.remove("top-[-500px]");
+                navLinks.classList.add("top-12");
+                menuIcon.name = "close";
+            }
+        });
+    </script>
+</body>
+</html>
