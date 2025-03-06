@@ -3,23 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <title>Dashboard Admin</title>
 </head>
 <body class="bg-gray-200">
     <!-- Navbar -->
-    <nav class="bg-gray-800 text-white p-4 fixed left-0 right-0">
-        <div class="flex justify-between items-center">
-            <img src="logo_horizontal.png" alt="flexdrivelogo" class="h-10">
-            <ul class="flex space-x-6">
-                <li><a href="dashboardadmin.html" class="hover:text-gray-300">Dashboard</a></li>
-                <li><a href="pengaturanharga.html" class="hover:text-gray-300">Harga</a></li>
-                <li><a href="#" class="hover:text-gray-300">Mobil</a></li>
-                <li><a href="#" class="hover:text-gray-300">Pengguna</a></li>
-                <li><a href="#" class="hover:text-gray-300">Pengaturan</a></li>
-            </ul>
-        </div>
-    </nav>       
+    <header class="bg-black fixed w-full z-50 shadow-md">
+        <nav class="flex justify-between items-center w-[90%] mx-auto py-3">
+            <div class="flex items-center gap-2">
+                <img src="/FlexDrive/images/logo_horizontal.png" alt="FlexDrive" class="w-[150px]">
+            </div>
+
+            <!-- Menu -->
+            <div id="nav-links" class="text-white md:static fixed bg-black md:min-h-fit min-h-[35vh] top-[-100%] md:w-auto w-full left-0 flex flex-col items-center py-3 transition-all duration-500 ease-in-out">
+                <ul class="flex md:flex-row flex-col md:items-center md:gap-10 gap-4">
+                    <li><a class="hover:text-gray-400 transition" href="#">Dashboard</a></li>
+                    <li><a class="hover:text-gray-400 transition" href="#">Harga</a></li>
+                    <li><a class="hover:text-gray-400 transition" href="#">Mobil</a></li>
+                    <li><a class="hover:text-gray-400 transition" href="#">Pengguna</a></li>
+                </ul>
+            </div>
+
+            <!-- Search & Mobile Menu -->
+            <div class="flex items-center gap-4 md:hidden">
+                <ion-icon id="menu-icon" name="menu" class="text-3xl text-white cursor-pointer"></ion-icon>
+            </div>
+        </nav>
+    </header>
     
     <search class="pt-20 p-6">
         <div class="p-6">
@@ -57,5 +69,22 @@
             </div>
         </div>
     </search>
+
+    <script>
+        const navLinks = document.getElementById("nav-links");
+        const menuIcon = document.getElementById("menu-icon");
+    
+        menuIcon.addEventListener("click", () => {
+            if (navLinks.classList.contains("top-12")) {
+                navLinks.classList.remove("top-12");
+                navLinks.classList.add("top-[-500px]");
+                menuIcon.name = "menu";
+            } else {
+                navLinks.classList.remove("top-[-500px]");
+                navLinks.classList.add("top-12");
+                menuIcon.name = "close";
+            }
+        });
+    </script>
 </body>
 </html>
