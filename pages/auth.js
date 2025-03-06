@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (email && password.length >= 8) {
                 localStorage.setItem("user", JSON.stringify({ firstName, lastName, email, password, role: "user" }));
                 alert("Pendaftaran berhasil! Silakan login.");
-                window.location.href = "sign in.html";
+                window.location.href = "sign_in.html";
             } else {
                 alert("Pastikan semua data telah diisi dan password minimal 8 karakter.");
             }
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.location.href = "admin/home admin.html";
             } else if (storedUser && storedUser.email === email && storedUser.password === password) {
                 alert("Login berhasil! Selamat datang, " + storedUser.firstName);
-                window.location.href = "user/home user.html";
+                window.location.href = "user/home_user.html";
             } else {
                 alert("Email atau password salah.");
             }
