@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfirmasi Pembayaran - FlexDrive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    
+    <!-- Navbar -->
+    <nav class="bg-black text-white p-4 flex justify-between items-center shadow-md">
+        <div>
+            <img src="../../images/logo_horizontal.png" alt="logoFlexDrive" width="150px">
+        </div>
+        <ul class="flex space-x-6">
+            <li><a href="#" class="hover:text-gray-400 transition duration-300">Home</a></li>
+            <li><a href="#" class="hover:text-gray-400 transition duration-300">Akun</a></li>
+            <li><a href="list_mobil.html" class="hover:text-gray-400 transition duration-300">List Mobil</a></li>
+            <li><a href="#tentang_kami" class="hover:text-gray-400 transition duration-300">Tentang Kami</a></li>
+        </ul>
+        <div class="relative">
+            <input type="text" placeholder="Cari..." class="text-black rounded-3xl border border-gray-300 py-2 pl-10 pr-4 focus:ring-2 focus:ring-gray-500">
+            <img src="../../images/star.png" alt="search_icon" width="20" class="absolute left-3 top-2.5">
+        </div>
+    </nav>
+    <!-- Form Konfirmasi Pembayaran -->
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md mt-6">
+        <h2 class="text-xl font-semibold mb-4">Konfirmasi Pembayaran</h2>
+        <form id="paymentForm">
+            <div class="mb-4">
+                <label for="name" class="block font-medium mb-1">Nama Pengirim</label>
+                <input type="text" id="name" class="w-full p-2 border rounded" placeholder="Masukkan nama pengirim" required>
+            </div>
+            
+            <div class="mb-4">
+                <label for="bank" class="block font-medium mb-1">Bank Tujuan</label>
+                <select id="bank" class="w-full p-2 border rounded" required>
+                <option>Virtual Account BCA</option>
+                <option>Virtual Account BRI</option>
+                <option>PERMATA</option>
+                <option>DANA</option>
+                <option>Virtual Account MANDIRI</option>
+                </select>
+            </div>
+            
+            <div class="mb-4">
+                <label for="amount" class="block font-medium mb-1">Jumlah Transfer</label>
+                <input type="number" id="amount" class="w-full p-2 border rounded" placeholder="Masukkan jumlah transfer" required>
+            </div>
+            
+            <div class="mb-4">
+                <label for="date" class="block font-medium mb-1">Tanggal Transfer</label>
+                <input type="date" id="date" class="w-full p-2 border rounded" required>
+            </div>
+            
+            <div class="mb-4">
+                <label for="receipt" class="block font-medium mb-1">Upload Bukti Transfer</label>
+                <input type="file" id="receipt" class="w-full p-2 border rounded" accept="image/*" required>
+            </div>
+            
+            <button class="w-full bg-black text-white p-3 rounded text-lg hover:bg-gray-800 transition">Kirim Konfirmasi</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("paymentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let name = document.getElementById("name").value;
+            let bank = document.getElementById("bank").value;
+            let amount = document.getElementById("amount").value;
+            let date = document.getElementById("date").value;
+            let receipt = document.getElementById("receipt").files.length;
+            
+            if (name && bank && amount && date && receipt) {
+                alert("Konfirmasi pembayaran berhasil dikirim!");
+                this.reset(); // Reset form setelah submit
+            } else {
+                alert("Harap isi semua data sebelum mengirim konfirmasi!");
+            }
+        });
+    </script>
+</body>
+</html>
