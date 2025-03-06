@@ -26,6 +26,7 @@
     </nav>
 
     <!-- Form Pemesanan -->
+
     <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg mt-5">
         <h2 class="text-center text-2xl font-bold mb-6">Form Pemesanan Mobil</h2>
         
@@ -39,9 +40,15 @@
                 <option>Hiace 2023 M/T</option>
             </select>
         </div>
+
+        <div class="mb-4">
+            <label for="pickup" class="block font-semibold">Lokasi Antar-Jemput</label>
+            <input type="text" id="pickup" class="w-full p-2 border rounded mt-1" placeholder="Masukkan lokasi">
+        </div>
         
-        <div class="w-full h-40 bg-gray-200 rounded mt-2 overflow-hidden">
+         <div class="w-full h-40 bg-gray-200 rounded mt-2 overflow-hidden">
             <img src="../../images/map.png" class="w-full h-full object-cover">
+            
         </div>
         
         <h3 class="text-lg font-semibold mb-2">Progres Pembayaran</h3>
@@ -56,18 +63,7 @@
                 <option>Pelunasan Langsung</option>
             </select>
         </div>
-
-        <div class="mb-4">
-            <label for="method" class="block font-semibold mb-1">Pilih Metode Pembayaran</label>
-            <select id="method" class="w-full p-2 border rounded">
-                <option>Virtual Account BCA</option>
-                <option>Virtual Account BRI</option>
-                <option>PERMATA</option>
-                <option>DANA</option>
-                <option>Virtual Account MANDIRI</option>
-            </select>
-        </div>
-        
+              
         <button class="w-full bg-black text-white p-3 rounded text-lg hover:bg-gray-800 transition">Lanjutkan Pemesanan</button>
     </div>
     
