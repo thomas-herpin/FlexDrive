@@ -24,28 +24,7 @@
 </head>
 <body class="bg-gray-100">
     <!-- Navbar -->
-    <header class="bg-black fixed w-full z-50 shadow-md">
-        <nav class="flex justify-between items-center w-[90%] mx-auto py-3">
-            <div class="flex items-center gap-2">
-                <img src="/FlexDrive/images/logo_horizontal.png" alt="FlexDrive" class="w-[150px]">
-            </div>
-
-            <!-- Menu -->
-            <div id="nav-links" class="text-gray-300 md:static fixed bg-black md:min-h-fit min-h-[35vh] top-[-100%] md:w-auto w-full left-0 flex flex-col items-center py-3 transition-all duration-500 ease-in-out">
-                <ul class="flex md:flex-row flex-col md:items-center md:gap-10 gap-4">
-                    <li><a class="hover:text-gray-400 transition" href="home_user.html">Beranda</a></li>
-                    <li><a class="hover:text-gray-400 transition" href="akun.html">Akun</a></li>
-                    <li><a class="hover:text-gray-400 transition font-bold text-white" href="#">List Mobil</a></li>
-                </ul>
-            </div>
-
-            <!-- Search & Mobile Menu -->
-            <div class="flex items-center gap-4">
-                <input type="text" placeholder="Cari..." class="text-black rounded-full border border-gray-500 px-4 py-1 focus:outline-none focus:ring-2 focus:ring-gray-600 w-[120px] h-[35px] md:w-[200px] transition-all duration-300">
-                <ion-icon id="menu-icon" name="menu" class="text-3xl text-white cursor-pointer md:hidden"></ion-icon>
-            </div>
-        </nav>
-    </header>
+    <?php require "navbar_user.php"; ?>
 
     <!-- Search by Categories -->
     <section class="px-6 md:px-12 py-10 mb-10">
@@ -109,7 +88,7 @@
                         </div>
                     </div>
                     
-                    <a href="pemesanan.html"><div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
+                    <a href="pemesanan.php"><div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
                         <img src="../../images/toyota-veloz 2021.png" alt="Toyota Veloz 2021" class="w-full h-40 object-cover">
                         <div class="p-4">
                             <h3 class="text-lg font-semibold">2021 Toyota Veloz</h3>
