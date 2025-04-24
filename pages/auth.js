@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (email === adminEmail && password === adminPassword) {
                 alert("Login berhasil! Selamat datang, Admin.");
-                window.location.href = "admin/home admin.html";
+                window.location.href = "admin/home_admin.html";
             } else if (storedUser && storedUser.email === email && storedUser.password === password) {
                 alert("Login berhasil! Selamat datang, " + storedUser.firstName);
                 window.location.href = "user/home_user.html";
