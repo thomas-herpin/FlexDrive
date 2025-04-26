@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.location.href = "admin/home_admin.html";
             } else if (storedUser && storedUser.email === email && storedUser.password === password) {
                 alert("Login berhasil! Selamat datang, " + storedUser.firstName);
-                window.location.href = "user/home_user.html";
+                window.location.href = "user/home_user.php";
             } else {
                 alert("Email atau password salah.");
             }
