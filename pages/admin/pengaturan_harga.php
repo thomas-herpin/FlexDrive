@@ -126,14 +126,9 @@
                                             MPV
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 600.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 600.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 4.000.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 12.200.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Tersedia
@@ -166,14 +161,9 @@
                                             MPV
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 600.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 600.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 4.000.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 12.200.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Tersedia
@@ -206,14 +196,9 @@
                                             MPV
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 300.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 300.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 1.800.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 6.000.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Tersedia
@@ -246,14 +231,9 @@
                                             SUV
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 300.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 300.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 1.800.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 6.000.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Tersedia
@@ -286,14 +266,9 @@
                                             MPV
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 400.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 400.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 2.500.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 7.000.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                             Sedang Disewa
@@ -326,14 +301,9 @@
                                             Minibus
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 1.200.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 1.200.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 8.200.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 33.300.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Tersedia
@@ -366,14 +336,9 @@
                                             Hatchback
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 400.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 400.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 2.500.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 7.000.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                             Tidak Aktif
@@ -406,14 +371,9 @@
                                             Hatchback
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 300.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 300.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 1.800.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 6.000.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Tersedia
@@ -428,7 +388,6 @@
                                         </button>
                                     </td>
                                 </tr> 
-                                <!-- belum ubah yang atas -->
                                 <!-- Toyota Rush -->
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
