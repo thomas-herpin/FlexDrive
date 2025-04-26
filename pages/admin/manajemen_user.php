@@ -32,7 +32,7 @@
             <div class="container mx-auto">
                 <div class="flex justify-between items-center mb-6">
                     <h1 class="text-3xl font-bold text-gray-800">Manajemen Pengguna</h1>
-                    <a href="tambah_user.html"><button class="bg-black hover:bg-gray-500 text-white px-4 py-2 rounded-lg flex items-center">
+                    <a href="tambah_user.php"><button class="bg-black hover:bg-gray-500 text-white px-4 py-2 rounded-lg flex items-center">
                         <i class="fas fa-plus mr-2"></i>Tambah Pengguna
                     </button></a>
                 </div>
@@ -219,11 +219,9 @@
                                             </button>
                                         </div>
                                     </td>
-
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
