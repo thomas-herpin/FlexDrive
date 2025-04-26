@@ -36,7 +36,7 @@
                         <p class="text-sm text-gray-600">Kelola daftar dan harga sewa mobil</p>
                     </div>
                     <div class="flex items-center">
-                        <a href="tambah_mobil.html"><button class="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-lg flex items-center transition-colors">
+                        <a href="tambah_mobil.php"><button class="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-lg flex items-center transition-colors">
                             <i class="fas fa-plus mr-2"></i>
                             Tambah Mobil
                         </button></a>

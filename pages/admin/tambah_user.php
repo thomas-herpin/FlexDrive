@@ -12,7 +12,7 @@
         <div class="flex-1 p-6">
             <div class="container mx-auto max-w-2xl">
                 <div class="flex items-center mb-6">
-                    <a href="manajemen_user.html" class="mr-4 text-gray-600 hover:text-gray-900">
+                    <a href="manajemen_user.php" class="mr-4 text-gray-600 hover:text-gray-900">
                         <i class="fas fa-arrow-left text-xl"></i>
                     </a>
                     <h1 class="text-3xl font-bold text-gray-800">Tambah Pengguna Baru</h1>
@@ -71,10 +71,10 @@
                     </div>
 
                     <div class="flex justify-end space-x-4">
-                        <a href="manajemen_user.html"><button type="button" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300">
+                        <a href="manajemen_user.php"><button type="button" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300">
                             Batal
                         </button></a>
-                        <a href="manajemen_user.html"><button type="button" class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-300 flex items-center">
+                        <a href="manajemen_user.php"><button type="button" class="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-300 flex items-center">
                             <i class="fas fa-save mr-2"></i>Simpan
                         </button></a>
                     </div>
