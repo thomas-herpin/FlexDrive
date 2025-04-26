@@ -7,11 +7,11 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <title>Document</title>
+    <title>FlexDrive | Akun</title>
 </head>
 <body>
     <!-- Navbar -->
-    <?php require "navbar_user.php"; ?>
+    <?php require "../navbar_user.php"; ?>
 
     <section class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
         <h2 class="text-2xl font-bold mt-20 mb-6">Account Settings</h2>

@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemesanan & Pembayaran - FlexDrive</title>
+    <title>Pemesanan & Pembayaran | FlexDrive</title>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
     <!-- Navbar -->
-    <<?php require "navbar_user.php"; ?>
+    <?php require "../navbar_user.php"; ?>
 
     <!-- Form Pemesanan -->
 
@@ -51,7 +51,7 @@
             </select>
         </div>
               
-        <a href="pembayaran.php"></a><button class="w-full bg-black text-white p-3 rounded text-lg hover:bg-gray-800 transition">Lanjutkan Pembayaran</button>
+        <a href="pembayaran.php"><button class="w-full bg-black text-white p-3 rounded text-lg hover:bg-gray-800 transition">Lanjutkan Pembayaran</button></a>
     </div>
     
     <script>
