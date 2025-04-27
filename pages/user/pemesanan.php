@@ -29,14 +29,25 @@
         </div>
 
         <div class="mb-4">
-            <label for="pickup" class="block font-semibold">Lokasi Antar-Jemput</label>
-            <input type="text" id="pickup" class="w-full p-2 border rounded mt-1" placeholder="Masukkan lokasi">
+            <label for="lokasi-pengambilan" class="block font-semibold mb-1">Lokasi Pengambilan</label>
+            <input type="text" id="lokasi-pengambilan" class="w-full p-2 border rounded mt-1" placeholder="Masukkan lokasi pengambilan">
+        </div>
+
+        <div class="mb-4">
+            <label for="lokasi-pengembalian" class="block font-semibold mb-1">Lokasi Pengembalian</label>
+            <input type="text" id="lokasi-pengembalian" class="w-full p-2 border rounded mt-1" placeholder="Masukkan lokasi pengembalian">
         </div>
         
-         <div class="w-full h-40 bg-gray-200 rounded mt-2 overflow-hidden">
-            <img src="../../images/map.jpg" class="w-full h-full object-cover">
-            
+        <div class="w-full h-64 bg-gray-200 rounded mt-2 overflow-hidden">
+            <iframe id="mapFrame" 
+                    class="w-full h-full" 
+                    frameborder="0" 
+                    style="border:0" 
+                    allowfullscreen
+                    src="https://maps.google.com/maps?q=medankota&output=embed">
+            </iframe>
         </div>
+
         
         <h3 class="text-lg font-semibold mb-2">Progres Pembayaran</h3>
         <div class="w-full bg-gray-200 rounded-full h-3 mb-4">
