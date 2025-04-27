@@ -2,27 +2,30 @@
 require_once 'config.php';
 
 $email = $_POST['email'];
-$inputPassword = $_POST['password'];
+$password = $_POST['password'];
 
-$sql = "SELECT * FROM users WHERE email = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
+$stmt = mysqli_prepare($conn, "SELECT id, password, role FROM users WHERE email = ?");
+mysqli_stmt_bind_param($stmt, "s", $email);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 
-if ($user = $result->fetch_assoc()) {
-  if (password_verify($inputPassword, $user['password'])) {
-      // Simpan data user di session
-      $_SESSION["user_id"] = $user["id"];
-      $_SESSION["user_email"] = $user["email"];
-      $_SESSION["user_name"] = $user["first_name"] . " " . $user["last_name"];
-      echo "success";
-  } else {
-      echo "wrong_password";
-  }
+if (mysqli_num_rows($result) === 1) {
+    $user = mysqli_fetch_assoc($result);
+    if (password_verify($password, $user['password'])) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
+        if ($user['role'] === 'admin') {
+            echo 'admin_success';
+        } else {
+            echo 'user_success';
+        }
+    } else {
+        echo 'wrong_password';
+    }
 } else {
-  echo "user_not_found";
+    echo 'user_not_found';
 }
 
+$stmt->close();
 $conn->close();
 ?>
