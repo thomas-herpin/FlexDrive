@@ -1,14 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db_flexdrive";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-  die("Koneksi gagal: " . $conn->connect_error);
-}
+require_once 'config.php';
 
 $email = $_POST['email'];
 $inputPassword = $_POST['password'];
@@ -21,9 +12,13 @@ $result = $stmt->get_result();
 
 if ($user = $result->fetch_assoc()) {
   if (password_verify($inputPassword, $user['password'])) {
-    echo "success";
+      // Simpan data user di session
+      $_SESSION["user_id"] = $user["id"];
+      $_SESSION["user_email"] = $user["email"];
+      $_SESSION["user_name"] = $user["first_name"] . " " . $user["last_name"];
+      echo "success";
   } else {
-    echo "wrong_password";
+      echo "wrong_password";
   }
 } else {
   echo "user_not_found";

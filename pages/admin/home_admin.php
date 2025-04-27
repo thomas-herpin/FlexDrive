@@ -1,3 +1,13 @@
+<?php
+require_once '../config.php';
+
+if ($_SESSION['user_role'] !== 'admin') {
+    header("Location: ../sign_in.html");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
