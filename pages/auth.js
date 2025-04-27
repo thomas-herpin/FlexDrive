@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.text())
         .then(result => {
           if (result === "success") {
-            alert("Registration successful! Please log in.");
+            alert("Registrasi berhasil! Mohon untuk login.");
             window.location.href = "sign_in.html";
           } else {
-            alert("Registration failed: " + result);
+            alert("Registrasi gagal: " + result);
           }
         });
       });
@@ -51,9 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.text())
         .then(result => {
           if (result === "success") {
-            alert("Login successful!");
+            alert("Login berhasil! Selamat datang.");
             // Redirect ke halaman user
-            window.location.href = "home_user.php"; 
+            window.location.href = "user/home_user.php"; 
           } else if (result === "wrong_password") {
             alert("Wrong password.");
           } else if (result === "user_not_found") {
