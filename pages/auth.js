@@ -50,19 +50,20 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => response.text())
         .then(result => {
-          if (result === "success") {
+          if (result === "admin_success") {
+            alert("Login berhasil! Selamat datang, admin.");
+            window.location.href = "admin/home_admin.php"; 
+          } else if (result === "user_success") {
             alert("Login berhasil! Selamat datang.");
-            // Redirect ke halaman user
             window.location.href = "user/home_user.php"; 
           } else if (result === "wrong_password") {
-            alert("Wrong password.");
+            alert("Password salah.");
           } else if (result === "user_not_found") {
-            alert("User not found.");
+            alert("User tidak ditemukan.");
           } else {
-            alert("Login failed: " + result);
+            alert("Login gagal: " + result);
           }
-        });
+        })        
       });
     }
   });
-  
