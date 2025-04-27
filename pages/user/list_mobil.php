@@ -24,7 +24,7 @@
 </head>
 <body class="bg-gray-100">
     <!-- Navbar -->
-    <?php require "navbar_user.php"; ?>
+    <?php require "../navbar_user.php"; ?>
 
     <!-- Search by Categories -->
     <section class="px-6 md:px-12 py-10 mb-10">

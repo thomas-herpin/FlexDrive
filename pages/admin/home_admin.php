@@ -1,3 +1,13 @@
+<?php
+require_once '../config.php';
+
+if ($_SESSION['user_role'] !== 'admin') {
+    header("Location: ../sign_in.html");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -25,75 +35,7 @@
 <body class="bg-gray-50">
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <div class="w-64 bg-secondary text-white shadow-lg hidden md:block transition-transform duration-300 ease-in-out" id="sidebar">
-            <div class="p-5 border-b border-gray-700">
-                <div class="flex items-center space-x-2">
-                    <a href="home_admin.html"><button>
-                        <img src="../../images/logo_horizontal.png" alt="logoFlexDrive" width="150px">
-                    </button></a>
-                </div>
-            </div>
-            <div class="py-4 px-4">
-                <p class="text-xs text-gray-400 mb-2 uppercase font-semibold tracking-wider">Main</p>
-                <ul>
-                    <li class="mb-1">
-                        <a href="list_mobil_admin.html" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
-                            <i class="fas fa-car w-5 text-center mr-2"></i>
-                            <span>List Mobil</span>
-                        </a>
-                    </li>
-                    <li class="mb-1">
-                        <a href="jadwal_sewa.html" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
-                            <i class="fas fa-calendar-alt w-5 text-center mr-2"></i>
-                            <span>Jadwal Penyewaan</span>
-                        </a>
-                    </li>
-                    <li class="mb-1">
-                        <a href="lacak_mobil.html" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
-                            <i class="fas fa-map-marker-alt w-5 text-center mr-2"></i>
-                            <span>Lacak Posisi Mobil</span>
-                        </a>
-                    </li>
-                </ul>
-
-                <p class="text-xs text-gray-400 mt-6 mb-2 uppercase font-semibold tracking-wider">Admin</p>
-                <ul>
-                    <li class="mb-1">
-                        <a href="notifikasi.html" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
-                            <i class="fas fa-bell w-5 text-center mr-2"></i>
-                            <span>Notifikasi</span>
-                            <span class="ml-auto bg-danger text-white text-xs rounded-full px-2 py-1">3</span>
-                        </a>
-                    </li>
-                    <li class="mb-1">
-                        <a href="manajemen_user.html" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
-                            <i class="fas fa-users w-5 text-center mr-2"></i>
-                            <span>Manajemen Pengguna</span>
-                        </a>
-                    </li>
-                    <li class="mb-1">
-                        <a href="pengaturan_harga.html" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
-                            <i class="fas fa-dollar-sign w-5 text-center mr-2"></i>
-                            <span>Pengaturan Harga</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="mt-auto p-4 border-t border-gray-700">
-                <div class="flex items-center">
-                    <div class="w-10 h-10 rounded-full bg-gray-500 flex items-center justify-center">
-                        <i class="fas fa-user text-white"></i>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm font-medium text-white">Thomas</p>
-                        <p class="text-xs text-gray-400">thomas@admin.com</p>
-                    </div>
-                    <button class="ml-auto text-gray-400 hover:text-white">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+        <?php require "../sidebar_admin.php";?>
 
         <!-- Main Content -->
         <div class="flex-1 overflow-auto">
@@ -107,15 +49,12 @@
                         <button class="p-2 rounded-full hover:bg-gray-100">
                             <i class="fas fa-search text-gray-500"></i>
                         </button>
-                        <a href="notifikasi.html">
+                        <a href="notifikasi.php">
                             <button class="p-2 rounded-full hover:bg-gray-100 relative">
                                 <i class="fas fa-bell text-gray-500"></i>
                                 <span class="absolute top-0 right-0 h-4 w-4 bg-danger rounded-full text-xs text-white flex items-center justify-center">3</span>
                             </button>
                         </a>
-                        <button class="p-2 rounded-full hover:bg-gray-100">
-                            <i class="fas fa-cog text-gray-500"></i>
-                        </button>
                     </div>
                 </div>
             </header>
@@ -174,7 +113,7 @@
                 <div class="mt-8">
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-xl font-bold text-gray-800">Permintaan Sewa Terbaru</h2>
-                        <a href="jadwal_sewa.html" class="text-sm font-medium text-blue-600 hover:underline">Lihat semua</a>
+                        <a href="jadwal_sewa.php" class="text-sm font-medium text-blue-600 hover:underline">Lihat semua</a>
                     </div>
                     <div class="bg-white rounded-lg shadow-sm overflow-hidden">
                         <div class="overflow-x-auto">
@@ -312,7 +251,7 @@
                                 <p class="text-xs text-gray-400 mt-1">6 jam yang lalu</p>
                             </div>
                         </div>
-                        <button class="w-full mt-4 text-sm text-center text-blue-600 hover:underline">Lihat semua aktivitas</button>
+                        <!-- <button class="w-full mt-4 text-sm text-center text-blue-600 hover:underline">Lihat semua aktivitas</button> -->
                     </div>
                 </div>  
             </main>

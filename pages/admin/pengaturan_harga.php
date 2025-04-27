@@ -25,92 +25,71 @@
 <body class="bg-gray-50">
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <div class="w-64 bg-secondary text-white shadow-lg hidden md:block transition-transform duration-300 ease-in-out" id="sidebar">
-            <div class="p-5 border-b border-gray-700">
-                <div class="flex items-center space-x-2">
-                    <a href="home_admin.html"><button>
-                        <img src="../../images/logo_horizontal.png" alt="logoFlexDrive" width="150px">
-                    </button></a>
-                </div>
-            </div>
-            <div class="py-4 px-4">
-                <p class="text-xs text-gray-400 mb-2 uppercase font-semibold tracking-wider">Main</p>
-                <ul>
-                    <li class="mb-1">
-                        <a href="list_mobil_admin.html" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
-                            <i class="fas fa-car w-5 text-center mr-2"></i>
-                            <span>List Mobil</span>
-                        </a>
-                    </li>
-                    <li class="mb-1">
-                        <a href="jadwal_sewa.html" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
-                            <i class="fas fa-calendar-alt w-5 text-center mr-2"></i>
-                            <span>Jadwal Penyewaan</span>
-                        </a>
-                    </li>
-                    <li class="mb-1">
-                        <a href="lacak_mobil.html" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
-                            <i class="fas fa-map-marker-alt w-5 text-center mr-2"></i>
-                            <span>Lacak Posisi Mobil</span>
-                        </a>
-                    </li>
-                </ul>
-
-                <p class="text-xs text-gray-400 mt-6 mb-2 uppercase font-semibold tracking-wider">Admin</p>
-                <ul>
-                    <li class="mb-1">
-                        <a href="notifikasi.html" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
-                            <i class="fas fa-bell w-5 text-center mr-2"></i>
-                            <span>Notifikasi</span>
-                            <span class="ml-auto bg-danger text-white text-xs rounded-full px-2 py-1">3</span>
-                        </a>
-                    </li>
-                    <li class="mb-1">
-                        <a href="manajemen_user.html" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
-                            <i class="fas fa-users w-5 text-center mr-2"></i>
-                            <span>Manajemen Pengguna</span>
-                        </a>
-                    </li>
-                    <li class="mb-1">
-                        <a href="pengaturan_harga.html" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
-                            <i class="fas fa-dollar-sign w-5 text-center mr-2"></i>
-                            <span>Pengaturan Harga</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="mt-auto p-4 border-t border-gray-700">
-                <div class="flex items-center">
-                    <div class="w-10 h-10 rounded-full bg-gray-500 flex items-center justify-center">
-                        <i class="fas fa-user text-white"></i>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm font-medium text-white">Thomas</p>
-                        <p class="text-xs text-gray-400">thomas@admin.com</p>
-                    </div>
-                    <button class="ml-auto text-gray-400 hover:text-white">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+        <?php require "../sidebar_admin.php";?>
+        
             <!-- Main Content -->
-            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+            <div class="flex-1 overflow-y-auto">
+            <header class="bg-white shadow-sm">
+                <div class="flex justify-between items-center py-4 px-6">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">Pengaturan Mobil</h1>
+                        <p class="text-sm text-gray-600">Kelola daftar dan harga sewa mobil</p>
+                    </div>
+                    <div class="flex items-center">
+                        <a href="tambah_mobil.php"><button class="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-lg flex items-center transition-colors">
+                            <i class="fas fa-plus mr-2"></i>
+                            Tambah Mobil
+                        </button></a>
+                    </div>
+                </div>
+            </header>
+
+            <main class="p-6">
+                <!-- Tab Navigation -->
+                <div class="mb-6 border-b border-gray-200">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="tabNavigation">
+                        <li class="mr-2">
+                            <a href="list_mobil_admin.php"><button class="inline-block p-4 border-b-2 hover:text-gray-600 hover:border-gray-300 rounded-t-lg" id="daftar-tab">
+                                <i class="fas fa-list mr-2"></i>Daftar Mobil
+                            </button></a>
+                        </li>
+                        <li class="mr-2">
+                            <a href="pengaturan_harga.php"><button class="inline-block p-4 border-b-2 border-primary text-primary rounded-t-lg active" id="harga-tab">
+                                <i class="fas fa-dollar-sign mr-2"></i>Pengaturan Harga
+                            </button></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Filter dan Pencarian -->
+                <div class="mb-6 flex flex-wrap justify-between items-center">
+                    <div class="flex space-x-2 mb-2 sm:mb-0">
+                        <select class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option>Semua Status</option>
+                            <option>Tersedia</option>
+                            <option>Sedang Disewa</option>
+                            <option>Tidak Aktif</option>
+                        </select>
+                        <select class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option>Semua Tipe</option>
+                            <option>MPV</option>
+                            <option>SUV</option>
+                            <option>Hatchback</option>
+                            <option>Minibus</option>
+                        </select>
+                    </div>
+                    <div class="relative">
+                        <input type="text" placeholder="Cari mobil..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary w-full sm:w-64">
+                        <button class="absolute left-3 top-2.5 text-gray-500">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
                 <div class="mb-6 flex items-center justify-between">
                     <div>
                         <h2 class="text-xl font-semibold text-gray-800">Daftar Harga Sewa Mobil</h2>
                         <p class="text-sm text-gray-600">Kelola harga sewa untuk semua kendaraan</p>
-                    </div>
-                    <div class="flex space-x-3">
-                        <div class="relative">
-                            <input type="text" placeholder="Cari mobil..." class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                            <button class="absolute right-3 top-2.5 text-gray-500">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                        <a href="tambah_mobil.html"><button class="bg-black hover:bg-gray-500 text-white px-4 py-2 rounded-md transition-colors">
-                            <i class="fas fa-plus mr-2"></i>Tambah Mobil
-                        </button></a>
                     </div>
                 </div>
                 <!-- Price Settings Table -->
@@ -121,7 +100,9 @@
                                 <tr>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Mobil</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga per Hari</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga/hari</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga/minggu</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga/bulan</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                                 </tr>
@@ -145,14 +126,9 @@
                                             MPV
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 600.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 600.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 4.000.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 12.200.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Tersedia
@@ -185,14 +161,9 @@
                                             MPV
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 600.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 600.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 4.000.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 12.200.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Tersedia
@@ -225,14 +196,9 @@
                                             MPV
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 300.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 300.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 1.800.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 6.000.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Tersedia
@@ -265,14 +231,9 @@
                                             SUV
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 300.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 300.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 1.800.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 6.000.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Tersedia
@@ -305,14 +266,9 @@
                                             MPV
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 400.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 400.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 2.500.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 7.000.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                             Sedang Disewa
@@ -345,14 +301,9 @@
                                             Minibus
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 1.200.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 1.200.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 8.200.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 33.300.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Tersedia
@@ -385,14 +336,9 @@
                                             Hatchback
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 400.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 400.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 2.500.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 7.000.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                             Tidak Aktif
@@ -425,14 +371,9 @@
                                             Hatchback
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 300.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 300.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 1.800.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 6.000.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Tersedia
@@ -446,7 +387,7 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </td>
-                                </tr>
+                                </tr> 
                                 <!-- Toyota Rush -->
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
@@ -465,26 +406,17 @@
                                             SUV
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="text-sm text-gray-900">Rp 400.000</span>
-                                            <button class="ml-2 text-gray-500 hover:text-primary">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 400.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 2.500.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp 7.000.000</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                             Sedang Disewa
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <button class="text-primary hover:text-blue-700 mr-2">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="text-danger hover:text-red-700">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                                        <button class="text-primary hover:text-blue-700 mr-2"><i class="fas fa-edit"></i></button>
+                                        <button class="text-danger hover:text-red-700"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -530,6 +462,14 @@
                                 <option value="SUV">SUV</option>
                                 <option value="Hatchback">Hatchback</option>
                                 <option value="Van">Minibus</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Jenis Harga</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="per_hari">Per Hari</option>
+                                <option value="per_minggu">Per Minggu</option>
+                                <option value="per_bulan">Per Bulan</option>
                             </select>
                         </div>
                         <div>
