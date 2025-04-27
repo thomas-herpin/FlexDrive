@@ -1,3 +1,14 @@
+<?php
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: sign_in.html");
+    exit();
+}
+
+$firstName = $_SESSION['first_name'];
+$lastName = $_SESSION['last_name'];
+$email = $_SESSION['email'];
+?>
+
 <div class="w-64 bg-secondary text-white shadow-lg hidden md:flex flex-col h-screen justify-between transition-transform duration-300 ease-in-out">
     <div>
         <div class="p-5 border-b border-gray-700">
@@ -53,19 +64,22 @@
         </div>
     </div>
 
-    <!-- Bawah: Akun -->
+    <!-- Akun -->
     <div class="p-4 border-t border-gray-700">
         <div class="flex items-center">
             <div class="w-10 h-10 rounded-full bg-gray-500 flex items-center justify-center">
                 <i class="fas fa-user text-white"></i>
             </div>
             <div class="ml-3">
-                <p class="text-sm font-medium text-white">Thomas</p>
-                <p class="text-xs text-gray-400">thomas@admin.com</p>
+                <p class="text-sm font-medium text-white"><?php echo htmlspecialchars($firstName . " " . $lastName); ?></p>
+                <p class="text-xs text-gray-400"><?php echo htmlspecialchars($email); ?></p>
             </div>
-            <button class="ml-auto text-gray-400 hover:text-white">
-                <i class="fas fa-sign-out-alt"></i>
-            </button>
+            <form action="../logout.php" method="POST" class="ml-auto">
+                <button class="text-gray-400 hover:text-white">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </form>
         </div>
-    </div>
+    </div>    
 </div>
+
