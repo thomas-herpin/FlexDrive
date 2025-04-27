@@ -3,7 +3,7 @@ require_once '../config.php';
 
 // Cek session login
 if (!isset($_SESSION['user_id'])) {
-    header("Location: sign_in.html");
+    header("Location: ../sign_in.html");
     exit(); // Hentikan eksekusi script jika belum login
 }
 ?>
