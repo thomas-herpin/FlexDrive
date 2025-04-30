@@ -1,5 +1,20 @@
 <?php
 require_once '../config.php';
+
+
+
+if(isset($_POST['hapusmobil'])){
+    $id_mobil = $_POST['id_mobil'];
+
+    $hapus = mysqli_query($conn, "DELETE FROM mobil WHERE id_mobil = '$id_mobil'");
+
+    if ($hapus) {
+        header("location: list_mobil_admin.php");
+    } else {
+        echo "Gagal menghapus mobil.";
+        header("location: list_mobil_admin.php");
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -108,177 +123,44 @@ require_once '../config.php';
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
+                                    <?php
+                                        $ambilsemuadatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil");
+                                        while($data=mysqli_fetch_array($ambilsemuadatamobil)){
+                                            $merek = $data['merek_mobil'];
+                                            $nama = $data['nama_mobil'];
+                                            $tahun = $data['tahun_produksi'];
+                                            $plat = $data['nomor_plat'];
+                                            $status = $data['status'];
+                                            $harga = $data['per_hari'];
+                                            $id_mobil = $data['id_mobil'];
+
+                                    ?>
                                     <tr class="hover:bg-gray-200">
                                         <td class="px-6 py-4"><input type="checkbox" class="rounded text-primary"></td>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Innova Venturer · 2018</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">BK 34 PZ</td>
+                                        <td class="px-6 py-4 text-sm font-medium text-gray-900"><?=$merek;?> <?=$nama;?> · <?=$tahun;?></td>
+                                        <td class="px-6 py-4 text-sm text-gray-900"><?=$plat;?></td>
                                         <td class="px-6 py-4">
                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Tersedia
+                                                <?=$status;?>
                                             </span>
                                         </td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">Rp 600.000</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900">RP <?= number_format($harga, 0, ',', '.'); ?></td>
                                         <td class="px-6 py-4 text-sm font-medium">
                                             <button class="text-green-600 hover:text-green-900 mr-3" title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button class="text-red-600 hover:text-red-900" title="Hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
+                                            <!-- Form untuk Hapus Mobil -->
+                                            <form action="list_mobil_admin.php" method="POST" style="display:inline;">
+                                                <input type="hidden" name="id_mobil" value="<?=$id_mobil;?>">
+                                                <button type="submit" class="text-red-600 hover:text-red-900" title="Hapus" name="hapusmobil">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
-                                    <tr class="hover:bg-gray-200">
-                                        <td class="px-6 py-4"><input type="checkbox" class="rounded text-primary"></td>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Toyota Veloz · 2021</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">BK 2358 PO</td>
-                                        <td class="px-6 py-4">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Tersedia
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">Rp 600.000</td>
-                                        <td class="px-6 py-4 text-sm font-medium">
-                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="text-red-600 hover:text-red-900" title="Hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-200">
-                                        <td class="px-6 py-4"><input type="checkbox" class="rounded text-primary"></td>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Suzuki Ertiga · 2021</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">BK 5678 AB</td>
-                                        <td class="px-6 py-4">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Tersedia
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">Rp 300.000</td>
-                                        <td class="px-6 py-4 text-sm font-medium">
-                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="text-red-600 hover:text-red-900" title="Hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-200">
-                                        <td class="px-6 py-4"><input type="checkbox" class="rounded text-primary"></td>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Honda CR-V· 2019</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">BK 8973 LU</td>
-                                        <td class="px-6 py-4">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Tersedia
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">Rp 300.000</td>
-                                        <td class="px-6 py-4 text-sm font-medium">
-                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="text-red-600 hover:text-red-900" title="Hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-200">
-                                        <td class="px-6 py-4"><input type="checkbox" class="rounded text-primary"></td>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Daihatsu Xenia · 2020</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">BK 14 XY</td>
-                                        <td class="px-6 py-4">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                Sedang Disewa
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">Rp 400.000</td>
-                                        <td class="px-6 py-4 text-sm font-medium">
-                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="text-red-600 hover:text-red-900" title="Hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-200">
-                                        <td class="px-6 py-4"><input type="checkbox" class="rounded text-primary"></td>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Hiace Premio · 2018</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">BK 2471 KLM</td>
-                                        <td class="px-6 py-4">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Tersedia
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">Rp 1.200.000</td>
-                                        <td class="px-6 py-4 text-sm font-medium">
-                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="text-red-600 hover:text-red-900" title="Hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-200">
-                                        <td class="px-6 py-4"><input type="checkbox" class="rounded text-primary"></td>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Agya Sport · 2021</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">BK 9231 IL </td>
-                                        <td class="px-6 py-4">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                Tidak Aktif
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">Rp 400.000</td>
-                                        <td class="px-6 py-4 text-sm font-medium">
-                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="text-red-600 hover:text-red-900" title="Hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-200">
-                                        <td class="px-6 py-4"><input type="checkbox" class="rounded text-primary"></td>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Honda Brio · 2022</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">BK 7132 KTR</td>
-                                        <td class="px-6 py-4">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Tersedia
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">Rp 300.000</td>
-                                        <td class="px-6 py-4 text-sm font-medium">
-                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="text-red-600 hover:text-red-900" title="Hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-200">
-                                        <td class="px-6 py-4"><input type="checkbox" class="rounded text-primary"></td>
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Toyota Rush · 2018</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">BK 9876 DF</td>
-                                        <td class="px-6 py-4">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                Sedang Disewa
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">Rp 400.000</td>
-                                        <td class="px-6 py-4 text-sm font-medium">
-                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="text-red-600 hover:text-red-900" title="Hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                        };
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
