@@ -6,6 +6,49 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
+$status_con = 'Dikonfirmasi';
+$status_can = 'Dibatalkan';
+
+if (isset($_POST['ubahstatusberhasil'])) {
+    // Pastikan id_pesan ada dan valid
+    $id_pesan = isset($_POST['id_pesan']) ? (int)$_POST['id_pesan'] : 0;
+    
+    if ($id_pesan > 0) {
+        $update = mysqli_query($conn, "UPDATE pembayaran
+                                     SET status_pembayaran = '$status_con' 
+                                     WHERE id_pesan = $id_pesan");
+
+        if ($update) {
+            $_SESSION['success_message'] = "Berhasil Mengkonfirmasi";
+            header("Location: home_admin.php");
+            exit();
+        } else {
+            $_SESSION['error_message'] = "Gagal mengkonfirmasi: " . mysqli_error($conn);
+            header("Location: home_admin.php");
+            exit();
+        }
+    }
+} elseif (isset($_POST['ubahstatusbatal'])) {
+    // Pastikan id_pesan ada dan valid
+    $id_pesan = isset($_POST['id_pesan']) ? (int)$_POST['id_pesan'] : 0;
+    
+    if ($id_pesan > 0) {
+        $update = mysqli_query($conn, "UPDATE pembayaran
+                                     SET status_pembayaran = '$status_can' 
+                                     WHERE id_pesan = $id_pesan");
+
+        if ($update) {
+            $_SESSION['success_message'] = "Berhasil membatalkan";
+            header("Location: home_admin.php");
+            exit();
+        } else {
+            $_SESSION['error_message'] = "Gagal membatalkan: " . mysqli_error($conn);
+            header("Location: home_admin.php");
+            exit();
+        }
+    }
+}
+
 $user_id = $_SESSION['user_id'];
 $query = $conn->prepare("SELECT first_name FROM users WHERE id_user = ? AND role = 'admin'");
 $query->bind_param("i", $user_id);
@@ -201,8 +244,15 @@ $first_name = $user_data['first_name'];
                                                 </span>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-check"></i></button>
-                                                <button class="text-red-600 hover:text-red-900"><i class="fas fa-times"></i></button>
+                                                <form method="POST" action="" style="display: inline;">
+                                                    <input type="hidden" name="id_pesan" value="<?= $data['id_pesan'] ?>">
+                                                    <button type="submit" name="ubahstatusberhasil" class="text-green-600 hover:text-green-900 mr-3">
+                                                        <i class="fas fa-check"></i>
+                                                    </button>
+                                                    <button type="submit" name="ubahstatusbatal" class="text-red-600 hover:text-red-900">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     <?php
