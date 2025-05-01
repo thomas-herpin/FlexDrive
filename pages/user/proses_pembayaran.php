@@ -35,7 +35,7 @@ if (isset($_POST['submit_payment'])) {
                 // Move uploaded file
                 if (move_uploaded_file($_FILES['bukti_pembayaran']['tmp_name'], $upload_path)) {
                     // Insert into pembayaran table
-                    $status = 'Menunggu';
+                    $status = 'menunggu';
                     $id_usernya = $_SESSION['user_id'];
                     $insert_query = "INSERT INTO pembayaran (
                                     id_pesan,
