@@ -155,7 +155,7 @@ $jumlah_ditampilkan = mysqli_num_rows($ambilsemuadatamobil);
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No Plat</th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga/Hari</th>
-                                        <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
@@ -189,7 +189,8 @@ $jumlah_ditampilkan = mysqli_num_rows($ambilsemuadatamobil);
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 text-sm text-gray-900">Rp <?= number_format($harga, 0, ',', '.'); ?></td>
-                                        <td class="px-6 py-4 text-sm font-medium text-center">
+                                        <td class="px-6 py-4 text-sm font-medium text-left flex space-x-3">
+                                            <a href="edit_mobil.php?id=<?= $id_mobil ?>" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
                                             <!-- Form untuk Hapus Mobil -->
                                             <form action="list_mobil_admin.php" method="POST" style="display:inline;">
                                                 <input type="hidden" name="id_mobil" value="<?=$id_mobil;?>">

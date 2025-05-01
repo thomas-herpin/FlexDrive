@@ -208,7 +208,6 @@ $jumlah_ditampilkan = mysqli_num_rows($ambilsemuadatamobil);
                                             $id_mobil = $data['id_mobil'];
                                             $kode_mobil = 'MBL-' . sprintf('%03d', $id_mobil);
                                             
-                                            // Determine status color
                                             $status_color = 'bg-green-100 text-green-800';
                                             if ($status == 'Sedang Disewa') {
                                                 $status_color = 'bg-yellow-100 text-yellow-800';
