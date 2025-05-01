@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $userId = $_SESSION['user_id'];
-$query = "SELECT first_name, last_name, email FROM users WHERE id = ?";
+$query = "SELECT first_name, last_name, email FROM users WHERE id_user = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $userId);
 $stmt->execute();
@@ -27,11 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!empty($newPassword)) {
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-        $update = "UPDATE users SET first_name=?, last_name=?, email=?, password=? WHERE id=?";
+        $update = "UPDATE users SET first_name=?, last_name=?, email=?, password=? WHERE id_user=?";
         $stmt = $conn->prepare($update);
         $stmt->bind_param("ssssi", $firstName, $lastName, $email, $hashedPassword, $userId);
     } else {
-        $update = "UPDATE users SET first_name=?, last_name=?, email=? WHERE id=?";
+        $update = "UPDATE users SET first_name=?, last_name=?, email=? WHERE userid=?";
         $stmt = $conn->prepare($update);
         $stmt->bind_param("sssi", $firstName, $lastName, $email, $userId);
     }

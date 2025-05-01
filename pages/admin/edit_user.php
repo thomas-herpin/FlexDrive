@@ -14,7 +14,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 }
 
 $userId = $_GET['id'];
-$query = "SELECT * FROM users WHERE id = ?";
+$query = "SELECT * FROM users WHERE id_user = ?";
 $stmt = mysqli_prepare($conn, $query);
 mysqli_stmt_bind_param($stmt, "i", $userId);
 mysqli_stmt_execute($stmt);
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "Format email tidak valid";
     }
 
-    $emailCheck = "SELECT id FROM users WHERE email = ? AND id != ?";
+    $emailCheck = "SELECT id_user FROM users WHERE email = ? AND id_user != ?";
     $stmtEmail = mysqli_prepare($conn, $emailCheck);
     mysqli_stmt_bind_param($stmtEmail, "si", $email, $userId);
     mysqli_stmt_execute($stmtEmail);
@@ -57,8 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $passwordParams = [];
     
     if (!empty($_POST['password'])) {
-        if (strlen($_POST['password']) < 6) {
-            $errors[] = "Password minimal 6 karakter";
+        if (strlen($_POST['password']) < 8) {
+            $errors[] = "Password minimal 8 karakter";
         } elseif ($_POST['password'] !== $_POST['confirm_password']) {
             $errors[] = "Konfirmasi password tidak cocok";
         } else {
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($errors)) {
-        $updateQuery = "UPDATE users SET first_name = ?, last_name = ?, email = ?, role = ?" . $passwordUpdate . " WHERE id = ?";
+        $updateQuery = "UPDATE users SET first_name = ?, last_name = ?, email = ?, role = ?" . $passwordUpdate . " WHERE id_user = ?";
         
         $stmt = mysqli_prepare($conn, $updateQuery);
         $params = [$firstName, $lastName, $email, $role];
@@ -182,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <label for="password" class="block text-gray-700 font-semibold mb-2">Password Baru (Kosongkan jika tidak diubah)</label>
                                     <input type="password" id="password" name="password" 
                                         class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    <p class="text-sm text-gray-500 mt-1">Minimal 6 karakter</p>
+                                    <p class="text-sm text-gray-500 mt-1">Minimal 8 karakter</p>
                                 </div>
 
                                 <div class="mb-6">

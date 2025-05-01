@@ -1,15 +1,29 @@
 <?php
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header("Location: sign_in.html");
-    exit();
+if (!isset($_SESSION['user_id'], $_SESSION['role'], $_SESSION['first_name'], $_SESSION['last_name'], $_SESSION['email']) 
+|| $_SESSION['role'] !== 'admin') {
+header("Location: sign_in.html");
+exit();
 }
 
 $firstName = $_SESSION['first_name'];
 $lastName = $_SESSION['last_name'];
 $email = $_SESSION['email'];
+
+// Hitung notifikasi belum dibaca
+$unread_count = 0;
+if (isset($_SESSION['user_id'])) {
+    $admin_id = $_SESSION['user_id'];
+    $query = "SELECT COUNT(*) FROM notifikasi WHERE id_user = ? AND dibaca = FALSE";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $admin_id);
+    $stmt->execute();
+    $stmt->bind_result($unread_count);
+    $stmt->fetch();
+    $stmt->close();
+}   
 ?>
 
-<div class="w-64 bg-secondary text-white shadow-lg hidden md:flex flex-col h-screen justify-between transition-transform duration-300 ease-in-out">
+<div class="w-64 bg-black text-white shadow-lg hidden md:flex flex-col h-screen justify-between transition-transform duration-300 ease-in-out z-10">
     <div>
         <div class="p-5 border-b border-gray-700">
             <div class="flex items-center space-x-2">
@@ -47,13 +61,17 @@ $email = $_SESSION['email'];
 
             <p class="text-xs text-gray-400 mt-6 mb-2 uppercase font-semibold tracking-wider">Admin</p>
             <ul>
-                <li class="mb-1">
-                    <a href="notifikasi.php" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
-                        <i class="fas fa-bell w-5 text-center mr-2"></i>
-                        <span>Notifikasi</span>
-                        <span class="ml-auto bg-danger text-white text-xs rounded-full px-2 py-1">3</span>
-                    </a>
-                </li>
+            <li class="mb-1">
+            <a href="notifikasi.php" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
+                <i class="fas fa-bell w-5 text-center mr-2"></i>
+                <span>Notifikasi</span>
+                <?php if ($unread_count > 0): ?>
+                    <span class="ml-auto bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                        <?= $unread_count ?>
+                    </span>
+                <?php endif; ?>
+            </a>
+            </li>
                 <li class="mb-1">
                     <a href="manajemen_user.php" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded transition-colors duration-200">
                         <i class="fas fa-users w-5 text-center mr-2"></i>
