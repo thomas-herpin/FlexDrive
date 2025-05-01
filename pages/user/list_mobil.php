@@ -1,4 +1,4 @@
-<?
+<?php
 require_once '../config.php';
 
 // Cek session login
@@ -29,7 +29,6 @@ if (!isset($_SESSION['user_id'])) {
             scrollbar-width: none;  
         }
     </style>
-    </style>
     <title>List Mobil | FlexDrive</title>
 </head>
 <body class="bg-gray-100">
@@ -54,580 +53,311 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </section>
 
-        <!-- Tipe MPV -->
-        <section class="relative p-4" id="mpv">
-            <h2 class="text-3xl font-bold mb-6 text-gray-800">MPV</h2>
-            <div class="relative flex items-center">
-                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg lg:hidden">
-                    &#10094;
-                </button>
-                
-
-                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
-                    <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                        <img src="../../images/toyota-venturer.png" alt="Toyota Innova Venturer" class="w-full h-40 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-lg font-semibold">2018 Innova Venturer</h3>
-                            <p class="text-gray-500 text-sm">TOYOTA - Model year 2019</p>
-                            <div class="text-sm mt-2 space-y-1">
-                                <p><strong>Body type:</strong> MPV</p>
-                                <p><strong>Engine:</strong> 2.4L 4-Cylinder DOHC (Diesel)</p>
-                                <p><strong>Transmission:</strong> 6-Speed Automatic</p>
-                                <p><strong>Interior & exterior colors:</strong> Silver</p>
-                                <p><strong>Seats:</strong> 7</p>
-                            </div>
-                            <p class="mt-3 text-gray-500">Start from</p>
-                            <p class="text-lg font-bold text-green-600">Rp.800.000</p>
-                        </div>
-                    </div>
-                
-                    <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                        <img src="../../images/Suzuki Ertiga 2021.png" alt="Suzuki Ertiga" class="w-full h-40 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-lg font-semibold">2021 Suzuki Ertiga</h3>
-                            <p class="text-gray-500 text-sm">Suzuki - Model year 2021</p>
-                            <div class="text-sm mt-2 space-y-1">
-                                <p><strong>Body type:</strong> MPV</p>
-                                <p><strong>Engine:</strong> 1.5L K15B</p>
-                                <p><strong>Transmission:</strong> Automatic</p>
-                                <p><strong>Interior & exterior colors:</strong> Coklat</p>
-                                <p><strong>Seats:</strong> 7</p>
-                            </div>
-                            <p class="mt-3 text-gray-500">Start from</p>
-                            <p class="text-lg font-bold text-green-600">Rp.300.000</p>
-                        </div>
-                    </div>
-                    
-                    <a href="pemesanan.php"><div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                        <img src="../../images/toyota-veloz 2021.png" alt="Toyota Veloz 2021" class="w-full h-40 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-lg font-semibold">2021 Toyota Veloz</h3>
-                            <p class="text-gray-500 text-sm">TOYOTA - Model year 2021</p>
-                            <div class="text-sm mt-2 space-y-1">
-                                <p><strong>Body type:</strong> MPV</p>
-                                <p><strong>Engine:</strong> 1.5L 4-Cylinder DOHC Dual VVT-i</p>
-                                <p><strong>Transmission:</strong> CVT (Continuously Variable Transmission)</p>
-                                <p><strong>Interior & exterior colors:</strong> hitam, silver</p>
-                                <p><strong>Seats:</strong> 7</p>
-                            </div>
-                            <p class="mt-3 text-gray-500">Start from</p>
-                            <p class="text-lg font-bold text-green-600">Rp.600.000</p>
-                        </div>
-                    </div></a>
-                    
-                    <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                        <img src="../../images/Daihatsu Xenia 2020.png" alt="Daihatsu Xenia" class="w-full h-40 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-lg font-semibold">2021 Daihatsu Xenia</h3>
-                            <p class="text-gray-500 text-sm">Daihatsu - Model year 2021</p>
-                            <div class="text-sm mt-2 space-y-1">
-                                <p><strong>Body type:</strong> MPV</p>
-                                <p><strong>Engine:</strong> 1.5L Dual VVT-i</p>
-                                <p><strong>Transmission:</strong> 1.5L Dual VVT-i</p>
-                                <p><strong>Interior & exterior colors:</strong> Putih</p>
-                                <p><strong>Seats:</strong> 7</p>
-                            </div>
-                            <p class="mt-3 text-gray-500">Start from</p>
-                            <p class="text-lg font-bold text-green-600">Rp.600.000</p>
-                        </div>
-                    </div>
-                    
-                </div>
-                
-                <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg lg:hidden">
-                    &#10095;
-                </button>
-            </div>
-        </section>    
-
-            
-
-
-    <!-- Tipe: SUV -->
-
-    <section class="relative p-4" id="suv">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">SUV</h2>
+    <!-- Tipe MPV -->
+    <section class="relative p-4" id="mpv">
+        <h2 class="text-3xl font-bold mb-6 text-gray-800">MPV</h2>
         <div class="relative flex items-center">
-            <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg md:hidden">
+            <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
                 &#10094;
             </button>
-            
+
             <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Toyota Rush 2018.png" alt="Toyota Innova Venturer" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2018 Toyota Rush</h3>
-                        <p class="text-gray-500 text-sm">Toyota - Model year 2018</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> SUV</p>
-                            <p><strong>Engine:</strong> 1.5L 2NR-VE Dual VVT-i</p>
-                            <p><strong>Transmission:</strong> Automatic</p>
-                            <p><strong>Interior & exterior colors:</strong> Coklat</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.400.000</p>
-                    </div>
-                </div>
-                
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Honda CR-V 2019.png" alt="Toyota Veloz 2021" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2019 Honda CR-V</h3>
-                        <p class="text-gray-500 text-sm">Honda - Model year 2019</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> SUV</p>
-                            <p><strong>Engine:</strong> 2.0L i-VTEC</p>
-                            <p><strong>Transmission:</strong> CVT</p>
-                            <p><strong>Interior & exterior colors:</strong> Hitam</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.600.000</p>
-                    </div>
-                </div>
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'MPV'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
+        </div>
+
+        <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+            &#10095;
+        </button>
+    </div>
+
+    <!-- Tipe: SUV -->
+    </section>
+        <section class="relative p-4" id="suv">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">SUV</h2>
+            <div class="relative flex items-center">
+                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                    &#10094;
+                </button>
+
+                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'SUV'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
             </div>
-            
-            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg md:hidden">
+
+            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
                 &#10095;
             </button>
         </div>
     </section>
 
     <!-- Tipe: Hatchback -->
+    </section>
+        <section class="relative p-4" id="hatchback">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Hatchback</h2>
+            <div class="relative flex items-center">
+                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                    &#10094;
+                </button>
 
-    <section class="relative p-4" id="hatchback">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Hatchback</h2>
-        <div class="relative flex items-center">
-            <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg md:hidden">
-                &#10094;
-            </button>
-            
-            <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/agya sport 2021.png" alt="Toyota Agya" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2022 Agya Sport</h3>
-                        <p class="text-gray-500 text-sm">Toyota - Model year 2022</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> Hatchback</p>
-                            <p><strong>Engine:</strong> 1.2L 3NR-VE Dual VVT-i</p>
-                            <p><strong>Transmission:</strong> Automatic</p>
-                            <p><strong>Interior & exterior colors:</strong> Merah</p>
-                            <p><strong>Seats:</strong> 5</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.300.000</p>
-                    </div>
-                </div>   
-                
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Honda Brio 2022.png" alt="Honda Brio" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2022 Honda Brio</h3>
-                        <p class="text-gray-500 text-sm">Honda - Model year 2022</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> Hatchback</p>
-                            <p><strong>Engine:</strong> 1.2L i-VTEC SOHC</p>
-                            <p><strong>Transmission:</strong> CVT</p>
-                            <p><strong>Interior & exterior colors:</strong> Putih</p>
-                            <p><strong>Seats:</strong> 5</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.300.000</p>
-                    </div>
-                </div>
+                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'Hatchback'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
             </div>
-            
-            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg md:hidden">
+
+            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
                 &#10095;
             </button>
         </div>
     </section>
-
 
     <!-- Tipe: Minibus -->
-    <section class="relative p-4" id="minibus">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Minibus</h2>
-        <div class="relative flex items-center">
-            <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg hidden">
-                &#10094;
-            </button>
-            
-            <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Hiiace 2018.png" alt="Hiace" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2018 Hiace Premio</h3>
-                        <p class="text-gray-500 text-sm">TOYOTA - Model year 2018</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> Van</p>
-                            <p><strong>Engine:</strong> 2.8L 4-Cylinder Turbo Diesel</p>
-                            <p><strong>Transmission:</strong> 6-Speed Manual</p>
-                            <p><strong>Interior & exterior colors:</strong> black, white</p>
-                            <p><strong>Seats:</strong> 15</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.1.000.000</p>
-                    </div>
-                </div>   
-            </div>
-            
-            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg hidden">
-                &#10095;
-            </button>
-        </div>
     </section>
+        <section class="relative p-4" id="minibus">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Minibus</h2>
+            <div class="relative flex items-center">
+                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                    &#10094;
+                </button>
 
-    <!-- Tipe: Manual -->
-    <section class="relative p-4" id="manual">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Manual</h2>
-        <div class="relative flex items-center">
-            <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg md:hidden">
-                &#10094;
-            </button>
-            
-            <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
-
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Hiiace 2018.png" alt="Hiace" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2018 Hiace Premio</h3>
-                        <p class="text-gray-500 text-sm">TOYOTA - Model year 2018</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> Van</p>
-                            <p><strong>Engine:</strong> 2.8L 4-Cylinder Turbo Diesel</p>
-                            <p><strong>Transmission:</strong> 6-Speed Manual</p>
-                            <p><strong>Interior & exterior colors:</strong> black, white</p>
-                            <p><strong>Seats:</strong> 15</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.1.000.000</p>
-                    </div>
-                </div>  
-                
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/toyota-veloz 2021.png" alt="Toyota Veloz 2021" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2021 Toyota Veloz</h3>
-                        <p class="text-gray-500 text-sm">TOYOTA - Model year 2021</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> MPV</p>
-                            <p><strong>Engine:</strong> 1.5L 4-Cylinder DOHC Dual VVT-i</p>
-                            <p><strong>Transmission:</strong> CVT (Continuously Variable Transmission)</p>
-                            <p><strong>Interior & exterior colors:</strong> hitam, silver</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.600.000</p>
-                    </div>
-                </div>
-
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Daihatsu Xenia 2020.png" alt="Daihatsu Xenia" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2021 Daihatsu Xenia</h3>
-                        <p class="text-gray-500 text-sm">Daihatsu - Model year 2021</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> MPV</p>
-                            <p><strong>Engine:</strong> 1.5L Dual VVT-i</p>
-                            <p><strong>Transmission:</strong> 1.5L Dual VVT-i</p>
-                            <p><strong>Interior & exterior colors:</strong> Putih</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.600.000</p>
-                    </div>
-                </div>
+                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'Minibus'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
             </div>
-            
-            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg md:hidden">
-                &#10095;
-            </button>
-        </div>
-    </section>
 
-    <!-- Tipe: Automatic -->
-    <section class="relative p-4" id="automatic">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Automatic</h2>
-        <div class="relative flex items-center">
-            <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
-                &#10094;
-            </button>
-            
-            <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/toyota-venturer.png" alt="Toyota Innova Venturer" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2018 Innova Venturer</h3>
-                        <p class="text-gray-500 text-sm">TOYOTA - Model year 2019</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> MPV</p>
-                            <p><strong>Engine:</strong> 2.4L 4-Cylinder DOHC (Diesel)</p>
-                            <p><strong>Transmission:</strong> 6-Speed Automatic</p>
-                            <p><strong>Interior & exterior colors:</strong> Silver</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.800.000</p>
-                    </div>
-                </div>
-
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Suzuki Ertiga 2021.png" alt="Suzuki Ertiga" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2021 Suzuki Ertiga</h3>
-                        <p class="text-gray-500 text-sm">Suzuki - Model year 2021</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> MPV</p>
-                            <p><strong>Engine:</strong> 1.5L K15B</p>
-                            <p><strong>Transmission:</strong> Automatic</p>
-                            <p><strong>Interior & exterior colors:</strong> Coklat</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.300.000</p>
-                    </div>
-                </div>
-
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Honda CR-V 2019.png" alt="Toyota Veloz 2021" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2019 Honda CR-V</h3>
-                        <p class="text-gray-500 text-sm">Honda - Model year 2019</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> SUV</p>
-                            <p><strong>Engine:</strong> 2.0L i-VTEC</p>
-                            <p><strong>Transmission:</strong> CVT</p>
-                            <p><strong>Interior & exterior colors:</strong> Hitam</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.600.000</p>
-                    </div>
-                </div>
-                
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/agya sport 2021.png" alt="Toyota Agya" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2022 Agya Sport</h3>
-                        <p class="text-gray-500 text-sm">Toyota - Model year 2022</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> Hatchback</p>
-                            <p><strong>Engine:</strong> 1.2L 3NR-VE Dual VVT-i</p>
-                            <p><strong>Transmission:</strong> Automatic</p>
-                            <p><strong>Interior & exterior colors:</strong> Merah</p>
-                            <p><strong>Seats:</strong> 5</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.300.000</p>
-                    </div>
-                </div>
-                
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Honda Brio 2022.png" alt="Honda Brio" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2022 Honda Brio</h3>
-                        <p class="text-gray-500 text-sm">Honda - Model year 2022</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> Hatchback</p>
-                            <p><strong>Engine:</strong> 1.2L i-VTEC SOHC</p>
-                            <p><strong>Transmission:</strong> CVT</p>
-                            <p><strong>Interior & exterior colors:</strong> Putih</p>
-                            <p><strong>Seats:</strong> 5</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.300.000</p>
-                    </div>
-                </div>
-            </div>
-            
             <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
                 &#10095;
             </button>
         </div>
     </section>
 
-    <!-- Bensin -->
-    <section class="relative p-4" id="bensin">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Bensin</h2>
-        <div class="relative flex items-center">
-            <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
-                &#10094;
-            </button>
-            
-            <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/toyota-veloz 2021.png" alt="Toyota Veloz 2021" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2021 Toyota Veloz</h3>
-                        <p class="text-gray-500 text-sm">TOYOTA - Model year 2021</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> MPV</p>
-                            <p><strong>Engine:</strong> 1.5L 4-Cylinder DOHC Dual VVT-i</p>
-                            <p><strong>Transmission:</strong> CVT (Continuously Variable Transmission)</p>
-                            <p><strong>Interior & exterior colors:</strong> hitam, silver</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.600.000</p>
-                    </div>
-                </div>
+    <!-- Transmission: Manual -->
+    </section>
+        <section class="relative p-4" id="manual">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Manual</h2>
+            <div class="relative flex items-center">
+                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                    &#10094;
+                </button>
 
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Suzuki Ertiga 2021.png" alt="Suzuki Ertiga" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2021 Suzuki Ertiga</h3>
-                        <p class="text-gray-500 text-sm">Suzuki - Model year 2021</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> MPV</p>
-                            <p><strong>Engine:</strong> 1.5L K15B</p>
-                            <p><strong>Transmission:</strong> Automatic</p>
-                            <p><strong>Interior & exterior colors:</strong> Coklat</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.300.000</p>
-                    </div>
-                </div>
-
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Honda CR-V 2019.png" alt="Toyota Veloz 2021" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2019 Honda CR-V</h3>
-                        <p class="text-gray-500 text-sm">Honda - Model year 2019</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> SUV</p>
-                            <p><strong>Engine:</strong> 2.0L i-VTEC</p>
-                            <p><strong>Transmission:</strong> CVT</p>
-                            <p><strong>Interior & exterior colors:</strong> Hitam</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.600.000</p>
-                    </div>
-                </div>
-
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Daihatsu Xenia 2020.png" alt="Daihatsu Xenia" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2021 Daihatsu Xenia</h3>
-                        <p class="text-gray-500 text-sm">Daihatsu - Model year 2021</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> MPV</p>
-                            <p><strong>Engine:</strong> 1.5L Dual VVT-i</p>
-                            <p><strong>Transmission:</strong> 1.5L Dual VVT-i</p>
-                            <p><strong>Interior & exterior colors:</strong> Putih</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.600.000</p>
-                    </div>
-                </div>
-
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/agya sport 2021.png" alt="Toyota Agya" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2022 Agya Sport</h3>
-                        <p class="text-gray-500 text-sm">Toyota - Model year 2022</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> Hatchback</p>
-                            <p><strong>Engine:</strong> 1.2L 3NR-VE Dual VVT-i</p>
-                            <p><strong>Transmission:</strong> Automatic</p>
-                            <p><strong>Interior & exterior colors:</strong> Merah</p>
-                            <p><strong>Seats:</strong> 5</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.300.000</p>
-                    </div>
-                </div>
-                
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Honda Brio 2022.png" alt="Honda Brio" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2022 Honda Brio</h3>
-                        <p class="text-gray-500 text-sm">Honda - Model year 2022</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> Hatchback</p>
-                            <p><strong>Engine:</strong> 1.2L i-VTEC SOHC</p>
-                            <p><strong>Transmission:</strong> CVT</p>
-                            <p><strong>Interior & exterior colors:</strong> Putih</p>
-                            <p><strong>Seats:</strong> 5</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.300.000</p>
-                    </div>
-                </div>
-
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Toyota Rush 2018.png" alt="Toyota Innova Venturer" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2018 Toyota Rush</h3>
-                        <p class="text-gray-500 text-sm">Toyota - Model year 2018</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> SUV</p>
-                            <p><strong>Engine:</strong> 1.5L 2NR-VE Dual VVT-i</p>
-                            <p><strong>Transmission:</strong> Automatic</p>
-                            <p><strong>Interior & exterior colors:</strong> Coklat</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.400.000</p>
-                    </div>
-                </div>
+                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.transmission = 'Manual'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
             </div>
-            
+
             <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
                 &#10095;
             </button>
         </div>
     </section>
 
-    <!-- Diesel -->
-    <section class="relative p-4" id="diesel">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Diesel</h2>
-        <div class="relative flex items-center">
-            <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg md:hidden">
-                &#10094;
-            </button>
-            
-            <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/toyota-venturer.png" alt="Toyota Innova Venturer" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2018 Innova Venturer</h3>
-                        <p class="text-gray-500 text-sm">TOYOTA - Model year 2019</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> MPV</p>
-                            <p><strong>Engine:</strong> 2.4L 4-Cylinder DOHC (Diesel)</p>
-                            <p><strong>Transmission:</strong> 6-Speed Automatic</p>
-                            <p><strong>Interior & exterior colors:</strong> Silver</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.800.000</p>
-                    </div>
-                </div>
-                
-                <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                    <img src="../../images/Hiiace 2018.png" alt="Hiace" class="w-full h-40 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">2018 Hiace Premio</h3>
-                        <p class="text-gray-500 text-sm">TOYOTA - Model year 2018</p>
-                        <div class="text-sm mt-2 space-y-1">
-                            <p><strong>Body type:</strong> Van</p>
-                            <p><strong>Engine:</strong> 2.8L 4-Cylinder Turbo Diesel</p>
-                            <p><strong>Transmission:</strong> 6-Speed Manual</p>
-                            <p><strong>Interior & exterior colors:</strong> black, white</p>
-                            <p><strong>Seats:</strong> 15</p>
-                        </div>
-                        <p class="mt-3 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.1.000.000</p>
-                    </div>
-                </div>
+    <!-- Transmission: Automatic -->
+    </section>
+        <section class="relative p-4" id="auto">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Automatic</h2>
+            <div class="relative flex items-center">
+                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                    &#10094;
+                </button>
+
+                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.transmission = 'Automatic'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
             </div>
-            
-            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg md:hidden">
+
+            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                &#10095;
+            </button>
+        </div>
+    </section>
+
+    <!-- Bahan Bakar: Bensin -->
+    </section>
+        <section class="relative p-4" id="bensin">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Bensin</h2>
+            <div class="relative flex items-center">
+                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                    &#10094;
+                </button>
+
+                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.bahan_bakar = 'Bensin'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
+            </div>
+
+            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                &#10095;
+            </button>
+        </div>
+    </section>
+
+    <!-- Bahan Bakar: Diesel -->
+    </section>
+        <section class="relative p-4" id="diesel">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Diesel</h2>
+            <div class="relative flex items-center">
+                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                    &#10094;
+                </button>
+
+                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.bahan_bakar = 'Diesel'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
+            </div>
+
+            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
                 &#10095;
             </button>
         </div>

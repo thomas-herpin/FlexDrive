@@ -1,10 +1,51 @@
-<?
+<?php   
 require_once '../config.php';
 
 // Cek session login
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../sign_in.html");
     exit(); // Hentikan eksekusi script jika belum login
+}
+
+// Ambil id_mobil dari POST
+if (isset($_POST['id_mobil'])) {
+    $id_mobil = $_POST['id_mobil']; // Ambil id_mobil dari POST
+} else {
+    echo "ID Mobil tidak ditemukan.";
+    exit();
+}
+
+$id_user = $_SESSION['user_id'];
+
+// Ambil data mobil dan harga berdasarkan id_mobil
+$query = mysqli_query($conn, "SELECT * FROM mobil WHERE id_mobil = $id_mobil");
+$data = mysqli_fetch_assoc($query);
+
+if (!$data) {
+    echo "Mobil tidak ditemukan.";
+    exit();
+}
+
+if (isset($_POST['pesan'])) {
+    $no_telp = $_POST['no_telp'];
+    $lok_ambil = $_POST['lokasi_pengambilan'];
+    $lok_kembali = $_POST['lokasi_pengembalian'];
+    $tgl_ambil = $_POST['tanggal_pengambilan'];
+    $tgl_kembali = $_POST['tanggal_pengembalian'];
+    $pelunasan = $_POST['pelunasan'];
+
+    $addpesanan = mysqli_query($conn, "INSERT INTO pemesanan 
+    (id_mobil, id_user, no_telp, lokasi_pengambilan, lokasi_pengembalian, tanggal_pengambilan, tanggal_pengembalian, pelunasan) 
+    VALUES 
+    ('$id_mobil', '$id_user', '$no_telp', '$lok_ambil', '$lok_kembali', '$tgl_ambil', '$tgl_kembali', '$pelunasan')");
+
+    if($addpesanan){
+        header('Location: pembayaran.php');
+        exit(); 
+    } else {
+        echo mysqli_error($conn); // Menampilkan pesan error dari query
+        echo "<script>alert('Gagal menambahkan pesanan'); window.location='pemesanan.php';</script>";
+    }
 }
 ?>
 
@@ -24,56 +65,63 @@ if (!isset($_SESSION['user_id'])) {
 
     <!-- Form Pemesanan -->
 
-    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-center text-2xl font-bold mt-20 mb-6">Form Pemesanan Mobil</h2>
-        
-        <div class="mb-4">
-            <label for="car" class="block font-semibold mb-1">Pilih Mobil</label>
-            <select id="car" class="w-full p-2 border rounded">
-                <option>Toyota Avanza 1.5 Veloz 2021 M/T</option>
-                <option>Toyota Innova Venturer 2018 A/T</option>
-                <option>Toyota Rush 2018 A/T</option>
-                <option>Honda Brio 2022 A/T</option>
-                <option>Hiace 2023 M/T</option>
-            </select>
-        </div>
+    <form action="pemesanan.php" method="POST">
+        <input type="hidden" name="id_mobil" value="<?= $id_mobil; ?>">
+        <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-center text-2xl font-bold mt-20 mb-6">Form Pemesanan Mobil</h2>
+            
+            <div class="mb-4">
+                <img src="../../images_admin/<?=$data['gambar_mobil'];?>" alt="">
+                <p class="text-sm text-gray-500 mb-1">Mobil : <strong><?= $data['merek_mobil'] . " " . $data['nama_mobil']; ?></strong></p>
+            </div>
 
-        <div class="mb-4">
-            <label for="lokasi-pengambilan" class="block font-semibold mb-1">Lokasi Pengambilan</label>
-            <input type="text" id="lokasi-pengambilan" class="w-full p-2 border rounded mt-1" placeholder="Masukkan lokasi pengambilan">
-        </div>
+            <div class="mb-4">
+                <label for="no_telp" class="block font-semibold mb-1">Nomor Telepon</label>
+                <input type="text" id="lokasi-pengambilan" name="no_telp" class="w-full p-2 border rounded mt-1" placeholder="Masukkan nomor telepon">
+            </div>
 
-        <div class="mb-4">
-            <label for="lokasi-pengembalian" class="block font-semibold mb-1">Lokasi Pengembalian</label>
-            <input type="text" id="lokasi-pengembalian" class="w-full p-2 border rounded mt-1" placeholder="Masukkan lokasi pengembalian">
-        </div>
-        
-        <div class="w-full h-64 bg-gray-200 rounded mt-2 overflow-hidden">
-            <iframe id="mapFrame" 
-                    class="w-full h-full" 
-                    frameborder="0" 
-                    style="border:0" 
-                    allowfullscreen
-                    src="https://maps.google.com/maps?q=medankota&output=embed">
-            </iframe>
-        </div>
+            <div class="mb-4">
+                <label for="lokasi-pengambilan" class="block font-semibold mb-1">Lokasi Pengambilan</label>
+                <input type="text" id="lokasi-pengambilan" name="lokasi_pengambilan" class="w-full p-2 border rounded mt-1" placeholder="Masukkan lokasi pengambilan">
+            </div>
 
-        
-        <h3 class="text-lg font-semibold mb-2">Progres Pembayaran</h3>
-        <div class="w-full bg-gray-200 rounded-full h-3 mb-4">
-            <div class="bg-green-500 h-3 rounded-full" style="width: 50%;"></div>
+            <div class="mb-4">
+                <label for="lokasi-pengembalian" class="block font-semibold mb-1">Lokasi Pengembalian</label>
+                <input type="text" id="lokasi-pengembalian" name="lokasi_pengembalian"class="w-full p-2 border rounded mt-1" placeholder="Masukkan lokasi pengembalian">
+            </div>
+            
+            <div class="w-full h-64 bg-gray-200 rounded mt-2 overflow-hidden">
+                <iframe id="mapFrame" 
+                        class="w-full h-full" 
+                        frameborder="0" 
+                        style="border:0" 
+                        allowfullscreen
+                        src="https://maps.google.com/maps?q=medankota&output=embed">
+                </iframe>
+            </div>
+
+            <div class="mb-4">
+                <label for="tanggal-pengambilan" class="block font-semibold mb-1">Tanggal Pengambilan</label>
+                <input type="date" id="lokasi-pengembalian" name="tanggal_pengambilan" class="w-full p-2 border rounded mt-1" placeholder="Masukkan tanggal pengambilan">
+            </div>
+
+            <div class="mb-4">
+                <label for="tanggal-pengembalian" class="block font-semibold mb-1">Tanggal Pengembalian</label>
+                <input type="date" id="tanggal-pengembalian" name="tanggal_pengembalian" class="w-full p-2 border rounded mt-1" placeholder="Masukkan tanggal pengembalian">
+            </div>
+            
+            
+            <div class="mb-4">
+                <label for="payment" class="block font-semibold mb-1">Pilih Metode Pelunasan</label>
+                <select id="payment" name="pelunasan" class="w-full p-2 border rounded">
+                    <option value="50">DP 50%</option>
+                    <option value="100">Pelunasan Langsung</option>
+                </select>
+            </div>
+                
+            <button type="submit" class="w-full bg-black text-white p-3 rounded text-lg hover:bg-gray-800 transition" name="pesan">Lanjutkan Pembayaran</button>
         </div>
-        
-        <div class="mb-4">
-            <label for="payment" class="block font-semibold mb-1">Pilih Metode Pelunasan</label>
-            <select id="payment" class="w-full p-2 border rounded">
-                <option>DP 50%</option>
-                <option>Pelunasan Langsung</option>
-            </select>
-        </div>
-              
-        <a href="pembayaran.php"><button class="w-full bg-black text-white p-3 rounded text-lg hover:bg-gray-800 transition">Lanjutkan Pembayaran</button></a>
-    </div>
+    </form>
     
     <script>
         const navLinks = document.getElementById("nav-links");
