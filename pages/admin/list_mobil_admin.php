@@ -1,20 +1,36 @@
 <?php
 require_once '../config.php';
 
-
-
 if(isset($_POST['hapusmobil'])){
     $id_mobil = $_POST['id_mobil'];
-
     $hapus = mysqli_query($conn, "DELETE FROM mobil WHERE id_mobil = '$id_mobil'");
-
-    if ($hapus) {
-        header("location: list_mobil_admin.php");
-    } else {
-        echo "Gagal menghapus mobil.";
-        header("location: list_mobil_admin.php");
-    }
+    header("location: list_mobil_admin.php");
+    exit();
 }
+
+$status_filter = isset($_GET['status']) ? $_GET['status'] : '';
+$tipe_filter = isset($_GET['tipe']) ? $_GET['tipe'] : '';
+$search_query = isset($_GET['search']) ? $_GET['search'] : '';
+
+$query = "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE 1=1";
+if (!empty($status_filter) && $status_filter != 'Semua Status') {
+    $query .= " AND m.status = '$status_filter'";
+}
+
+if (!empty($tipe_filter) && $tipe_filter != 'Semua Tipe') {
+    $query .= " AND m.tipe_mobil = '$tipe_filter'";
+}
+
+if (!empty($search_query)) {
+    $query .= " AND (m.merek_mobil LIKE '%$search_query%' OR m.nama_mobil LIKE '%$search_query%' OR m.nomor_plat LIKE '%$search_query%')";
+}
+
+
+$total_mobil_query = mysqli_query($conn, "SELECT COUNT(*) AS total FROM mobil");
+$total_mobil_data = mysqli_fetch_assoc($total_mobil_query);
+$total_mobil = $total_mobil_data['total'];
+$ambilsemuadatamobil = mysqli_query($conn, $query);
+$jumlah_ditampilkan = mysqli_num_rows($ambilsemuadatamobil);
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +54,25 @@ if(isset($_POST['hapusmobil'])){
                     }
                 }
             }
+        }
+        
+        function applyFilters() {
+            document.getElementById('filterForm').submit();
+        }
+
+        function toggleSelectAll(source) {
+            const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = source.checked;
+            });
+        }
+
+        function handleIndividualCheckbox() {
+            const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+            const selectAllCheckbox = document.querySelector('thead input[type="checkbox"]');
+            
+            const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+            selectAllCheckbox.checked = allChecked;
         }
     </script>
 </head>
@@ -81,29 +116,30 @@ if(isset($_POST['hapusmobil'])){
                 </div>
 
                 <!-- Filter dan Pencarian -->
-                <div class="mb-6 flex flex-wrap justify-between items-center">
+                <form id="filterForm" method="GET" action="list_mobil_admin.php" class="mb-6 flex flex-wrap justify-between items-center">
                     <div class="flex space-x-2 mb-2 sm:mb-0">
-                        <select class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary">
-                            <option>Semua Status</option>
-                            <option>Tersedia</option>
-                            <option>Sedang Disewa</option>
-                            <option>Tidak Aktif</option>
+                        <select name="status" class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary" onchange="applyFilters()">
+                            <option value="Semua Status" <?= $status_filter == 'Semua Status' || empty($status_filter) ? 'selected' : '' ?>>Semua Status</option>
+                            <option value="Tersedia" <?= $status_filter == 'Tersedia' ? 'selected' : '' ?>>Tersedia</option>
+                            <option value="Sedang Disewa" <?= $status_filter == 'Sedang Disewa' ? 'selected' : '' ?>>Sedang Disewa</option>
+                            <option value="Tidak Aktif" <?= $status_filter == 'Tidak Aktif' ? 'selected' : '' ?>>Tidak Aktif</option>
                         </select>
-                        <select class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary">
-                            <option>Semua Tipe</option>
-                            <option>MPV</option>
-                            <option>SUV</option>
-                            <option>Hatchback</option>
-                            <option>Minibus</option>
+                        <select name="tipe" class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary" onchange="applyFilters()">
+                            <option value="Semua Tipe" <?= $tipe_filter == 'Semua Tipe' || empty($tipe_filter) ? 'selected' : '' ?>>Semua Tipe</option>
+                            <option value="MPV" <?= $tipe_filter == 'MPV' ? 'selected' : '' ?>>MPV</option>
+                            <option value="SUV" <?= $tipe_filter == 'SUV' ? 'selected' : '' ?>>SUV</option>
+                            <option value="Hatchback" <?= $tipe_filter == 'Hatchback' ? 'selected' : '' ?>>Hatchback</option>
+                            <option value="Minibus" <?= $tipe_filter == 'Minibus' ? 'selected' : '' ?>>Minibus</option>
                         </select>
                     </div>
                     <div class="relative">
-                        <input type="text" placeholder="Cari mobil..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary w-full sm:w-64">
-                        <button class="absolute left-3 top-2.5 text-gray-500">
+                        <input type="text" name="search" placeholder="Cari mobil..." value="<?= htmlspecialchars($search_query) ?>" 
+                            class="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary w-full sm:w-64">
+                        <button type="submit" class="absolute left-3 top-2.5 text-gray-500">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-                </div>
+                </form>
 
                 <!-- Daftar Mobil -->
                 <div class="tab-content">
@@ -113,42 +149,47 @@ if(isset($_POST['hapusmobil'])){
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            <input type="checkbox" class="rounded text-primary">
+                                            <input type="checkbox" class="rounded text-primary" onclick="toggleSelectAll(this)">
                                         </th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mobil</th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No Plat</th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga/Hari</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                                        <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
                                     <?php
-                                        $ambilsemuadatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil");
-                                        while($data=mysqli_fetch_array($ambilsemuadatamobil)){
-                                            $merek = $data['merek_mobil'];
-                                            $nama = $data['nama_mobil'];
-                                            $tahun = $data['tahun_produksi'];
-                                            $plat = $data['nomor_plat'];
-                                            $status = $data['status'];
-                                            $harga = $data['per_hari'];
-                                            $id_mobil = $data['id_mobil'];
-
+                                        if ($jumlah_ditampilkan > 0) {
+                                            while($data=mysqli_fetch_array($ambilsemuadatamobil)){
+                                                $merek = $data['merek_mobil'];
+                                                $nama = $data['nama_mobil'];
+                                                $tahun = $data['tahun_produksi'];
+                                                $plat = $data['nomor_plat'];
+                                                $status = $data['status'];
+                                                $harga = $data['per_hari'];
+                                                $id_mobil = $data['id_mobil'];
+                                                
+                                                $status_color = 'bg-green-100 text-green-800';
+                                                if ($status == 'Sedang Disewa') {
+                                                    $status_color = 'bg-yellow-100 text-yellow-800';
+                                                } elseif ($status == 'Tidak Aktif') {
+                                                    $status_color = 'bg-red-100 text-red-800';
+                                                }
                                     ?>
                                     <tr class="hover:bg-gray-200">
-                                        <td class="px-6 py-4"><input type="checkbox" class="rounded text-primary"></td>
+                                        <td class="px-6 py-4">
+                                            <input type="checkbox" class="rounded text-primary" onclick="handleIndividualCheckbox()" value="<?=$id_mobil;?>">
+                                        </td>
                                         <td class="px-6 py-4 text-sm font-medium text-gray-900"><?=$merek;?> <?=$nama;?> · <?=$tahun;?></td>
                                         <td class="px-6 py-4 text-sm text-gray-900"><?=$plat;?></td>
                                         <td class="px-6 py-4">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <?= $status_color ?>">
                                                 <?=$status;?>
                                             </span>
                                         </td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">RP <?= number_format($harga, 0, ',', '.'); ?></td>
-                                        <td class="px-6 py-4 text-sm font-medium">
-                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Rp <?= number_format($harga, 0, ',', '.'); ?></td>
+                                        <td class="px-6 py-4 text-sm font-medium text-center">
                                             <!-- Form untuk Hapus Mobil -->
                                             <form action="list_mobil_admin.php" method="POST" style="display:inline;">
                                                 <input type="hidden" name="id_mobil" value="<?=$id_mobil;?>">
@@ -159,7 +200,16 @@ if(isset($_POST['hapusmobil'])){
                                         </td>
                                     </tr>
                                     <?php
-                                        };
+                                            }
+                                        } else {
+                                    ?>
+                                    <tr>
+                                        <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500">
+                                            Tidak ada data mobil yang ditemukan
+                                        </td>
+                                    </tr>
+                                    <?php
+                                        }
                                     ?>
                                 </tbody>
                             </table>
@@ -179,7 +229,8 @@ if(isset($_POST['hapusmobil'])){
                         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                             <div>
                                 <p class="text-sm text-gray-700">
-                                    Menampilkan <span class="font-medium">1</span> sampai <span class="font-medium">9</span> dari <span class="font-medium">9</span> kendaraan
+                                    Menampilkan <span class="font-medium">1</span> sampai <span class="font-medium"><?= $jumlah_ditampilkan; ?></span>
+                                    dari <span class="font-medium"><?= $total_mobil; ?></span> kendaraan
                                 </p>
                             </div>
                             <div>
@@ -198,43 +249,7 @@ if(isset($_POST['hapusmobil'])){
                                 </nav>
                             </div>
                         </div>
-                    </div>
-
-                <!-- Bulk Edit Section -->
-                <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Pengaturan Harga Massal</h3>
-                    <p class="text-sm text-gray-600 mb-4">Atur harga untuk beberapa kendaraan sekaligus</p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Tipe Kendaraan</label>
-                            <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                                <option value="">Semua Tipe</option>
-                                <option value="MPV">MPV</option>
-                                <option value="SUV">SUV</option>
-                                <option value="Hatchback">Hatchback</option>
-                                <option value="Van">Minibus</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Persentase Perubahan</label>
-                            <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" placeholder="contoh: 10 untuk kenaikan 10%">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Tipe Perubahan</label>
-                            <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                                <option value="increase">Kenaikan (%)</option>
-                                <option value="decrease">Penurunan (%)</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-end">
-                        <button class="bg-black hover:bg-gray-500 text-white px-4 py-2 rounded-md transition-colors">
-                            Terapkan Perubahan
-                        </button>
-                    </div>
-                </div>
+                    </div> 
             </main>
         </div>
     </div>
