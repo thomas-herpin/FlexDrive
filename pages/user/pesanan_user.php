@@ -36,27 +36,9 @@ if (!isset($_SESSION['user_id'])) {
     <!-- Navbar -->
     <?php require "../navbar_user.php"; ?>
 
-    <!-- Search by Categories -->
-    <section class="px-6 md:px-12 py-10 mb-10">
-        <h2 class="text-3xl font-bold mt-11 mb-6  text-gray-900">Search by Categories</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
-
-        <!-- Category Buttons -->
-        <a href="#mpv" class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-full text-center transition duration-300">MPV</a>
-        <a href="#suv" class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-full text-center transition duration-300">SUV</a>
-        <a href="#hatchback" class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-full text-center transition duration-300">HATCHBACK</a>
-        <a href="#minibus" class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-full text-center transition duration-300">MINIBUS</a>
-        <a href="#manual" class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-full text-center transition duration-300">MANUAL</a>
-        <a href="#auto" class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-full text-center transition duration-300">AUTO</a>
-        <a href="#bensin" class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-full text-center transition duration-300">BENSIN</a>
-        <a href="#diesel" class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-full text-center transition duration-300">DIESEL</a>
-
-        </div>
-    </section>
-
         <!-- Tipe MPV -->
-        <section class="relative p-4" id="mpv">
-            <h2 class="text-3xl font-bold mb-6 text-gray-800">MPV</h2>
+        <section class="relative p-4" id="pesanan_saya">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Pesanan Saya</h2>
             <div class="relative flex items-center">
                 <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg lg:hidden">
                     &#10094;
@@ -64,22 +46,35 @@ if (!isset($_SESSION['user_id'])) {
 
                 <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
                 <?php
-                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil");
-                    while($data=mysqli_fetch_array($ambildatamobil)){
-                        $merek = $data['merek_mobil'];
-                        $nama = $data['nama_mobil'];
-                        $tahun = $data['tahun_produksi'];
-                        $tipe = $data['tipe_mobil'];
-                        $transmission = $data['transmission'];
-                        $mesin = $data['engine'];
-                        $plat = $data['nomor_plat'];
-                        $bbm = $data['bahan_bakar'];
-                        $interior = $data['interior_color'];
-                        $exterior = $data['exterior_color'];
-                        $seats = $data['seats'];
-                        $status = $data['status'];
-                        $harga = number_format($data['per_hari'], 0, ',', '.');
-                        $id_mobil = $data['id_mobil'];
+                    $ambildatapesanan = mysqli_query($conn, "SELECT p.*, m.*, u.*, pb.*
+                    FROM pemesanan p
+                    INNER JOIN mobil m ON p.id_mobil = m.id_mobil
+                    INNER JOIN users u ON p.id_user = u.id_user
+                    INNER JOIN pembayaran pb ON p.id_pesan = pb.id_pesan;");
+
+                    if (!$ambildatapesanan) {
+                        die("Query failed: " . mysqli_error($conn));
+                    }
+
+                    if (mysqli_num_rows($ambildatapesanan) > 0) {
+                        while ($data = mysqli_fetch_array($ambildatapesanan)) {
+                            $merek = $data['merek_mobil'];
+                            $nama = $data['nama_mobil'];
+                            $tahun = $data['tahun_produksi'];
+                            $tipe = $data['tipe_mobil'];
+                            $transmission = $data['transmission'];
+                            $mesin = $data['engine'];
+                            $plat = $data['nomor_plat'];
+                            $bbm = $data['bahan_bakar'];
+                            $interior = $data['interior_color'];
+                            $exterior = $data['exterior_color'];
+                            $seats = $data['seats'];
+                            $status = $data['status_pembayaran'];
+                            $id_mobil = $data['id_mobil'];
+                            $tgl_ambil = $data['tanggal_pengambilan'];
+                            $tgl_kembali = $data['tanggal_pengembalian'];
+                        
+                        
                 ?>
                     <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
                         <img src="../../images_admin/<?=$data['gambar_mobil'];?>" alt="<?=$merek;?> <?=$nama;?>" class="w-full h-40 object-cover">
@@ -91,21 +86,25 @@ if (!isset($_SESSION['user_id'])) {
                                 <p><strong>Engine:</strong> <?=$mesin;?> (<?=$bbm;?>)</p>
                                 <p><strong>Transmission:</strong> <?=$transmission;?></p>
                                 <p><strong>Interior & exterior colors:</strong> <?=$interior;?> <?=$exterior;?></p>
-                                <p><strong>Seats:</strong> <?=$seats;?></p>
+                                <p><strong>Seats:</strong> <?=$seats;?></p><br>
+                                <p><strong>Status:</strong> <?=$status;?></p>
+                                <p><strong>Tanggal Pengambilan:</strong> <?=$tgl_ambil;?></p>
                             </div>
-                            <p class="mt-3 text-gray-500">Start from</p>
-                            <p class="text-lg font-bold text-green-600">Rp.<?=$harga?></p>
                         </div>
                         <form action="pemesanan.php" method="POST">
-                            <input type="hidden" name="id_mobil" value="<?= $id_mobil; ?>">
+                            <a href="">
                             <button type="submit" class="mt-3 w-full bg-black text-white p-2 rounded hover:bg-gray-800 transition">
-                                Sewa Sekarang
+                                Hubungi kami
                             </button>
+                            </a>
                         </form>
                     </div>
 
                 <?php
                     }
+                } else {
+                    echo "No records found.";
+                }
                 ?>
             <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
                 &#10095;
