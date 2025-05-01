@@ -1,25 +1,20 @@
 <?php
 require '../config.php';
 
-// Inisialisasi filter dan pencarian
 $roleFilter = isset($_GET['role']) ? $_GET['role'] : 'all';
 $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Buat query dasar
 $query = "SELECT * FROM users WHERE 1=1";
 
-// Tambahkan filter berdasarkan role jika dipilih
 if ($roleFilter != 'all') {
     $query .= " AND role = '" . mysqli_real_escape_string($conn, $roleFilter) . "'";
 }
 
-// Tambahkan pencarian berdasarkan nama jika ada
 if (!empty($searchTerm)) {
     $search = mysqli_real_escape_string($conn, $searchTerm);
     $query .= " AND (first_name LIKE '%$search%' OR last_name LIKE '%$search%' OR email LIKE '%$search%')";
 }
 
-// Eksekusi query
 $result = mysqli_query($conn, $query);
 ?>
 
@@ -53,7 +48,7 @@ $result = mysqli_query($conn, $query);
             <?php require "../sidebar_admin.php"; ?>
         </div>
 
-        <!-- Konten utama -->
+        <!-- Main Content -->
         <div class="flex-1 ml-64 overflow-y-auto">
             <div class="p-6">
                 <div class="container mx-auto">
@@ -82,8 +77,7 @@ $result = mysqli_query($conn, $query);
                                         <option value="user" <?= $roleFilter == 'user' ? 'selected' : '' ?>>User</option>
                                     </select>
                                 </div>
-                                
-                                <!-- Submit button -->
+                            
                                 <div class="flex-shrink-0">
                                     <button type="submit" class="bg-black hover:bg-gray-700 text-white px-4 py-2 rounded-lg">
                                         <i class="fas fa-search mr-2"></i>Cari
@@ -148,7 +142,6 @@ $result = mysqli_query($conn, $query);
     </div>
 
     <script>
-        // Script untuk auto-submit form saat memilih dropdown
         document.querySelector('select[name="role"]').addEventListener('change', function() {
             document.getElementById('filterForm').submit();
         });
