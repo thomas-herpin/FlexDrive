@@ -191,13 +191,13 @@ $jumlah_ditampilkan = mysqli_num_rows($ambilsemuadatamobil);
                                         <td class="px-6 py-4 text-sm text-gray-900">Rp <?= number_format($harga, 0, ',', '.'); ?></td>
                                         <td class="px-6 py-4 text-sm font-medium text-left flex space-x-3">
                                             <a href="edit_mobil.php?id=<?= $id_mobil ?>" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                                            <a href="hapus_mobil.php?id=<?= $id_mobil ?>" class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></a>
                                             <!-- Form untuk Hapus Mobil -->
-                                            <form action="list_mobil_admin.php" method="POST" style="display:inline;">
-                                                <input type="hidden" name="id_mobil" value="<?=$id_mobil;?>">
-                                                <button type="submit" class="text-red-600 hover:text-red-900" title="Hapus" name="hapusmobil">
+                                            <!-- <form action="hapus_mobil.php?id=<?= $id_mobil ?>" method="GET" style="display:inline;">
+                                                <button type="submit" class="text-red-600 hover:text-red-900" title="Hapus">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
-                                            </form>
+                                            </form> -->
                                         </td>
                                     </tr>
                                     <?php
