@@ -28,6 +28,17 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 $status_con = 'Dikonfirmasi';
 $status_can = 'Dibatalkan';
 
+function tampilkanStatus($status) {
+    switch (strtolower($status)) {
+        case 'dikonfirmasi':
+            return '<span class="inline-block px-3 py-1 text-sm font-medium text-green-800 bg-green-100 rounded-full">Dikonfirmasi</span>';
+        case 'menunggu':
+            return '<span class="inline-block px-3 py-1 text-sm font-medium text-yellow-800 bg-yellow-100 rounded-full">Menunggu</span>';
+        case 'ditolak':
+            return '<span class="inline-block px-3 py-1 text-sm font-medium text-red-800 bg-red-100 rounded-full">Ditolak</span>';
+    }
+}
+
 if (isset($_POST['ubahstatusberhasil'])) {
     // Pastikan id_pesan ada dan valid
     $id_pesan = isset($_POST['id_pesan']) ? (int)$_POST['id_pesan'] : 0;
@@ -232,10 +243,10 @@ $total_penyewa = mysqli_num_rows($penyewa);
                                             $tgl_kembali = date('d/m/Y', strtotime($data['tanggal_pengembalian']));   
                                 ?>
                                         <tr class="hover:bg-gray-50">
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 whitespace-nowrap text-left">
                                                 <div class="flex items-center">
-                                                    <div class="h-10 w-10 flex-shrink-0 rounded-full bg-blue-100 flex items-center justify-center">
-                                                        <span class="text-blue-800 font-medium">BS</span>
+                                                    <div class="h-10 w-10 flex-shrink-0 rounded-full bg-black flex items-center justify-center text-white font-bold uppercase">
+                                                        <?= $inisial ?>
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900"><?=$nama_user;?></div>
@@ -253,18 +264,14 @@ $total_penyewa = mysqli_num_rows($penyewa);
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm text-gray-900"><?=$tgl_kembali;?></div>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                    <?=$status;?>
-                                                </span>
-                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap"><?=tampilkanStatus($status);?></td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <form method="POST" action="" style="display: inline;">
                                                     <input type="hidden" name="id_pesan" value="<?= $data['id_pesan'] ?>">
                                                     <button type="submit" name="ubahstatusberhasil" class="text-green-600 hover:text-green-900 mr-3">
                                                         <i class="fas fa-check"></i>
                                                     </button>
-                                                    <button type="submit" name="ubahstatusbatal" class="text-red-600 hover:text-red-900">
+                                                    <button type="submit" name="ubahstatusditolak" class="text-red-600 hover:text-red-900">
                                                         <i class="fas fa-times"></i>
                                                     </button>
                                                 </form>
