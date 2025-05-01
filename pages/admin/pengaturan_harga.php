@@ -113,6 +113,21 @@ require_once '../config.php';
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <!-- Innova Venturer -->
+                                <?php
+                                    $ambilsemuadatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari, h.per_minggu, h.per_bulan FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil");
+                                    while($data=mysqli_fetch_array($ambilsemuadatamobil)){
+                                        $merek = $data['merek_mobil'];
+                                        $nama = $data['nama_mobil'];
+                                        $tahun = $data['tahun_produksi'];
+                                        $plat = $data['nomor_plat'];
+                                        $status = $data['status'];
+                                        $tipe = $data ['tipe_mobil'];
+                                        $hari = number_format($data['per_hari'], 0, ',', '.');
+                                        $minggu = number_format($data['per_minggu'], 0, ',', '.');
+                                        $bulan = number_format($data['per_bulan'], 0, ',', '.');
+                                        $id_mobil = $data['id_mobil'];
+                                        $kode_mobil = 'MBL-' . sprintf('%03d', $id_mobil);
+                                ?> 
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
@@ -120,309 +135,35 @@ require_once '../config.php';
                                                 <i class="fas fa-car text-gray-500"></i>
                                             </div>
                                             <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Innova Venturer 2018</div>
-                                                <div class="text-sm text-gray-500">ID: MBL-001</div>
+                                                <div class="text-sm font-medium text-gray-900"><?=$merek;?> <?=$nama;?> <?=$tahun;?></div>
+                                                <div class="text-sm text-gray-500">ID : <?=$kode_mobil;?></div>
+                                                <div class="text-sm text-gray-500"><?=$plat;?></div>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                            MPV
+                                            <?=$tipe;?>
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 600.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 4.000.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 12.200.000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp <?=$hari;?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp <?=$minggu;?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Rp <?=$bulan;?></td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Tersedia
+                                        <?=$status;?>
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <button class="text-primary hover:text-blue-700 mr-2">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="text-danger hover:text-red-700">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                                    <a href="edit_harga.php?id_mobil=<?=$id_mobil;?>" class="text-primary hover:text-blue-700 mr-2">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
                                     </td>
                                 </tr>
-                                <!-- Toyota Veloz -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10 rounded-md bg-gray-100 flex items-center justify-center">
-                                                <i class="fas fa-car text-gray-500"></i>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Toyota Veloz 2021</div>
-                                                <div class="text-sm text-gray-500">ID: MBL-002</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                            MPV
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 600.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 4.000.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 12.200.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Tersedia
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <button class="text-primary hover:text-blue-700 mr-2">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="text-danger hover:text-red-700">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <!-- Suzuki Ertiga -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10 rounded-md bg-gray-100 flex items-center justify-center">
-                                                <i class="fas fa-car text-gray-500"></i>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Suzuki Ertiga 2021</div>
-                                                <div class="text-sm text-gray-500">ID: MBL-003</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                            MPV
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 300.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 1.800.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 6.000.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Tersedia
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <button class="text-primary hover:text-blue-700 mr-2">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="text-danger hover:text-red-700">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <!-- Honda CR-V -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10 rounded-md bg-gray-100 flex items-center justify-center">
-                                                <i class="fas fa-car text-gray-500"></i>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Honda CR-V 2019</div>
-                                                <div class="text-sm text-gray-500">ID: MBL-004</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                            SUV
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 300.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 1.800.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 6.000.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Tersedia
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <button class="text-primary hover:text-blue-700 mr-2">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="text-danger hover:text-red-700">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <!-- Daihatsu Xenia -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10 rounded-md bg-gray-100 flex items-center justify-center">
-                                                <i class="fas fa-car text-gray-500"></i>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Daihatsu Xenia 2020</div>
-                                                <div class="text-sm text-gray-500">ID: MBL-005</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                            MPV
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 400.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 2.500.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 7.000.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                            Sedang Disewa
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <button class="text-primary hover:text-blue-700 mr-2">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="text-danger hover:text-red-700">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <!-- Hiace Premio -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10 rounded-md bg-gray-100 flex items-center justify-center">
-                                                <i class="fas fa-car text-gray-500"></i>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Hiace Premio 2018</div>
-                                                <div class="text-sm text-gray-500">ID: MBL-006</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                            Minibus
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 1.200.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 8.200.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 33.300.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Tersedia
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <button class="text-primary hover:text-blue-700 mr-2">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="text-danger hover:text-red-700">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <!-- Agya Sport -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10 rounded-md bg-gray-100 flex items-center justify-center">
-                                                <i class="fas fa-car text-gray-500"></i>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Agya Sport 2021</div>
-                                                <div class="text-sm text-gray-500">ID: MBL-007</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                            Hatchback
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 400.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 2.500.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 7.000.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                            Tidak Aktif
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <button class="text-primary hover:text-blue-700 mr-2">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="text-danger hover:text-red-700">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <!-- Honda Brio -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10 rounded-md bg-gray-100 flex items-center justify-center">
-                                                <i class="fas fa-car text-gray-500"></i>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Honda Brio 2022</div>
-                                                <div class="text-sm text-gray-500">ID: MBL-008</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                            Hatchback
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 300.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 1.800.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 6.000.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Tersedia
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <button class="text-primary hover:text-blue-700 mr-2">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="text-danger hover:text-red-700">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr> 
-                                <!-- Toyota Rush -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10 rounded-md bg-gray-100 flex items-center justify-center">
-                                                <i class="fas fa-car text-gray-500"></i>
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">Toyota Rush 2018</div>
-                                                <div class="text-sm text-gray-500">ID: MBL-009</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                            SUV
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 400.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 2.500.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Rp 7.000.000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                            Sedang Disewa
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <button class="text-primary hover:text-blue-700 mr-2"><i class="fas fa-edit"></i></button>
-                                        <button class="text-danger hover:text-red-700"><i class="fas fa-trash"></i></button>
-                                    </td>
-                                </tr>
+
+                                <?php
+                                    }
+                                ?>
                             </tbody>
                         </table>
                     </div>
