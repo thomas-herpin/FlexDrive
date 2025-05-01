@@ -35,7 +35,7 @@ if (isset($_POST['submit_payment'])) {
                 // Move uploaded file
                 if (move_uploaded_file($_FILES['bukti_pembayaran']['tmp_name'], $upload_path)) {
                     // Insert into pembayaran table
-                    $status = 'menunggu_konfirmasi';
+                    $status = 'Menunggu';
                     $id_usernya = $_SESSION['user_id'];
                     $insert_query = "INSERT INTO pembayaran (
                                     id_pesan,
@@ -57,7 +57,7 @@ if (isset($_POST['submit_payment'])) {
                     
                     if (mysqli_query($conn, $insert_query)) {
                         // Update pemesanan status
-                        mysqli_query($conn, "UPDATE pembayaran SET status_pembayaran = 'menunggu_konfirmasi' WHERE id_pesan = $id_pesan");
+                        mysqli_query($conn, "UPDATE pembayaran SET status_pembayaran = 'Menunggu' WHERE id_pesan = $id_pesan");
                         
                         // Success
                         header("Location: pembayaran-sukses.php?id_pesan=$id_pesan");

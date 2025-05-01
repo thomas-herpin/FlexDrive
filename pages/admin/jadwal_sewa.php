@@ -116,129 +116,83 @@ require_once '../config.php';
                         <table class="w-full text-left">
                             <thead>
                                 <tr class="bg-gray-100">
-                                    <th class="p-4 font-medium">Nama</th>
-                                    <th class="p-4 font-medium">Mobil</th>
-                                    <th class="p-4 font-medium">Tanggal</th>
-                                    <th class="p-4 font-medium">Status</th>
-                                    <th class="p-4 font-medium">Aksi</th>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Mobil</th>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Ambil</th>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Kembali</th>
+                                <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="border-t hover:bg-gray-50">
-                                    <td class="p-4">
-                                        <div class="flex items-center">
-                                            <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white mr-3">
-                                                BS
-                                            </div>
-                                            <span>Budi Santoso</span>
-                                        </div>
-                                    </td>
-                                    <td class="p-4">
-                                        <div>
-                                            <p>Daihatsu Xenia</p>
-                                            <p class="text-xs text-gray-500">BK 14 XY</p>
-                                        </div>
-                                    </td>
-                                    <td class="p-4">
-                                        <div>
-                                            <p>6 Maret 2025</p>
-                                            <p class="text-xs text-gray-500">08:00 - 20:00</p>
-                                        </div>
-                                    </td>
-                                    <td class="p-4">
-                                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">Dikonfirmasi</span>
-                                    </td>
-                                    <td class="p-4">
-                                        <div class="flex space-x-2">
-                                            <button class="p-1 text-primary hover:text-blue-700">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="p-1 text-success hover:text-green-700">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="p-1 text-danger hover:text-red-700">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="border-t hover:bg-gray-50">
-                                    <td class="p-4">
-                                        <div class="flex items-center">
-                                            <div class="w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center text-white mr-3">
-                                                SR
-                                            </div>
-                                            <span>Siti Rahma</span>
-                                        </div>
-                                    </td>
-                                    <td class="p-4">
-                                        <div>
-                                            <p>Suzuki Ertiga</p>
-                                            <p class="text-xs text-gray-500">BK 5678 AB</p>
-                                        </div>
-                                    </td>
-                                    <td class="p-4">
-                                        <div>
-                                            <p>7 Maret 2025</p>
-                                            <p class="text-xs text-gray-500">09:00 - 17:00</p>
-                                        </div>
-                                    </td>
-                                    <td class="p-4">
-                                        <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-medium">Menunggu</span>
-                                    </td>
-                                    <td class="p-4">
-                                        <div class="flex space-x-2">
-                                            <button class="p-1 text-primary hover:text-blue-700">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="p-1 text-success hover:text-green-700">
-                                                <i class="fas fa-check"></i>
-                                            </button>
-                                            <button class="p-1 text-danger hover:text-red-700">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="border-t hover:bg-gray-50">
-                                    <td class="p-4">
-                                        <div class="flex items-center">
-                                            <div class="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center text-white mr-3">
-                                                AF
-                                            </div>
-                                            <span>Ahmad Fajar</span>
-                                        </div>
-                                    </td>
-                                    <td class="p-4">
-                                        <div>
-                                            <p>Toyota Avanza</p>
-                                            <p class="text-xs text-gray-500">BK 1234 CD</p>
-                                        </div>
-                                    </td>
-                                    <td class="p-4">
-                                        <div>
-                                            <p>8 Maret 2025</p>
-                                            <p class="text-xs text-gray-500">10:00 - 18:00</p>
-                                        </div>
-                                    </td>
-                                    <td class="p-4">
-                                        <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-medium">Menunggu</span>
-                                    </td>
-                                    <td class="p-4">
-                                        <div class="flex space-x-2">
-                                            <button class="p-1 text-primary hover:text-blue-700">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="p-1 text-success hover:text-green-700">
-                                                <i class="fas fa-check"></i>
-                                            </button>
-                                            <button class="p-1 text-danger hover:text-red-700">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
+                            <tbody class="divide-y divide-gray-200">
+                                <?php
+                                    $ambildatapesanan = mysqli_query($conn, "SELECT p.*, m.*, u.*, pb.*
+                                        FROM pemesanan p
+                                        INNER JOIN mobil m ON p.id_mobil = m.id_mobil
+                                        INNER JOIN users u ON p.id_user = u.id_user
+                                        INNER JOIN pembayaran pb ON p.id_pesan = pb.id_pesan;");
+
+                                    if (!$ambildatapesanan) {
+                                        die("Query failed: " . mysqli_error($conn));
+                                    }
+
+                                    if (mysqli_num_rows($ambildatapesanan) > 0) {
+                                        while ($data = mysqli_fetch_array($ambildatapesanan)) {
+                                            
+                                            $nama_mobil = $data['merek_mobil'].' '. $data['nama_mobil'];
+                                            $nama_user = $data['first_name'] . ' ' . $data['last_name'];
+                                            $email = $data['email'];
+                                            $tahun = $data['tahun_produksi'];
+                                            $tipe = $data['tipe_mobil'];
+                                            $transmission = $data['transmission'];
+                                            $mesin = $data['engine'];
+                                            $plat = $data['nomor_plat'];
+                                            $bbm = $data['bahan_bakar'];
+                                            $interior = $data['interior_color'];
+                                            $exterior = $data['exterior_color'];
+                                            $seats = $data['seats'];
+                                            $status = $data['status_pembayaran'];
+                                            $id_mobil = $data['id_mobil'];
+                                            $tgl_ambil = $data['tanggal_pengambilan'];
+                                            $tgl_kembali = $data['tanggal_pengembalian'];     
+                                ?>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="h-10 w-10 flex-shrink-0 rounded-full bg-blue-100 flex items-center justify-center">
+                                                        <span class="text-blue-800 font-medium">BS</span>
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900"><?=$nama_user;?></div>
+                                                        <div class="text-sm text-gray-500"><?=$email;?></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900"><?=$nama_mobil;?></div>
+                                                <div class="text-sm text-gray-500"><?=$plat;?></div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900"><?=$tgl_ambil;?></div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900"><?=$tgl_kembali;?></div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    <?=$status;?>
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                <button type="submit" class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-check" name="ubahstatus"></i></button>
+                                                <button class="text-red-600 hover:text-red-900"><i class="fas fa-times"></i></button>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }    
+                                    ?> 
+                                </tbody>
                         </table>
                     </div>
                     <div class="p-4 border-t flex items-center justify-between">
