@@ -8,6 +8,19 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $id_usernya = $_SESSION['user_id'];
+
+function tampilkanStatus($status) {
+    switch (strtolower($status)) {
+        case 'dikonfirmasi':
+            return '<span class="inline-block px-3 py-1 text-sm font-medium text-green-800 bg-green-100 rounded-full">Dikonfirmasi</span>';
+        case 'menunggu':
+            return '<span class="inline-block px-3 py-1 text-sm font-medium text-yellow-800 bg-yellow-100 rounded-full">Menunggu</span>';
+        case 'ditolak':
+            return '<span class="inline-block px-3 py-1 text-sm font-medium text-red-800 bg-red-100 rounded-full">Ditolak</span>';
+        default:
+            return '<span class="inline-block px-3 py-1 text-sm font-medium text-gray-800 bg-gray-100 rounded-full">Status tidak diketahui</span>';
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +44,7 @@ $id_usernya = $_SESSION['user_id'];
             scrollbar-width: none;  
         }
     </style>
-    </style>
+
     <title>List Mobil | FlexDrive</title>
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen">
@@ -90,7 +103,7 @@ $id_usernya = $_SESSION['user_id'];
                                 <p><strong>Transmission:</strong> <?=$transmission;?></p>
                                 <p><strong>Interior & exterior colors:</strong> <?=$interior;?> <?=$exterior;?></p>
                                 <p><strong>Seats:</strong> <?=$seats;?></p><br>
-                                <p><strong>Status:</strong> <?=$status;?></p>
+                                <p><strong>Status:</strong> <?=tampilkanStatus($status);?></p>
                                 <p><strong>Tanggal Pengambilan:</strong> <?=$tgl_ambil;?></p>
                             </div>
                         </div>
