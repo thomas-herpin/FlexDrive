@@ -1,5 +1,33 @@
 <?php
 require_once '../config.php';
+
+// Pastikan hanya admin yang bisa akses
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../sign_in.php");
+    exit();
+}
+
+// Tandai notifikasi sebagai sudah dibaca saat halaman dibuka
+if (isset($_SESSION['user_id'])) {
+    $id_user = $_SESSION['user_id'];
+    $stmt = $conn->prepare("UPDATE notifikasi SET dibaca = TRUE WHERE id_user = ?");
+    $stmt->bind_param("i", $id_user);
+    $stmt->execute();
+    
+    // Ambil notifikasi terbaru
+    $stmt = $conn->prepare("
+        SELECT n.*, p.tanggal_pengambilan, u.first_name, u.last_name, m.merek_mobil, m.nama_mobil 
+        FROM notifikasi n
+        JOIN pemesanan p ON n.id_pesan = p.id_pesan
+        JOIN users u ON p.id_user = u.id_user
+        JOIN mobil m ON p.id_mobil = m.id_mobil
+        WHERE n.id_user = ?
+        ORDER BY n.dibuat DESC
+    ");
+    $stmt->bind_param("i", $id_user);
+    $stmt->execute();
+    $notifikasi = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+}
 ?>
 
 <!DOCTYPE html>
@@ -10,44 +38,52 @@ require_once '../config.php';
     <title>Notifikasi | FlexDrive</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#3E92CC",
-                        secondary: "black",
-                        success: "#10B981",
-                        warning: "#F59E0B",
-                        danger: "#EF4444",
-                    }
-                }
-            }
-        }
-    </script>
 </head>
 <body class="bg-gray-100">
     <div class="flex min-h-screen">
-        <!-- Sidebar -->
-        <?php require "../sidebar_admin.php";?>
+        <?php require "../sidebar_admin.php"; ?>
 
-    <!-- Main Content -->
-    <div class="flex-1 p-6">
-        <h1 class="text-2xl font-semibold mb-4">Notifikasi</h1>
-        <div class="bg-white p-4 rounded-lg shadow">
-            <div class="space-y-3">
-                <div class="p-3 border-l-4 border-blue-500 bg-blue-50 text-blue-900 rounded">
-                    <p><strong>Permintaan Baru:</strong> Siti Rahma memesan Suzuki Ertiga</p>
-                    <span class="text-sm text-gray-600">7 Maret 2025, 09:00</span>
-                </div>
-                <div class="p-3 border-l-4 border-green-500 bg-green-50 text-green-900 rounded">
-                    <p><strong>Konfirmasi:</strong> Penyewaan Daihatsu Xenia oleh Budi Santoso telah dikonfirmasi</p>
-                    <span class="text-sm text-gray-600">6 Maret 2025, 08:00</span>
-                </div>
-                <div class="p-3 border-l-4 border-yellow-500 bg-yellow-50 text-yellow-900 rounded">
-                    <p><strong>Peringatan:</strong> Toyota Rush (BK 9876 DF) masih dalam perjalanan</p>
-                    <span class="text-sm text-gray-600">6 Maret 2025, 12:00</span>
-                </div>
+        <div class="flex-1 p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-semibold">Notifikasi Pesanan Baru</h1>
+                <span class="text-sm text-gray-500">
+                    <?= count($notifikasi) ?> total notifikasi
+                </span>
+            </div>
+
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <?php if (empty($notifikasi)): ?>
+                    <div class="p-8 text-center text-gray-500">
+                        <i class="fas fa-bell-slash text-4xl mb-2"></i>
+                        <p>Tidak ada notifikasi pesanan baru</p>
+                    </div>
+                <?php else: ?>
+                    <ul class="divide-y divide-gray-200">
+                        <?php foreach ($notifikasi as $notif): ?>
+                            <li class="p-4 hover:bg-gray-50 transition">
+                                <a href="jadwal_sewa.php?id=<?= $notif['id_pesan'] ?>" class="block">
+                                    <div class="flex items-start">
+                                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                            <i class="fas fa-shopping-cart text-blue-500"></i>
+                                        </div>
+                                        <div class="ml-4">
+                                            <p class="text-sm font-medium text-gray-900">
+                                                <?= htmlspecialchars($notif['first_name'].' '.$notif['last_name']) ?> memesan 
+                                                <?= htmlspecialchars($notif['merek_mobil'].' '.$notif['nama_mobil']) ?>
+                                            </p>
+                                            <p class="text-sm text-gray-500">
+                                                Untuk tanggal <?= date('d M Y', strtotime($notif['tanggal_pengambilan'])) ?>
+                                            </p>
+                                            <p class="text-xs text-gray-400 mt-1">
+                                                <?= date('d M Y H:i', strtotime($notif['dibuat'])) ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
             </div>
         </div>
     </div>

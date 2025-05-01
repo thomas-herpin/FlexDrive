@@ -1,5 +1,7 @@
 <?php
 require_once '../config.php';
+$ambilsemuadatamobil = mysqli_query($conn, "SELECT * FROM mobil");
+$jumlah_ditampilkan = mysqli_num_rows($ambilsemuadatamobil);
 ?>
 
 <!DOCTYPE html>
@@ -37,8 +39,19 @@ require_once '../config.php';
             <div class="mt-4 flex space-x-4">
                 <select class="p-2 border rounded w-1/3">
                     <option value="">Pilih Mobil</option>
-                    <option value="daihatsu_xenia">Daihatsu Xenia - BK 14 XY</option>
-                    <option value="toyota_rush">Toyota Rush - BK 9876 DF</option>
+                    <?php
+                        if ($jumlah_ditampilkan > 0) {
+                            while($data=mysqli_fetch_array($ambilsemuadatamobil)){
+                                $nama = $data['merek_mobil']." ".$data['nama_mobil'];
+                                $plat = $data['nomor_plat'];
+                                $id_mobil = $data['id_mobil'];
+                                $kode_mobil = 'MBL_' . sprintf('%03d', $id_mobil);
+                    ?> 
+                        <option value="<?=$id_mobil;?>"><?=$kode_mobil;?> - <?=$nama;?> - <?=$plat;?></option>
+                    <?php
+                        }
+                    }
+                    ?>
                 </select>
                 <button class="bg-black text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-300">Lacak</button>
             </div>

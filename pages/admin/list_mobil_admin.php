@@ -21,7 +21,9 @@ if (!empty($search_query)) {
 
 $total_mobil_query = mysqli_query($conn, "SELECT COUNT(*) AS total FROM mobil");
 $total_mobil_data = mysqli_fetch_assoc($total_mobil_query);
+
 $total_mobil = $total_mobil_data['total'];
+
 $ambilsemuadatamobil = mysqli_query($conn, $query);
 $jumlah_ditampilkan = mysqli_num_rows($ambilsemuadatamobil);
 ?>
