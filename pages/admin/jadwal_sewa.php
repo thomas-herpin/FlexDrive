@@ -73,10 +73,6 @@ if (!empty($status_filter) && $status_filter != 'Semua Status') {
     $query .= " AND pb.status_pembayaran = '$status_filter'";
 }
 
-if (!empty($search_query)) {
-    $query .= " AND (u.first_name LIKE '%$search_query%' OR u.last_name LIKE '%$search_query%' OR m.nama_mobil LIKE '%$search_query%')";
-}
-
 if (!empty($tanggal_filter)) {
     $query .= " AND p.tanggal_pengambilan = '$tanggal_filter'";
 }
