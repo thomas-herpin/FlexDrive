@@ -1,6 +1,25 @@
 <?php
 require_once '../config.php';
 
+$id_user = $_SESSION['user_id'];
+
+$stmt = $conn->prepare("SELECT pesan, dibuat FROM notifikasi WHERE id_user = ? ORDER BY dibuat DESC LIMIT 5");
+
+if ($stmt === false) {
+    die("Error in preparing statement: " . mysqli_error($conn)); // Menampilkan pesan error jika prepare gagal
+}
+
+$stmt->bind_param("i", $id_user);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Mengambil notifikasi ke dalam array
+$notifikasi_baru = [];
+while ($row = $result->fetch_assoc()) {
+    $notifikasi_baru[] = $row;
+}
+$stmt->close();
+
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../sign_in.php");
     exit();
@@ -299,26 +318,20 @@ $total_penyewa = mysqli_num_rows($penyewa);
                     </div>
 
                     <!-- Aktivitas Terbaru -->
-                    <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="bg-white rounded-lg shadow p-6">
                         <h3 class="text-lg font-bold text-gray-800 mb-4">Aktivitas Terbaru</h3>
+                        <a href="jadwal_sewa.php">
                         <div class="space-y-4">
-                            <div class="border-l-2 border-blue-500 pl-4">
-                                <p class="text-sm font-medium text-gray-900">Permintaan baru</p>
-                                <p class="text-sm text-gray-500">Siti Rahma memesan Suzuki Ertiga</p>
-                                <p class="text-xs text-gray-400 mt-1">10 menit yang lalu</p>
-                            </div>
-                            <div class="border-l-2 border-green-500 pl-4">
-                                <p class="text-sm font-medium text-gray-900">Penyewaan selesai</p>
-                                <p class="text-sm text-gray-500">Suzuki Ertiga dikembalikan oleh Andi</p>
-                                <p class="text-xs text-gray-400 mt-1">1 jam yang lalu</p>
-                            </div>
-                            <div class="border-l-2 border-purple-500 pl-4">
-                                <p class="text-sm font-medium text-gray-900">Pembayaran diterima</p>
-                                <p class="text-sm text-gray-500">Rp 400.000 dari Budi Santoso</p>
-                                <p class="text-xs text-gray-400 mt-1">6 jam yang lalu</p>
-                            </div>
+                            <?php foreach ($notifikasi_baru as $notif): ?>
+                                <div class="border-l-2 border-blue-500 pl-4">
+                                    <div class="text-sm font-medium text-gray-900"><?= htmlspecialchars($notif['pesan']) ?></div>
+                                    <div class="text-xs text-gray-400 mt-1">
+                                        <?= date("d/m/Y H:i", strtotime($notif['dibuat'])) ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-                        <!-- <button class="w-full mt-4 text-sm text-center text-blue-600 hover:underline">Lihat semua aktivitas</button> -->
+                        </a>
                     </div>
                 </div>  
             </main>

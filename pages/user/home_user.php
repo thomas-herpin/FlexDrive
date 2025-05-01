@@ -1,4 +1,4 @@
-<?
+<?php
 require_once '../config.php';
 
 // Cek session login
@@ -103,71 +103,73 @@ if (!isset($_SESSION['user_id'])) {
     </section>
 
     <!-- Top Picks -->
-    <section id="top-picks" class="py-14 px-6 md:px-12 bg-gray-100">
+    <section id="top-picks" class="py-14 px-6 md:px-12">
         <h2 class="text-3xl font-bold text-center mb-8">Top Picks</h2>  
         <div class="container mx-auto">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                
-                <!-- Card 1 -->
-                <a href="pemesanan.php">
-                    <div class="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-300 transform transition-all hover:scale-105 hover:shadow-2xl">
-                        <img src="../../images/toyota-veloz 2021.png" alt="Toyota Veloz 2021" class="w-full h-44 object-contain mt-4">
-                        <div class="p-5">
-                            <h3 class="text-xl font-semibold">2021 Toyota Veloz</h3>
-                            <p class="text-gray-500 text-sm mb-3">TOYOTA - Model year 2021</p>
-                            <div class="text-sm space-y-1">
-                                <p><strong>Body type:</strong> MPV</p>
-                                <p><strong>Engine:</strong> 1.5L 4-Cylinder DOHC Dual VVT-i</p>
-                                <p><strong>Transmission:</strong> CVT (Continuously Variable Transmission)</p>
-                                <p><strong>Interior & exterior colors:</strong> black, silver</p>
-                                <p><strong>Seats:</strong> 7</p>
-                            </div>
-                            <p class="mt-4 text-gray-500">Start from</p>
-                            <p class="text-lg font-bold text-green-600">Rp.600.000</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card 2 -->
-                <a href="pemesanan.php"><div class="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-300 transform transition-all hover:scale-105 hover:shadow-2xl">
-                    <img src="../../images/toyota-venturer.png" alt="Toyota Innova Venturer" class="w-full h-44 object-contain mt-4">
-                    <div class="p-5">
-                        <h3 class="text-xl font-semibold">2018 Innova Venturer</h3>
-                        <p class="text-gray-500 text-sm mb-3">TOYOTA - Model year 2019</p>
-                        <div class="text-sm space-y-1">
-                            <p><strong>Body type:</strong> MPV</p>
-                            <p><strong>Engine:</strong> 2.4L 4-Cylinder DOHC (Diesel)</p>
-                            <p><strong>Transmission:</strong> 6-Speed Automatic</p>
-                            <p><strong>Interior & exterior colors:</strong> black, silver</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-4 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.800.000</p>
-                    </div>
-                </div></a>
-                
-
-                <!-- Card 3 -->
-                <a href="pemesanan.php">
-                    <div class="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-300 transform transition-all hover:scale-105 hover:shadow-2xl">
-                        <img src="../../images/Hiiace 2018.png" alt="Toyota Hiace Premio" class="w-full h-44 object-contain mt-4">
-                        <div class="p-5">
-                            <h3 class="text-xl font-semibold">2018 Hiace Premio</h3>
-                            <p class="text-gray-500 text-sm mb-3">TOYOTA - Model year 2018</p>
-                            <div class="text-sm space-y-1">
-                                <p><strong>Body type:</strong> Van</p>
-                                <p><strong>Engine:</strong> 2.8L 4-Cylinder Turbo Diesel</p>
-                                <p><strong>Transmission:</strong> 6-Speed Manual</p>
-                                <p><strong>Interior & exterior colors:</strong> black, white</p>
-                                <p><strong>Seats:</strong> 15</p>
-                            </div>
-                            <p class="mt-4 text-gray-500">Start from</p>
-                            <p class="text-lg font-bold text-green-600">Rp.1.000.000</p>
-                        </div>
-                    </div>
-                </a>
-                
-
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">    
+            <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.id_mobil = '1'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_home_mobil.php';
+                    }
+                ?>
+            <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.id_mobil = '3'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_home_mobil.php';
+                    }
+                ?>
+            <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.id_mobil = '9'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_home_mobil.php';
+                    }
+                ?>
             </div>
         </div>
     </section>
