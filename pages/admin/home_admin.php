@@ -135,72 +135,80 @@ $first_name = $user_data['first_name'];
                                     <tr class="bg-gray-50 text-left">
                                         <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
                                         <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Mobil</th>
-                                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
+                                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Ambil</th>
+                                        <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Kembali</th>
                                         <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                         <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="h-10 w-10 flex-shrink-0 rounded-full bg-blue-100 flex items-center justify-center">
-                                                    <span class="text-blue-800 font-medium">BS</span>
+                                <?php
+                                    $ambildatapesanan = mysqli_query($conn, "SELECT p.*, m.*, u.*, pb.*
+                                        FROM pemesanan p
+                                        INNER JOIN mobil m ON p.id_mobil = m.id_mobil
+                                        INNER JOIN users u ON p.id_user = u.id_user
+                                        INNER JOIN pembayaran pb ON p.id_pesan = pb.id_pesan;");
+
+                                    if (!$ambildatapesanan) {
+                                        die("Query failed: " . mysqli_error($conn));
+                                    }
+
+                                    if (mysqli_num_rows($ambildatapesanan) > 0) {
+                                        while ($data = mysqli_fetch_array($ambildatapesanan)) {
+                                            
+                                            $nama_mobil = $data['merek_mobil'].' '. $data['nama_mobil'];
+                                            $nama_user = $data['first_name'] . ' ' . $data['last_name'];
+                                            $email = $data['email'];
+                                            $tahun = $data['tahun_produksi'];
+                                            $tipe = $data['tipe_mobil'];
+                                            $transmission = $data['transmission'];
+                                            $mesin = $data['engine'];
+                                            $plat = $data['nomor_plat'];
+                                            $bbm = $data['bahan_bakar'];
+                                            $interior = $data['interior_color'];
+                                            $exterior = $data['exterior_color'];
+                                            $seats = $data['seats'];
+                                            $status = $data['status_pembayaran'];
+                                            $id_mobil = $data['id_mobil'];
+                                            $tgl_ambil = $data['tanggal_pengambilan'];
+                                            $tgl_kembali = $data['tanggal_pengembalian'];     
+                                ?>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="h-10 w-10 flex-shrink-0 rounded-full bg-blue-100 flex items-center justify-center">
+                                                        <span class="text-blue-800 font-medium">BS</span>
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900"><?=$nama_user;?></div>
+                                                        <div class="text-sm text-gray-500"><?=$email;?></div>
+                                                    </div>
                                                 </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Budi Santoso</div>
-                                                    <div class="text-sm text-gray-500">budisans3@gmail.com</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Daihatsu Xenia</div>
-                                            <div class="text-sm text-gray-500">BK 14 XY</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">6 Maret 2025</div>
-                                            <div class="text-sm text-gray-500">08:00 - 20:00</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Dikonfirmasi
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-check"></i></button>
-                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-times"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="h-10 w-10 flex-shrink-0 rounded-full bg-pink-100 flex items-center justify-center">
-                                                    <span class="text-pink-800 font-medium">SR</span>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Siti Rahma</div>
-                                                    <div class="text-sm text-gray-500">sitirahma32@gmail.com</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Suzuki Ertiga</div>
-                                            <div class="text-sm text-gray-500">BK 5678 AB</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">7 Maret 2025</div>
-                                            <div class="text-sm text-gray-500">09:00 - 17:00</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                Menunggu
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-check"></i></button>
-                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-times"></i></button>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900"><?=$nama_mobil;?></div>
+                                                <div class="text-sm text-gray-500"><?=$plat;?></div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900"><?=$tgl_ambil;?></div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900"><?=$tgl_kembali;?></div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    <?=$status;?>
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                <button class="text-green-600 hover:text-green-900 mr-3"><i class="fas fa-check"></i></button>
+                                                <button class="text-red-600 hover:text-red-900"><i class="fas fa-times"></i></button>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }    
+                                    ?> 
                                 </tbody>
                             </table>
                         </div>
