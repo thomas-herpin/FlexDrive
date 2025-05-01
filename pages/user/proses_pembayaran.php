@@ -59,9 +59,26 @@ if (isset($_POST['submit_payment'])) {
                         // Update pemesanan status
                         mysqli_query($conn, "UPDATE pembayaran SET status_pembayaran = 'Menunggu' WHERE id_pesan = $id_pesan");
                         
+                        // Buat notifikasi untuk admin
+                        $query_pesan = mysqli_query($conn, "SELECT u.first_name, u.last_name, m.merek_mobil, m.nama_mobil 
+                                                          FROM pemesanan p
+                                                          JOIN users u ON p.id_user = u.id_user
+                                                          JOIN mobil m ON p.id_mobil = m.id_mobil
+                                                          WHERE p.id_pesan = $id_pesan");
+                        $data_pesan = mysqli_fetch_assoc($query_pesan);
+                        
+                        $nama_user = $data_pesan['first_name'] . ' ' . $data_pesan['last_name'];
+                        $nama_mobil = $data_pesan['merek_mobil'] . ' ' . $data_pesan['nama_mobil'];
+                        $message = "$nama_user menunggu konfirmasi pembayaran untuk $nama_mobil";
+                        
+                        // Masukkan notifikasi ke database
+                        mysqli_query($conn, "INSERT INTO notifikasi (id_user, id_pesan, pesan) 
+                                            VALUES ($id_usernya, $id_pesan, '$message')");
+                        
                         // Success
                         header("Location: pembayaran-sukses.php?id_pesan=$id_pesan");
                         exit();
+                    }
                     } else {
                         echo "Error updating database: " . mysqli_error($conn);
                     }
@@ -77,5 +94,4 @@ if (isset($_POST['submit_payment'])) {
     } else {
         echo "Error uploading file: " . $_FILES['bukti_pembayaran']['error'];
     }
-}
 ?>

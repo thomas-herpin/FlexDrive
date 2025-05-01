@@ -33,8 +33,17 @@ if (mysqli_num_rows($query) == 0) {
     echo "<br><a href='index.php'>Return to Home</a>";
     exit();
 }
+$id_user = $_SESSION['user_id'];
 
 $pesanan = mysqli_fetch_assoc($query);
+$admin_id = $id_user;
+$pesan = "Pesanan baru oleh user ID " . $_SESSION['user_id'];
+
+$pesan = "Pesanan baru oleh " . $_SESSION['first_name'] . " " . $_SESSION['last_name'];
+$admins = mysqli_query($conn, "SELECT id_user FROM users WHERE role = 'admin'");
+while ($admin = mysqli_fetch_assoc($admins)) {
+    tambah_notifikasi($admin['id_user'], $pesanan['id_pesan'], $pesan);
+}
 ?>
 
 <!DOCTYPE html>
@@ -74,10 +83,10 @@ $pesanan = mysqli_fetch_assoc($query);
         
         <div class="bg-yellow-50 border border-yellow-200 p-4 rounded-lg mb-6">
             <p class="text-sm">
-                <span class="font-semibold">Status:</span> Menunggu Konfirmasi
+                <span class="font-semibold">Status:</span> Menunggu Konfirmasi Admin
             </p>
             <p class="text-sm mt-1">
-                Kami akan menghubungi anda setelah pembayaran Anda dikonfirmasi.
+                Notifikasi telah dikirim ke admin. Kami akan menghubungi Anda melalui WhatsApp dalam 1x24 jam.
             </p>
         </div>
         

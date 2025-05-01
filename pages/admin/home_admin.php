@@ -62,7 +62,15 @@ if ($result->num_rows === 0) {
 
 $user_data = $result->fetch_assoc();
 $first_name = $user_data['first_name'];
+
+$tersedia = mysqli_query($conn, "SELECT * FROM mobil WHERE status = 'Tersedia'");
+$disewa = mysqli_query($conn, "SELECT * FROM mobil WHERE status ='Disewa'");
+$penyewa = mysqli_query($conn, "SELECT * FROM pembayaran WHERE status_pembayaran='Dikonfirmasi'");
+$mobil_tersedia = mysqli_num_rows($tersedia);
+$mobil_disewa = mysqli_num_rows($disewa);
+$total_penyewa = mysqli_num_rows($penyewa);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="id">
@@ -125,11 +133,7 @@ $first_name = $user_data['first_name'];
                             </div>
                             <div>
                                 <p class="text-sm font-medium text-gray-500">Mobil Tersedia</p>
-                                <h3 class="text-3xl font-bold text-gray-800">24</h3>
-                            </div>
-                            <div class="ml-auto text-green-500 flex items-center">
-                                <i class="fas fa-arrow-up mr-1"></i>
-                                <span class="text-sm">5%</span>
+                                <h3 class="text-3xl font-bold text-gray-800"><?=$mobil_tersedia;?></h3>
                             </div>
                         </div>
                     </div>
@@ -140,11 +144,7 @@ $first_name = $user_data['first_name'];
                             </div>
                             <div>
                                 <p class="text-sm font-medium text-gray-500">Mobil Disewa</p>
-                                <h3 class="text-3xl font-bold text-gray-800">10</h3>
-                            </div>
-                            <div class="ml-auto text-green-500 flex items-center">
-                                <i class="fas fa-arrow-up mr-1"></i>
-                                <span class="text-sm">12%</span>
+                                <h3 class="text-3xl font-bold text-gray-800"><?=$mobil_disewa;?></h3>
                             </div>
                         </div>
                     </div>
@@ -155,11 +155,7 @@ $first_name = $user_data['first_name'];
                             </div>
                             <div>
                                 <p class="text-sm font-medium text-gray-500">Total Penyewa</p>
-                                <h3 class="text-3xl font-bold text-gray-800">134</h3>
-                            </div>
-                            <div class="ml-auto text-green-500 flex items-center">
-                                <i class="fas fa-arrow-up mr-1"></i>
-                                <span class="text-sm">8%</span>
+                                <h3 class="text-3xl font-bold text-gray-800"><?=$total_penyewa;?></h3>
                             </div>
                         </div>
                     </div>
@@ -213,8 +209,8 @@ $first_name = $user_data['first_name'];
                                             $seats = $data['seats'];
                                             $status = $data['status_pembayaran'];
                                             $id_mobil = $data['id_mobil'];
-                                            $tgl_ambil = $data['tanggal_pengambilan'];
-                                            $tgl_kembali = $data['tanggal_pengembalian'];     
+                                            $tgl_ambil = date('d/m/Y', strtotime($data['tanggal_pengambilan']));
+                                            $tgl_kembali = date('d/m/Y', strtotime($data['tanggal_pengembalian']));   
                                 ?>
                                         <tr class="hover:bg-gray-50">
                                             <td class="px-6 py-4 whitespace-nowrap">

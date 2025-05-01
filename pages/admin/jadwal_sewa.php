@@ -43,6 +43,18 @@ if (isset($_POST['ubahstatusberhasil'])) {
         }
     }
 }
+$tersedia = mysqli_query($conn, "SELECT * FROM mobil WHERE status = 'Tersedia'");
+$disewa = mysqli_query($conn, "SELECT * FROM mobil WHERE status ='Disewa'");
+$penyewa = mysqli_query($conn, "SELECT * FROM pembayaran WHERE status_pembayaran='Dikonfirmasi'");
+$mobil_tersedia = mysqli_num_rows($tersedia);
+
+$jadwal = mysqli_query($conn, "SELECT * FROM pembayaran");
+$con = mysqli_query($conn, "SELECT * FROM pembayaran WHERE status_pembayaran='Dikonfirmasi'");
+$wait = mysqli_query($conn, "SELECT * FROM pembayaran WHERE status_pembayaran='Menunggu'");
+
+$total_jadwal = mysqli_num_rows($jadwal);
+$dikonfirmasi = mysqli_num_rows($con);
+$menunggu = mysqli_num_rows($wait);
 ?>
 
 <!DOCTYPE html>
@@ -123,7 +135,7 @@ if (isset($_POST['ubahstatusberhasil'])) {
                             </div>
                             <div>
                                 <p class="text-sm text-gray-500">Dikonfirmasi</p>
-                                <p class="text-2xl font-bold">12</p>
+                                <p class="text-2xl font-bold"><?=$dikonfirmasi;?></p>
                             </div>
                         </div>
                     </div>
@@ -134,7 +146,7 @@ if (isset($_POST['ubahstatusberhasil'])) {
                             </div>
                             <div>
                                 <p class="text-sm text-gray-500">Menunggu</p>
-                                <p class="text-2xl font-bold">8</p>
+                                <p class="text-2xl font-bold"><?=$menunggu;?></p>
                             </div>
                         </div>
                     </div>
@@ -145,7 +157,7 @@ if (isset($_POST['ubahstatusberhasil'])) {
                             </div>
                             <div>
                                 <p class="text-sm text-gray-500">Total Jadwal</p>
-                                <p class="text-2xl font-bold">20</p>
+                                <p class="text-2xl font-bold"><?=$total_jadwal;?></p>
                             </div>
                         </div>
                     </div>
@@ -196,8 +208,8 @@ if (isset($_POST['ubahstatusberhasil'])) {
                                             $seats = $data['seats'];
                                             $status = $data['status_pembayaran'];
                                             $id_mobil = $data['id_mobil'];
-                                            $tgl_ambil = $data['tanggal_pengambilan'];
-                                            $tgl_kembali = $data['tanggal_pengembalian'];     
+                                            $tgl_ambil = date('d/m/Y', strtotime($data['tanggal_pengambilan']));
+                                            $tgl_kembali = date('d/m/Y', strtotime($data['tanggal_pengembalian']));     
                                 ?>
                                         <tr class="hover:bg-gray-50">
                                             <td class="px-6 py-4 whitespace-nowrap">
@@ -235,8 +247,7 @@ if (isset($_POST['ubahstatusberhasil'])) {
                                                 <button type="submit" name="ubahstatusbatal" class="text-red-600 hover:text-red-900">
                                                     <i class="fas fa-times"></i>
                                                 </button>
-                                            </form>
-                                                
+                                            </form>   
                                             </td>
                                         </tr>
                                     <?php
@@ -247,7 +258,7 @@ if (isset($_POST['ubahstatusberhasil'])) {
                         </table>
                     </div>
                     <div class="p-4 border-t flex items-center justify-between">
-                        <p class="text-sm text-gray-500">Menampilkan 3 dari 20 jadwal</p>
+                        <p class="text-sm text-gray-500">Menampilkan 3 dari <?=$total_jadwal?> jadwal</p>
                         <div class="flex space-x-1">
                             <button class="w-8 h-8 flex items-center justify-center border rounded text-gray-500 hover:border-primary hover:text-primary disabled:opacity-50">
                                 <i class="fas fa-chevron-left"></i>
