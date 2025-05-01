@@ -1,13 +1,6 @@
 <?php
 require_once '../config.php';
 
-if(isset($_POST['hapusmobil'])){
-    $id_mobil = $_POST['id_mobil'];
-    $hapus = mysqli_query($conn, "DELETE FROM mobil WHERE id_mobil = '$id_mobil'");
-    header("location: list_mobil_admin.php");
-    exit();
-}
-
 $status_filter = isset($_GET['status']) ? $_GET['status'] : '';
 $tipe_filter = isset($_GET['tipe']) ? $_GET['tipe'] : '';
 $search_query = isset($_GET['search']) ? $_GET['search'] : '';
