@@ -1,5 +1,24 @@
 <?php
 require_once '../config.php';
+
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../sign_in.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+$query = $conn->prepare("SELECT first_name FROM users WHERE id = ? AND role = 'admin'");
+$query->bind_param("i", $user_id);
+$query->execute();
+$result = $query->get_result();
+
+if ($result->num_rows === 0) {
+    header("Location: ../sign_in.php");
+    exit();
+}
+
+$user_data = $result->fetch_assoc();
+$first_name = $user_data['first_name'];
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +56,7 @@ require_once '../config.php';
                 <div class="flex justify-between items-center py-4 px-6">
                     <div>
                         <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
-                        <p class="text-sm text-gray-600">Selamat datang, Admin!</p>
+                        <p class="text-sm text-gray-600">Selamat datang, <?= htmlspecialchars($first_name) ?>!</p>
                     </div>
                     <div class="flex items-center space-x-4">
                         <button class="p-2 rounded-full hover:bg-gray-100">
