@@ -1,8 +1,6 @@
 <?php
 require_once '../config.php';
 
-
-
 if(isset($_POST['hapusmobil'])){
     $id_mobil = $_POST['id_mobil'];
 
@@ -15,6 +13,11 @@ if(isset($_POST['hapusmobil'])){
         header("location: list_mobil_admin.php");
     }
 }
+
+$total_mobil_query = mysqli_query($conn, "SELECT COUNT(*) AS total FROM mobil");
+$total_mobil_data = mysqli_fetch_assoc($total_mobil_query);
+$total_mobil = $total_mobil_data['total'];
+$jumlah_ditampilkan = $total_mobil;
 ?>
 
 <!DOCTYPE html>
@@ -119,7 +122,7 @@ if(isset($_POST['hapusmobil'])){
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No Plat</th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga/Hari</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                                        <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
@@ -144,11 +147,8 @@ if(isset($_POST['hapusmobil'])){
                                                 <?=$status;?>
                                             </span>
                                         </td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">RP <?= number_format($harga, 0, ',', '.'); ?></td>
-                                        <td class="px-6 py-4 text-sm font-medium">
-                                            <button class="text-green-600 hover:text-green-900 mr-3" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Rp <?= number_format($harga, 0, ',', '.'); ?></td>
+                                        <td class="px-6 py-4 text-sm font-medium text-center">
                                             <!-- Form untuk Hapus Mobil -->
                                             <form action="list_mobil_admin.php" method="POST" style="display:inline;">
                                                 <input type="hidden" name="id_mobil" value="<?=$id_mobil;?>">
@@ -179,7 +179,8 @@ if(isset($_POST['hapusmobil'])){
                         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                             <div>
                                 <p class="text-sm text-gray-700">
-                                    Menampilkan <span class="font-medium">1</span> sampai <span class="font-medium">9</span> dari <span class="font-medium">9</span> kendaraan
+                                    Menampilkan <span class="font-medium">1</span> sampai <span class="font-medium"><?= $jumlah_ditampilkan; ?></span>
+                                    dari <span class="font-medium"><?= $total_mobil; ?></span> kendaraan
                                 </p>
                             </div>
                             <div>
@@ -198,43 +199,7 @@ if(isset($_POST['hapusmobil'])){
                                 </nav>
                             </div>
                         </div>
-                    </div>
-
-                <!-- Bulk Edit Section -->
-                <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Pengaturan Harga Massal</h3>
-                    <p class="text-sm text-gray-600 mb-4">Atur harga untuk beberapa kendaraan sekaligus</p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Tipe Kendaraan</label>
-                            <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                                <option value="">Semua Tipe</option>
-                                <option value="MPV">MPV</option>
-                                <option value="SUV">SUV</option>
-                                <option value="Hatchback">Hatchback</option>
-                                <option value="Van">Minibus</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Persentase Perubahan</label>
-                            <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" placeholder="contoh: 10 untuk kenaikan 10%">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Tipe Perubahan</label>
-                            <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                                <option value="increase">Kenaikan (%)</option>
-                                <option value="decrease">Penurunan (%)</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-end">
-                        <button class="bg-black hover:bg-gray-500 text-white px-4 py-2 rounded-md transition-colors">
-                            Terapkan Perubahan
-                        </button>
-                    </div>
-                </div>
+                    </div> 
             </main>
         </div>
     </div>

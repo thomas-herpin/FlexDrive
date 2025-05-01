@@ -52,8 +52,7 @@ if (isset($_POST['edithargamobil'])) {
 <body class="bg-gray-100">
     <div class="max-w-xl mx-auto mt-10 bg-white rounded-lg shadow-md">
         <div class="bg-black text-white p-6 rounded-t-lg">
-            <h2 class="text-3xl font-bold">Tambah Mobil Baru</h2>
-            <p class="text-gray-300">Lengkapi informasi detail mobil untuk ditambahkan ke armada FlexDrive.</p>
+            <h2 class="text-3xl font-bold">Edit Harga Mobil</h2>
         </div>
         <div class="p-6">
         <img src="../../images_admin/<?=$data['gambar_mobil'];?>" alt="">
