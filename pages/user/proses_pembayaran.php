@@ -53,7 +53,7 @@ if (isset($_POST['submit_payment'])) {
                     
                     if (mysqli_query($conn, $insert_query)) {
                         // Update pemesanan status
-                        mysqli_query($conn, "UPDATE pemesanan SET status_pemesanan = 'menunggu_konfirmasi' WHERE id_pesan = $id_pesan");
+                        mysqli_query($conn, "UPDATE pembayaran SET status_pembayaran = 'menunggu_konfirmasi' WHERE id_pesan = $id_pesan");
                         
                         // Success
                         header("Location: pembayaran-sukses.php?id_pesan=$id_pesan");

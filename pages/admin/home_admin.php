@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 }
 
 $user_id = $_SESSION['user_id'];
-$query = $conn->prepare("SELECT first_name FROM users WHERE id = ? AND role = 'admin'");
+$query = $conn->prepare("SELECT first_name FROM users WHERE id_user = ? AND role = 'admin'");
 $query->bind_param("i", $user_id);
 $query->execute();
 $result = $query->get_result();
