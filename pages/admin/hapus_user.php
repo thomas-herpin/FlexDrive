@@ -20,7 +20,7 @@ if ($userId == $_SESSION['user_id']) {
     exit;
 }
 
-$query = "SELECT first_name, last_name, email FROM users WHERE id = ?";
+$query = "SELECT first_name, last_name, email FROM users WHERE id_user = ?";
 $stmt = mysqli_prepare($conn, $query);
 mysqli_stmt_bind_param($stmt, "i", $userId);
 mysqli_stmt_execute($stmt);
@@ -35,7 +35,7 @@ if (mysqli_num_rows($result) == 0) {
 $user = mysqli_fetch_assoc($result);
 
 if (isset($_POST['confirm_delete']) && $_POST['confirm_delete'] == 'yes') {
-    $deleteUser = "DELETE FROM users WHERE id = ?";
+    $deleteUser = "DELETE FROM users WHERE id_user = ?";
     $stmtUser = mysqli_prepare($conn, $deleteUser);
     mysqli_stmt_bind_param($stmtUser, "i", $userId);
     
