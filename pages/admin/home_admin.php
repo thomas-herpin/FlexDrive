@@ -34,8 +34,8 @@ function tampilkanStatus($status) {
             return '<span class="inline-block px-3 py-1 text-sm font-medium text-green-800 bg-green-100 rounded-full">Dikonfirmasi</span>';
         case 'menunggu':
             return '<span class="inline-block px-3 py-1 text-sm font-medium text-yellow-800 bg-yellow-100 rounded-full">Menunggu</span>';
-        case 'ditolak':
-            return '<span class="inline-block px-3 py-1 text-sm font-medium text-red-800 bg-red-100 rounded-full">Ditolak</span>';
+        case 'dibatalkan':
+            return '<span class="inline-block px-3 py-1 text-sm font-medium text-red-800 bg-red-100 rounded-full">Dibatalkan</span>';
     }
 }
 
@@ -94,7 +94,7 @@ $user_data = $result->fetch_assoc();
 $first_name = $user_data['first_name'];
 
 $tersedia = mysqli_query($conn, "SELECT * FROM mobil WHERE status = 'Tersedia'");
-$disewa = mysqli_query($conn, "SELECT * FROM mobil WHERE status ='Disewa'");
+$disewa = mysqli_query($conn, "SELECT * FROM mobil WHERE status ='Sedang Disewa'");
 $penyewa = mysqli_query($conn, "SELECT * FROM pembayaran WHERE status_pembayaran='Dikonfirmasi'");
 $mobil_tersedia = mysqli_num_rows($tersedia);
 $mobil_disewa = mysqli_num_rows($disewa);
