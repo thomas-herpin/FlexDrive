@@ -15,7 +15,7 @@ if (isset($_GET['id_pesan'])) {
     $id_user = $_SESSION['user_id'];
     
     // Debug: Print the query and check for errors
-    $query_string = "SELECT id_pesan FROM pemesanan WHERE id_user = $id_user ORDER BY id_pesan DESC LIMIT 1";
+    $query_string = "SELECT id_pesan FROM pemesanan WHERE id_user = '$id_user' ORDER BY id_pesan DESC LIMIT 1";
     $query = mysqli_query($conn, $query_string);
     
     // Check if query failed

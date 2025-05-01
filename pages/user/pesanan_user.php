@@ -6,6 +6,8 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: ../sign_in.html");
     exit(); // Hentikan eksekusi script jika belum login
 }
+
+$id_usernya = $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +34,7 @@ if (!isset($_SESSION['user_id'])) {
     </style>
     <title>List Mobil | FlexDrive</title>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 flex flex-col min-h-screen">
     <!-- Navbar -->
     <?php require "../navbar_user.php"; ?>
 
@@ -50,7 +52,8 @@ if (!isset($_SESSION['user_id'])) {
                     FROM pemesanan p
                     INNER JOIN mobil m ON p.id_mobil = m.id_mobil
                     INNER JOIN users u ON p.id_user = u.id_user
-                    INNER JOIN pembayaran pb ON p.id_pesan = pb.id_pesan;");
+                    INNER JOIN pembayaran pb ON p.id_pesan = pb.id_pesan
+                    WHERE p.id_user = '$id_usernya';");
 
                     if (!$ambildatapesanan) {
                         die("Query failed: " . mysqli_error($conn));
@@ -99,11 +102,10 @@ if (!isset($_SESSION['user_id'])) {
                             </a>
                         </form>
                     </div>
-
                 <?php
                     }
                 } else {
-                    echo "No records found.";
+                    echo '<p class="text-2xl font-bold text-center my-8 text-gray-500">Tidak ada pesanan yang ditemukan</p>';
                 }
                 ?>
             <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
@@ -119,49 +121,52 @@ if (!isset($_SESSION['user_id'])) {
     </button>
 
     <!-- Tentang Kami -->
-    <section id="tentang_kami" class="bg-black text-white py-14 px-6 md:px-12">
-        <div class="container mx-auto flex flex-col md:flex-row items-center gap-8">
-    
-            <!-- Bagian Teks -->
-            <div class="md:w-1/2">
-                <h2 class="text-3xl font-bold mb-4">Tentang Kami</h2>
-                <p class="mb-6 text-justify leading-relaxed">
-                    FlexDrive hadir untuk memudahkan perjalanan Anda dengan layanan rental mobil cepat, aman, dan tanpa ribet.
-                    Dengan berbagai pilihan mobil, kami memastikan pengalaman sewa yang nyaman dan terpercaya.
-                </p>
-    
-                <!-- Contact Info -->
-                <h3 class="text-xl font-semibold mb-3">Contact</h3>
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3">
-                        <img src="../../images/Location putih.png" alt="Lokasi" class="w-6 h-6">
-                        <span>Jalan Gandhi No. 99A</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <img src="../../images/Phone.png" alt="Telepon" class="w-6 h-6">
-                        <span>084978652349</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <img src="../../images/email.png" alt="Email" class="w-6 h-6">
-                        <span>customerservice@flexdrive.com</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <img src="../../images/jam.png" alt="Jam Operasional" class="w-6 h-6">
-                        <div class="flex flex-col">
-                            <span class="font-bold">Jam Operasional</span>
-                            <span>Senin-Sabtu: 07:00AM - 11:00PM</span>
+    <footer class="mt-auto">
+        <section id="tentang_kami" class="bg-black text-white py-14 px-6 md:px-12">
+            <div class="container mx-auto flex flex-col md:flex-row items-center gap-8">
+        
+                <!-- Bagian Teks -->
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-4">Tentang Kami</h2>
+                    <p class="mb-6 text-justify leading-relaxed">
+                        FlexDrive hadir untuk memudahkan perjalanan Anda dengan layanan rental mobil cepat, aman, dan tanpa ribet.
+                        Dengan berbagai pilihan mobil, kami memastikan pengalaman sewa yang nyaman dan terpercaya.
+                    </p>
+        
+                    <!-- Contact Info -->
+                    <h3 class="text-xl font-semibold mb-3">Contact</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <img src="../../images/Location putih.png" alt="Lokasi" class="w-6 h-6">
+                            <span>Jalan Gandhi No. 99A</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img src="../../images/Phone.png" alt="Telepon" class="w-6 h-6">
+                            <span>084978652349</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img src="../../images/email.png" alt="Email" class="w-6 h-6">
+                            <span>customerservice@flexdrive.com</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img src="../../images/jam.png" alt="Jam Operasional" class="w-6 h-6">
+                            <div class="flex flex-col">
+                                <span class="font-bold">Jam Operasional</span>
+                                <span>Senin-Sabtu: 07:00AM - 11:00PM</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+        
+                <!-- Bagian Logo -->
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="../../images/logoFlexDrive.png" alt="FlexDrive Logo" class="w-2/3 md:w-1/2 h-auto">
+                </div>
+        
             </div>
+        </section>
+    </footer> 
     
-            <!-- Bagian Logo -->
-            <div class="md:w-1/2 flex justify-center">
-                <img src="../../images/logoFlexDrive.png" alt="FlexDrive Logo" class="w-2/3 md:w-1/2 h-auto">
-            </div>
-    
-        </div>
-    </section>
 
     <script>
         document.querySelectorAll(".prev-btn").forEach(button => {

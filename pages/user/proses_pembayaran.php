@@ -5,6 +5,8 @@ require_once '../config.php';
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../sign_in.html");
     exit();
+
+
 }
 
 if (isset($_POST['submit_payment'])) {
@@ -34,9 +36,10 @@ if (isset($_POST['submit_payment'])) {
                 if (move_uploaded_file($_FILES['bukti_pembayaran']['tmp_name'], $upload_path)) {
                     // Insert into pembayaran table
                     $status = 'menunggu_konfirmasi';
-                    
+                    $id_usernya = $_SESSION['user_id'];
                     $insert_query = "INSERT INTO pembayaran (
-                                    id_pesan, 
+                                    id_pesan,
+                                    id_user, 
                                     jumlah_bayar, 
                                     metode_pembayaran,
                                     bukti_pembayaran, 
@@ -44,6 +47,7 @@ if (isset($_POST['submit_payment'])) {
                                     tanggal_pembayaran
                                 ) VALUES (
                                     $id_pesan,
+                                    $id_usernya,
                                     $jumlah_bayar,
                                     '$metode_pembayaran',
                                     '$new_filename',
