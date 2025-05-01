@@ -1,5 +1,53 @@
 <?php
 require_once '../config.php';
+
+// tambah mobil
+if (isset($_POST['addnewmobil'])) {
+    $merek_mobil = $_POST['merek_mobil'];
+    $nama_mobil = $_POST['nama_mobil'];
+    $tahun_produksi = $_POST['tahun_produksi'];
+    $nomor_plat = $_POST['nomor_plat'];
+    $tipe_mobil = $_POST['tipe_mobil'];
+    $engine = $_POST['engine'];
+    $bahan_bakar = $_POST['bahan_bakar'];
+    $transmission = $_POST['transmission'];
+    $interior_color = $_POST['interior_color'];
+    $exterior_color = $_POST['exterior_color'];
+    $seats = $_POST['seats'];
+    $per_hari = $_POST['per_hari'];
+    $per_minggu = $_POST['per_minggu'];
+    $per_bulan = $_POST['per_bulan'];
+    $id_mobilnya = $fetcharray['id_mobil'];
+    $status = $_POST['status'];
+
+    $gambar_mobil = $_FILES['gambar_mobil']['name'];
+    $tmp = $_FILES['gambar_mobil']['tmp_name'];
+
+    $addmobil = mysqli_query($conn, "INSERT INTO mobil 
+    (merek_mobil, nama_mobil, tahun_produksi, nomor_plat, tipe_mobil, engine, bahan_bakar, transmission, interior_color, exterior_color, seats, status, gambar_mobil) 
+    VALUES 
+    ('$merek_mobil', '$nama_mobil', '$tahun_produksi', '$nomor_plat', '$tipe_mobil', '$engine', '$bahan_bakar', '$transmission', '$interior_color', '$exterior_color', '$seats', '$status', '$gambar_mobil')");
+
+    if ($addmobil) {
+        $id_mobilnya = mysqli_insert_id($conn); // Ambil ID mobil yang baru dimasukkan
+
+        $addharga = mysqli_query($conn, "INSERT INTO harga_mobil (id_mobil, per_hari, per_minggu, per_bulan) 
+            VALUES ('$id_mobilnya', '$per_hari', '$per_minggu', '$per_bulan')");
+
+        if ($addharga) {
+            $location = '../../images_admin/' . $gambar_mobil;
+            move_uploaded_file($tmp, $location);
+            header('Location: list_mobil_admin.php');
+            exit;
+        } else {
+            echo "<script>alert('Gagal menambahkan harga mobil'); window.location='tambah_mobil.php';</script>";
+        }
+    } else {
+        echo "<script>alert('Data mobil gagal ditambahkan'); window.location='tambah_mobil.php';</script>";
+    }
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +65,7 @@ require_once '../config.php';
                 <h2 class="text-3xl font-bold">Tambah Mobil Baru</h2>
                 <p class="text-gray-300">Lengkapi informasi detail mobil untuk ditambahkan ke armada FlexDrive.</p>
             </div>
-            <form action="#" class="p-6 space-y-6">
+            <form action="#" method ="POST" enctype="multipart/form-data" class="p-6 space-y-6" >
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-gray-700 mb-2 font-medium">Merek Mobil</label>
@@ -42,7 +90,7 @@ require_once '../config.php';
                         <label class="block text-gray-700 mb-2 font-medium">Tahun Produksi</label>
                         <input 
                             type="number" 
-                            name="tahun" 
+                            name="tahun_produksi" 
                             min="1990" 
                             max="2025" 
                             placeholder="Tahun produksi" 
@@ -62,7 +110,7 @@ require_once '../config.php';
                     <div>
                         <label class="block text-gray-700 mb-2 font-medium">Body Type</label>
                         <select 
-                            name="body_type" 
+                            name="tipe_mobil" 
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300" required>
                             <option value="">Pilih Body Type</option>
                             <option value="MPV">MPV</option>
@@ -138,16 +186,6 @@ require_once '../config.php';
                             placeholder="Jumlah kursi" 
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300" required>
                     </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2 font-medium">Konsumsi BBM (km/liter)</label>
-                        <input 
-                            type="number" 
-                            name="konsumsi_BBM" 
-                            step="0.1" 
-                            min="0" 
-                            placeholder="Contoh: 12.5" 
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300" required>
-                    </div>
                 </div>
 
                 <div class="grid md:grid-cols-3 gap-4">
@@ -157,7 +195,7 @@ require_once '../config.php';
                             <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">Rp</span>
                             <input 
                                 type="number" 
-                                name="harga_sewa_hari" 
+                                name="per_hari" 
                                 min="0" 
                                 placeholder="Masukkan harga" 
                                 class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300" required>
@@ -169,7 +207,7 @@ require_once '../config.php';
                             <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">Rp</span>
                             <input 
                                 type="number" 
-                                name="harga_sewa_minggu" 
+                                name="per_minggu" 
                                 min="0" 
                                 placeholder="Masukkan harga" 
                                 class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300" 
@@ -182,7 +220,7 @@ require_once '../config.php';
                             <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">Rp</span>
                             <input 
                                 type="number" 
-                                name="harga_sewa_bulan" 
+                                name="per_bulan" 
                                 min="0" 
                                 placeholder="Masukkan harga" 
                                 class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300" 
@@ -207,7 +245,7 @@ require_once '../config.php';
                         <input 
                             type="file" 
                             name="gambar_mobil" 
-                            accept="image/*" 
+                            accept=".jpg, .jpeg, .png" 
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:rounded-lg file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:text-blue-700 hover:file:bg-blue-100" required>
                     </div>
                 </div>
@@ -218,13 +256,12 @@ require_once '../config.php';
                         class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition duration-300">
                         Batal
                     </a>
-                    <a href="list_mobil_admin.php" 
-                        class="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition duration-300 flex items-center gap-2">
+                    <button type="submit" class="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition duration-300 flex items-center gap-2" name="addnewmobil">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd">
                         </svg>
                         Simpan
-                    </a>
+                    </button>
                 </div>
             </form>
         </div>
