@@ -182,7 +182,7 @@ if (isset($_POST['addnewmobil'])) {
                             type="number" 
                             name="seats" 
                             min="2" 
-                            max="12" 
+                            max="20" 
                             placeholder="Jumlah kursi" 
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300" required>
                     </div>

@@ -29,7 +29,6 @@ if (!isset($_SESSION['user_id'])) {
             scrollbar-width: none;  
         }
     </style>
-    </style>
     <title>List Mobil | FlexDrive</title>
 </head>
 <body class="bg-gray-100">
@@ -54,17 +53,17 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </section>
 
-        <!-- Tipe MPV -->
-        <section class="relative p-4" id="mpv">
-            <h2 class="text-3xl font-bold mb-6 text-gray-800">MPV</h2>
-            <div class="relative flex items-center">
-                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg lg:hidden">
-                    &#10094;
-                </button>
+    <!-- Tipe MPV -->
+    <section class="relative p-4" id="mpv">
+        <h2 class="text-3xl font-bold mb-6 text-gray-800">MPV</h2>
+        <div class="relative flex items-center">
+            <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                &#10094;
+            </button>
 
-                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+            <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
                 <?php
-                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil");
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'MPV'");
                     while($data=mysqli_fetch_array($ambildatamobil)){
                         $merek = $data['merek_mobil'];
                         $nama = $data['nama_mobil'];
@@ -80,33 +79,284 @@ if (!isset($_SESSION['user_id'])) {
                         $status = $data['status'];
                         $harga = number_format($data['per_hari'], 0, ',', '.');
                         $id_mobil = $data['id_mobil'];
-                ?>
-                    <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
-                        <img src="../../images_admin/<?=$data['gambar_mobil'];?>" alt="<?=$merek;?> <?=$nama;?>" class="w-full h-40 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-lg font-semibold"><?=$tahun;?> <?=$merek;?> <?=$nama;?></h3>
-                            <p class="text-gray-500 text-sm"><?=$merek;?> - Model year <?=$tahun;?></p>
-                            <div class="text-sm mt-2 space-y-1">
-                                <p><strong>Body type:</strong> <?=$tipe;?></p>
-                                <p><strong>Engine:</strong> <?=$mesin;?> (<?=$bbm;?>)</p>
-                                <p><strong>Transmission:</strong> <?=$transmission;?></p>
-                                <p><strong>Interior & exterior colors:</strong> <?=$interior;?> <?=$exterior;?></p>
-                                <p><strong>Seats:</strong> <?=$seats;?></p>
-                            </div>
-                            <p class="mt-3 text-gray-500">Start from</p>
-                            <p class="text-lg font-bold text-green-600">Rp.<?=$harga?></p>
-                        </div>
-                        <form action="pemesanan.php" method="POST">
-                            <input type="hidden" name="id_mobil" value="<?= $id_mobil; ?>">
-                            <button type="submit" class="mt-3 w-full bg-black text-white p-2 rounded hover:bg-gray-800 transition">
-                                Sewa Sekarang
-                            </button>
-                        </form>
-                    </div>
-
-                <?php
+                    
+                        include 'card_mobil.php';
                     }
                 ?>
+        </div>
+
+        <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+            &#10095;
+        </button>
+    </div>
+
+    <!-- Tipe: SUV -->
+    </section>
+        <section class="relative p-4" id="suv">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">SUV</h2>
+            <div class="relative flex items-center">
+                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                    &#10094;
+                </button>
+
+                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'SUV'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
+            </div>
+
+            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                &#10095;
+            </button>
+        </div>
+    </section>
+
+    <!-- Tipe: Hatchback -->
+    </section>
+        <section class="relative p-4" id="hatchback">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Hatchback</h2>
+            <div class="relative flex items-center">
+                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                    &#10094;
+                </button>
+
+                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'Hatchback'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
+            </div>
+
+            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                &#10095;
+            </button>
+        </div>
+    </section>
+
+    <!-- Tipe: Minibus -->
+    </section>
+        <section class="relative p-4" id="minibus">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Minibus</h2>
+            <div class="relative flex items-center">
+                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                    &#10094;
+                </button>
+
+                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'Minibus'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
+            </div>
+
+            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                &#10095;
+            </button>
+        </div>
+    </section>
+
+    <!-- Transmission: Manual -->
+    </section>
+        <section class="relative p-4" id="manual">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Manual</h2>
+            <div class="relative flex items-center">
+                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                    &#10094;
+                </button>
+
+                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.transmission = 'Manual'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
+            </div>
+
+            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                &#10095;
+            </button>
+        </div>
+    </section>
+
+    <!-- Transmission: Automatic -->
+    </section>
+        <section class="relative p-4" id="auto">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Automatic</h2>
+            <div class="relative flex items-center">
+                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                    &#10094;
+                </button>
+
+                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.transmission = 'Automatic'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
+            </div>
+
+            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                &#10095;
+            </button>
+        </div>
+    </section>
+
+    <!-- Bahan Bakar: Bensin -->
+    </section>
+        <section class="relative p-4" id="bensin">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Bensin</h2>
+            <div class="relative flex items-center">
+                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                    &#10094;
+                </button>
+
+                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.bahan_bakar = 'Bensin'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
+            </div>
+
+            <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                &#10095;
+            </button>
+        </div>
+    </section>
+
+    <!-- Bahan Bakar: Diesel -->
+    </section>
+        <section class="relative p-4" id="diesel">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Diesel</h2>
+            <div class="relative flex items-center">
+                <button class="prev-btn absolute left-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
+                    &#10094;
+                </button>
+
+                <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
+                <?php
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.bahan_bakar = 'Diesel'");
+                    while($data=mysqli_fetch_array($ambildatamobil)){
+                        $merek = $data['merek_mobil'];
+                        $nama = $data['nama_mobil'];
+                        $tahun = $data['tahun_produksi'];
+                        $tipe = $data['tipe_mobil'];
+                        $transmission = $data['transmission'];
+                        $mesin = $data['engine'];
+                        $plat = $data['nomor_plat'];
+                        $bbm = $data['bahan_bakar'];
+                        $interior = $data['interior_color'];
+                        $exterior = $data['exterior_color'];
+                        $seats = $data['seats'];
+                        $status = $data['status'];
+                        $harga = number_format($data['per_hari'], 0, ',', '.');
+                        $id_mobil = $data['id_mobil'];
+                    
+                        include 'card_mobil.php';
+                    }
+                ?>
+            </div>
+
             <button class="next-btn absolute right-0 bg-black hover:bg-gray-700 text-white p-3 rounded-full z-50 shadow-lg">
                 &#10095;
             </button>
