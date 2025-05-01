@@ -1,5 +1,10 @@
 <?php
 require_once '../config.php';
+
+$total_mobil_query = mysqli_query($conn, "SELECT COUNT(*) AS total FROM mobil");
+$total_mobil_data = mysqli_fetch_assoc($total_mobil_query);
+$total_mobil = $total_mobil_data['total'];
+$jumlah_ditampilkan = $total_mobil;
 ?>
 
 <!DOCTYPE html>
@@ -108,7 +113,7 @@ require_once '../config.php';
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga/minggu</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga/bulan</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                                    <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
@@ -154,10 +159,10 @@ require_once '../config.php';
                                         <?=$status;?>
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <a href="edit_harga.php?id_mobil=<?=$id_mobil;?>" class="text-primary hover:text-blue-700 mr-2">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                        <a href="edit_harga.php?id_mobil=<?=$id_mobil;?>" class="text-primary hover:text-blue-700 mr-2">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
                                     </td>
                                 </tr>
 
@@ -173,7 +178,8 @@ require_once '../config.php';
                     <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                         <div>
                             <p class="text-sm text-gray-700">
-                                Menampilkan <span class="font-medium">1</span> sampai <span class="font-medium">9</span> dari <span class="font-medium">9</span> kendaraan
+                                Menampilkan <span class="font-medium">1</span> sampai <span class="font-medium"><?= $jumlah_ditampilkan; ?></span>
+                                dari <span class="font-medium"><?= $total_mobil; ?></span> kendaraan
                             </p>
                         </div>
                         <div>
