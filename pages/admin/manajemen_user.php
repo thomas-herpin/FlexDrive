@@ -118,9 +118,9 @@ $result = mysqli_query($conn, $query);
                                                 <span class="<?= $roleClass ?> px-3 py-1 rounded-full text-xs"><?= ucfirst($role) ?></span>
                                             </td>
                                             <td class="py-3 px-4 text-center">
-                                                <div class="flex justify-center space-x-2">
+                                                <div class="flex justify-center space-x-3">
                                                     <a href="edit_user.php?id=<?= $row['id_user'] ?>" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
-                                                    <a href="hapus_user.php?id=<?= $row['id_user'] ?>" onclick="return confirm('Yakin ingin menghapus pengguna ini?')" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+                                                    <a href="hapus_user.php?id=<?= $row['id_user'] ?>" class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
