@@ -55,9 +55,14 @@ $jumlah_ditampilkan = mysqli_num_rows($ambilsemuadatamobil);
                 </select>
                 <button class="bg-black text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-300">Lacak</button>
             </div>
-            <div class="mt-4 w-full h-96 bg-gray-300 flex items-center justify-center text-gray-500">
-                <i class="fas fa-map-marked-alt text-4xl"></i>
-                <p class="ml-2">Peta akan ditampilkan di sini</p>
+            <div class="w-full h-96 bg-gray-200 rounded mt-4 overflow-hidden">
+                <iframe id="mapFrame" 
+                        class="w-full h-full" 
+                        frameborder="0" 
+                        style="border:0" 
+                        allowfullscreen 
+                        src="https://maps.google.com/maps?q=medankota&output=embed">
+                </iframe>
             </div>
         </div>
     </div>
