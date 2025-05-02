@@ -19,7 +19,7 @@ function tampilkanStatus($status) {
 $status_filter = isset($_GET['status']) ? $_GET['status'] : '';
 $search_query = isset($_GET['search']) ? $_GET['search'] : '';
 $tanggal_filter = isset($_GET['tanggal']) ? $_GET['tanggal'] : '';
-$limit = 5;
+$limit = 10;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 

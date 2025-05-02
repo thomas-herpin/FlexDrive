@@ -27,13 +27,13 @@
     <header class="bg-black fixed w-full z-50 shadow-md">
         <nav class="flex justify-between items-center w-[90%] mx-auto py-3">
             <div class="flex items-center gap-2">
-                <img src="/FlexDrive/images/logo_horizontal.png" alt="FlexDrive" class="w-[150px]">
+                <img src="../../images/logo_horizontal.png" alt="FlexDrive" class="w-[150px]">
             </div>
 
             <!-- Menu -->
             <div id="nav-links" class="text-gray-300 md:static fixed bg-black md:min-h-fit min-h-[35vh] top-[-100%] md:w-auto w-full left-0 flex flex-col items-center py-3 transition-all duration-500 ease-in-out">
                 <ul class="flex md:flex-row flex-col md:items-center md:gap-10 gap-4">
-                    <li><a class="hover:text-gray-400 transition text-white" href="../../pages/landingpage.php">Beranda</a></li>
+                    <li><a class="hover:text-gray-400 transition text-white" href="../../pages/index.php">Beranda</a></li>
                     <li class="md:hidden"><a class="hover:text-gray-400 transition" href="../../pages/sign_up.html">Daftar</a></li>
                     <li><a class="hover:text-gray-400 transition text-white" href="user/list_mobil1.php">List Mobil</a></li>
                 </ul>

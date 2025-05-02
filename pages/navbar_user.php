@@ -14,10 +14,5 @@
             </ul>
         </div>
 
-        <!-- Search & Mobile Menu -->
-        <div class="flex items-center gap-4">
-            <input type="text" placeholder="Cari..." class="text-black rounded-full border border-gray-500 px-4 py-1 focus:outline-none focus:ring-2 focus:ring-gray-600 w-[120px] h-[35px] md:w-[200px] transition-all duration-300">
-            <ion-icon id="menu-icon" name="menu" class="text-3xl text-white cursor-pointer md:hidden"></ion-icon>
-        </div>
     </nav>
 </header>

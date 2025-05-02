@@ -18,7 +18,7 @@
     <header class="bg-black fixed w-full z-50 shadow-md">
         <nav class="flex justify-between items-center w-[90%] mx-auto py-3">
             <div class="flex items-center gap-2">
-                <img src="/FlexDrive/images/logo_horizontal.png" alt="FlexDrive" class="w-[150px]">
+                <img src="../images/logo_horizontal.png" alt="FlexDrive" class="w-[150px]">
             </div>
 
             <!-- Menu -->
