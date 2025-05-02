@@ -18,7 +18,7 @@
     <header class="bg-black fixed w-full z-50 shadow-md">
         <nav class="flex justify-between items-center w-[90%] mx-auto py-3">
             <div class="flex items-center gap-2">
-                <img src="/FlexDrive/images/logo_horizontal.png" alt="FlexDrive" class="w-[150px]">
+                <img src="../images/logo_horizontal.png" alt="FlexDrive" class="w-[150px]">
             </div>
 
             <!-- Menu -->
@@ -61,55 +61,55 @@
         </div>
     </section>
 
-    <!-- Search Section -->
+    <!-- Testimoni -->
     <section class="bg-gradient-to-r from-gray-700 to-black py-16 px-6 text-white">
-        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                <!-- Titik Pengambilan -->
-                <div class="flex flex-col">
-                    <label class="font-semibold text-gray-800 text-sm md:text-base">Titik Pengambilan</label>
-                    <div class="relative">
-                        <img src="../../FlexDrive/images/Location.png" alt="lokasi" 
-                            class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 opacity-70">
-                        <input type="text"
-                            class="pl-10 pr-4 py-3 rounded-lg border border-gray-400 focus:ring-2 focus:ring-blue-500 text-gray-800 w-full transition duration-300" placeholder="Jl.kerumah mantan No.18">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-10">Apa Kata Pengguna Kami?</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Testimoni Card 1 -->
+                <div class="bg-white text-gray-800 p-6 rounded-2xl shadow-2xl flex flex-col justify-between h-full">
+                    <p class="italic mb-6">"Udah beberapa kali sewa di sini, gak pernah kecewa. Harganya masuk akal, mobil selalu dalam kondisi bagus."</p>
+                    <div class="flex items-center mt-auto">
+                        <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center font-bold mr-4">
+                            AH
+                        </div>
+                        <div>
+                            <p class="font-semibold">Ahmad Fadli</p>
+                            <p class="text-sm text-gray-500">Pengguna dari Medan Maimun</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Titik Pengembalian -->
-                <div class="flex flex-col">
-                    <label class="font-semibold text-gray-800 text-sm md:text-base">Titik Pengembalian</label>
-                    <div class="relative">
-                        <img src="../../FlexDrive/images/Location.png" alt="lokasi" 
-                            class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 opacity-70">
-                        <input type="text"
-                            class="pl-10 pr-4 py-3 rounded-lg border border-gray-400 focus:ring-2 focus:ring-blue-500 text-gray-800 w-full transition duration-300" placeholder="Jl.kerumah kosong No.28">
+                <!-- Testimoni Card 2 -->
+                <div class="bg-white text-gray-800 p-6 rounded-2xl shadow-2xl flex flex-col justify-between h-full">
+                    <p class="italic mb-6">"Udah nyoba beberapa tempat, tapi yang ini paling cocok. Nggak ribet dan aman dipakai ke mana-mana."</p>
+                    <div class="flex items-center mt-auto">
+                        <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center font-bold mr-4">
+                            SR
+                        </div>
+                        <div>
+                            <p class="font-semibold">Siti Rahma</p>
+                            <p class="text-sm text-gray-500">Pengguna dari Medan Polonia</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Tanggal Pengambilan -->
-                <div class="flex flex-col">
-                    <label class="font-semibold text-gray-800 text-sm md:text-base">Tanggal Pengambilan</label>
-                    <input type="datetime-local"
-                        class="p-3 rounded-lg border border-gray-400 focus:ring-2 focus:ring-blue-500 text-gray-800 w-full transition duration-300">
+                <!-- Testimoni Card 3 -->
+                <div class="bg-white text-gray-800 p-6 rounded-2xl shadow-2xl flex flex-col justify-between h-full">
+                    <p class="italic mb-6">"Pelayanannya oke banget, mobilnya bersih dan nyaman dipakai. Proses sewa juga cepet, gak ribet sama sekali. Recommended deh."</p>
+                    <div class="flex items-center mt-auto">
+                        <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center font-bold mr-4">
+                            MP
+                        </div>
+                        <div>
+                            <p class="font-semibold">Maya Putri</p>
+                            <p class="text-sm text-gray-500">Pengguna dari Medan Marelan</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Tanggal Pengembalian -->
-                <div class="flex flex-col">
-                    <label class="font-semibold text-gray-800 text-sm md:text-base">Tanggal Pengembalian</label>
-                    <input type="datetime-local"
-                        class="p-3 rounded-lg border border-gray-400 focus:ring-2 focus:ring-blue-500 text-gray-800 w-full transition duration-300">
-                </div>
             </div>
-
-            <!-- Tombol Search -->
-            <a href="../pages/user/list_mobil1.php"><div class="flex justify-center mt-6">
-                <button class="bg-black text-white px-12 py-3 rounded-full font-semibold text-lg hover:bg-gray-700 transition duration-300 shadow-lg">
-                    SEARCH
-                </button>
-            </div></a>
-            
         </div>
     </section>
 
@@ -120,58 +120,65 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 
                 <!-- Card 1 -->
-                <div class="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-300 transform transition-all hover:scale-105 hover:shadow-2xl">
-                    <img src="../../FlexDrive/images/toyota-veloz 2021.png" alt="Toyota Veloz 2021" class="w-full h-44 object-contain mt-4">
-                    <div class="p-5">
-                        <h3 class="text-xl font-semibold">2021 Toyota Veloz</h3>
-                        <p class="text-gray-500 text-sm mb-3">TOYOTA - Model year 2021</p>
-                        <div class="text-sm space-y-1">
-                            <p><strong>Body type:</strong> MPV</p>
-                            <p><strong>Engine:</strong> 1.5L 4-Cylinder DOHC Dual VVT-i</p>
-                            <p><strong>Transmission:</strong> CVT (Continuously Variable Transmission)</p>
-                            <p><strong>Interior & exterior colors:</strong> black, silver</p>
-                            <p><strong>Seats:</strong> 7</p>
+                <a href="sign_in.html">
+                    <div class="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-300 transform transition-all hover:scale-105 hover:shadow-2xl">
+                        <img src="../../FlexDrive/images/toyota-veloz 2021.png" alt="Toyota Veloz 2021" class="w-full h-44 object-contain mt-4">
+                        <div class="p-5">
+                            <h3 class="text-xl font-semibold">2021 Toyota Veloz</h3>
+                            <p class="text-gray-500 text-sm mb-3">TOYOTA - Model year 2021</p>
+                            <div class="text-sm space-y-1">
+                                <p><strong>Body type:</strong> MPV</p>
+                                <p><strong>Engine:</strong> 1.5L 4-Cylinder DOHC Dual VVT-i</p>
+                                <p><strong>Transmission:</strong> CVT (Continuously Variable Transmission)</p>
+                                <p><strong>Interior & exterior colors:</strong> black, silver</p>
+                                <p><strong>Seats:</strong> 7</p>
+                            </div>
+                            <p class="mt-4 text-gray-500">Start from</p>
+                            <p class="text-lg font-bold text-green-600">Rp.600.000</p>
                         </div>
-                        <p class="mt-4 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.600.000</p>
                     </div>
-                </div>
+                </a>
 
                 <!-- Card 2 -->
-                <div class="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-300 transform transition-all hover:scale-105 hover:shadow-2xl">
-                    <img src="../../FlexDrive/images/toyota-venturer.png" alt="Toyota Innova Venturer" class="w-full h-44 object-contain mt-4">
-                    <div class="p-5">
-                        <h3 class="text-xl font-semibold">2018 Innova Venturer</h3>
-                        <p class="text-gray-500 text-sm mb-3">TOYOTA - Model year 2019</p>
-                        <div class="text-sm space-y-1">
-                            <p><strong>Body type:</strong> MPV</p>
-                            <p><strong>Engine:</strong> 2.4L 4-Cylinder DOHC (Diesel)</p>
-                            <p><strong>Transmission:</strong> 6-Speed Automatic</p>
-                            <p><strong>Interior & exterior colors:</strong> black, silver</p>
-                            <p><strong>Seats:</strong> 7</p>
-                        </div>
-                        <p class="mt-4 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.800.000</p>
-                    </div>
-                </div>
+                 <a href="sign_in.html">
+
+                     <div class="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-300 transform transition-all hover:scale-105 hover:shadow-2xl">
+                         <img src="../../FlexDrive/images/toyota-venturer.png" alt="Toyota Innova Venturer" class="w-full h-44 object-contain mt-4">
+                         <div class="p-5">
+                             <h3 class="text-xl font-semibold">2018 Innova Venturer</h3>
+                             <p class="text-gray-500 text-sm mb-3">TOYOTA - Model year 2019</p>
+                             <div class="text-sm space-y-1">
+                                 <p><strong>Body type:</strong> MPV</p>
+                                 <p><strong>Engine:</strong> 2.4L 4-Cylinder DOHC (Diesel)</p>
+                                 <p><strong>Transmission:</strong> 6-Speed Automatic</p>
+                                 <p><strong>Interior & exterior colors:</strong> black, silver</p>
+                                 <p><strong>Seats:</strong> 7</p>
+                             </div>
+                             <p class="mt-4 text-gray-500">Start from</p>
+                             <p class="text-lg font-bold text-green-600">Rp.800.000</p>
+                         </div>
+                     </div>
+                 </a>
 
                 <!-- Card 3 -->
-                <div class="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-300 transform transition-all hover:scale-105 hover:shadow-2xl">
-                    <img src="../../FlexDrive/images/Hiiace 2018.png" alt="Toyota Hiace Premio" class="w-full h-44 object-contain mt-4">
-                    <div class="p-5">
-                        <h3 class="text-xl font-semibold">2018 Hiace Premio</h3>
-                        <p class="text-gray-500 text-sm mb-3">TOYOTA - Model year 2018</p>
-                        <div class="text-sm space-y-1">
-                            <p><strong>Body type:</strong> Van</p>
-                            <p><strong>Engine:</strong> 2.8L 4-Cylinder Turbo Diesel</p>
-                            <p><strong>Transmission:</strong> 6-Speed Manual</p>
-                            <p><strong>Interior & exterior colors:</strong> black, white</p>
-                            <p><strong>Seats:</strong> 15</p>
+                 <a href="sign_in.html">
+                    <div class="bg-white shadow-lg rounded-xl overflow-hidden border border-gray-300 transform transition-all hover:scale-105 hover:shadow-2xl">
+                        <img src="../../FlexDrive/images/Hiiace 2018.png" alt="Toyota Hiace Premio" class="w-full h-44 object-contain mt-4">
+                        <div class="p-5">
+                            <h3 class="text-xl font-semibold">2018 Hiace Premio</h3>
+                            <p class="text-gray-500 text-sm mb-3">TOYOTA - Model year 2018</p>
+                            <div class="text-sm space-y-1">
+                                <p><strong>Body type:</strong> Van</p>
+                                <p><strong>Engine:</strong> 2.8L 4-Cylinder Turbo Diesel</p>
+                                <p><strong>Transmission:</strong> 6-Speed Manual</p>
+                                <p><strong>Interior & exterior colors:</strong> black, white</p>
+                                <p><strong>Seats:</strong> 15</p>
+                            </div>
+                            <p class="mt-4 text-gray-500">Start from</p>
+                            <p class="text-lg font-bold text-green-600">Rp.1.000.000</p>
                         </div>
-                        <p class="mt-4 text-gray-500">Start from</p>
-                        <p class="text-lg font-bold text-green-600">Rp.1.000.000</p>
                     </div>
-                </div>
+                 </a>
 
             </div>
         </div>

@@ -1,4 +1,4 @@
-<div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex flex-col justify-between min-h-[520px]">
+<div class="bg-white min-w-[250px] w-[250px] shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex flex-col justify-between min-h-[520px]">
     <img src="../../images_admin/<?=$data['gambar_mobil'];?>" alt="<?=$merek;?> <?=$nama;?>" class="w-full h-40 object-cover">
 
     <div class="p-4 flex-1 flex flex-col justify-between">
