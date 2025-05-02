@@ -2,7 +2,7 @@
 require_once '../config.php';
 
 $status_con = 'dikonfirmasi';
-$status_rej = 'ditolak';
+$status_rej = 'dibatalkan';
 
 function tampilkanStatus($status) {
     switch (strtolower($status)) {
@@ -10,8 +10,8 @@ function tampilkanStatus($status) {
             return '<span class="inline-block px-3 py-1 text-sm font-medium text-green-800 bg-green-100 rounded-full">Dikonfirmasi</span>';
         case 'menunggu':
             return '<span class="inline-block px-3 py-1 text-sm font-medium text-yellow-800 bg-yellow-100 rounded-full">Menunggu</span>';
-        case 'ditolak':
-            return '<span class="inline-block px-3 py-1 text-sm font-medium text-red-800 bg-red-100 rounded-full">Ditolak</span>';
+        case 'dibatalkan':
+            return '<span class="inline-block px-3 py-1 text-sm font-medium text-red-800 bg-red-100 rounded-full">Dibatalkan</span>';
     }
 }
 
@@ -107,7 +107,7 @@ $total_pages = ceil($total_jadwal / $limit);
 
 $count_confirmed = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM pembayaran WHERE status_pembayaran = 'dikonfirmasi'"))['total'];
 $count_pending = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM pembayaran WHERE status_pembayaran = 'menunggu'"))['total'];
-$count_rejected = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM pembayaran WHERE status_pembayaran = 'ditolak'"))['total'];
+$count_rejected = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM pembayaran WHERE status_pembayaran = 'dibatalkan'"))['total'];
 ?>
 
 <!DOCTYPE html>
@@ -164,17 +164,10 @@ $count_rejected = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS tot
                                     <option value="">Semua Status</option>
                                     <option value="dikonfirmasi" <?= $status_filter == 'dikonfirmasi' ? 'selected' : ''; ?>>Dikonfirmasi</option>
                                     <option value="Menunggu" <?= $status_filter == 'Menunggu' ? 'selected' : ''; ?>>Menunggu</option>
-                                    <option value="Ditolak" <?= $status_filter == 'Ditolak' ? 'selected' : ''; ?>>Ditolak</option>
+                                    <option value="dibatalkan" <?= $status_filter == 'Dibatalkan' ? 'selected' : ''; ?>>Dibatalkan</option>
                                 </select>
                                 <i class="fas fa-chevron-down text-gray-400 absolute right-3 top-3 pointer-events-none"></i>
                             </form>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="relative">
-                                <form method="GET" action="">
-                                    <input type="date" name="tanggal" value="<?= htmlspecialchars($tanggal_filter) ?>" class="py-2 pl-3 pr-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                                </form>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -208,7 +201,7 @@ $count_rejected = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS tot
                                 <i class="fas fa-times text-danger text-xl"></i>
                             </div>
                             <div>
-                                <p class="text-sm text-gray-500">Ditolak</p>
+                                <p class="text-sm text-gray-500">Dibatalkan</p>
                                 <p class="text-2xl font-bold"><?= $count_rejected; ?></p>
                             </div>
                         </div>

@@ -15,8 +15,8 @@ function tampilkanStatus($status) {
             return '<span class="inline-block px-3 py-1 text-sm font-medium text-green-800 bg-green-100 rounded-full">Dikonfirmasi</span>';
         case 'menunggu':
             return '<span class="inline-block px-3 py-1 text-sm font-medium text-yellow-800 bg-yellow-100 rounded-full">Menunggu</span>';
-        case 'ditolak':
-            return '<span class="inline-block px-3 py-1 text-sm font-medium text-red-800 bg-red-100 rounded-full">Ditolak</span>';
+        case 'dibatalkan':
+            return '<span class="inline-block px-3 py-1 text-sm font-medium text-red-800 bg-red-100 rounded-full">Dibatalkan</span>';
         default:
             return '<span class="inline-block px-3 py-1 text-sm font-medium text-gray-800 bg-gray-100 rounded-full">Status tidak diketahui</span>';
     }
@@ -92,7 +92,7 @@ function tampilkanStatus($status) {
                         
                         
                 ?>
-                    <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-64 flex-none">
+                    <div class="bg-white shadow-md rounded-xl overflow-hidden border border-gray-200 transition-all hover:scale-105 hover:shadow-2xl w-65 flex-none">
                         <img src="../../images_admin/<?=$data['gambar_mobil'];?>" alt="<?=$merek;?> <?=$nama;?>" class="w-full h-40 object-cover">
                         <div class="p-4">
                             <h3 class="text-lg font-semibold"><?=$tahun;?> <?=$merek;?> <?=$nama;?></h3>

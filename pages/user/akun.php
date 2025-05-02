@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $conn->prepare($update);
         $stmt->bind_param("ssssi", $firstName, $lastName, $email, $hashedPassword, $userId);
     } else {
-        $update = "UPDATE users SET first_name=?, last_name=?, email=? WHERE userid=?";
+        $update = "UPDATE users SET first_name=?, last_name=?, email=? WHERE id_user=?";
         $stmt = $conn->prepare($update);
         $stmt->bind_param("sssi", $firstName, $lastName, $email, $userId);
     }

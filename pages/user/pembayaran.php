@@ -174,7 +174,6 @@ $jumlah_bayar = ($pesanan['pelunasan'] == '50') ? $total_biaya * 0.5 : $total_bi
                         <span class="font-medium">Transfer Bank</span>
                         <p class="text-sm text-gray-500">BCA, Mandiri, BNI, BRI</p>
                     </label>
-                    <img src="/images/payment/bank.png" alt="Bank Transfer" class="h-8">
                 </div>
                 
                 <div class="border rounded p-3 flex items-center cursor-pointer hover:bg-gray-50">
@@ -183,7 +182,6 @@ $jumlah_bayar = ($pesanan['pelunasan'] == '50') ? $total_biaya * 0.5 : $total_bi
                         <span class="font-medium">E-Wallet</span>
                         <p class="text-sm text-gray-500">GoPay, OVO, DANA, LinkAja</p>
                     </label>
-                    <img src="/images/payment/ewallet.png" alt="E-Wallet" class="h-8">
                 </div>
             </div>
         </div>

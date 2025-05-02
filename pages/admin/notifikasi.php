@@ -58,27 +58,20 @@ if (isset($_SESSION['user_id'])) {
                         <p>Tidak ada notifikasi pesanan baru</p>
                     </div>
                 <?php else: ?>
-                    <ul class="divide-y divide-gray-200">
+                    <ul class="divide-y divide-gray-200 p-2">
                         <?php foreach ($notifikasi as $notif): ?>
-                            <li class="p-4 hover:bg-gray-50 transition">
-                                <a href="jadwal_sewa.php?id=<?= $notif['id_pesan'] ?>" class="block">
-                                    <div class="flex items-start">
-                                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                                            <i class="fas fa-shopping-cart text-blue-500"></i>
-                                        </div>
-                                        <div class="ml-4">
-                                            <p class="text-sm font-medium text-gray-900">
-                                                <?= htmlspecialchars($notif['first_name'].' '.$notif['last_name']) ?> memesan 
-                                                <?= htmlspecialchars($notif['merek_mobil'].' '.$notif['nama_mobil']) ?>
-                                            </p>
-                                            <p class="text-sm text-gray-500">
-                                                Untuk tanggal <?= date('d M Y', strtotime($notif['tanggal_pengambilan'])) ?>
-                                            </p>
-                                            <p class="text-xs text-gray-400 mt-1">
-                                                <?= date('d M Y H:i', strtotime($notif['dibuat'])) ?>
-                                            </p>
-                                        </div>
-                                    </div>
+                            <li class="mb-3">
+                                <a href="jadwal_sewa.php?id=<?= $notif['id_pesan'] ?>" class="block p-4 border-l-4 border-blue-500 bg-blue-50 text-blue-900 rounded shadow hover:bg-blue-100 transition">
+                                    <p class="text-sm font-semibold">
+                                        <?= htmlspecialchars($notif['first_name'].' '.$notif['last_name']) ?> memesan 
+                                        <?= htmlspecialchars($notif['merek_mobil'].' '.$notif['nama_mobil']) ?>
+                                    </p>
+                                    <p class="text-sm text-gray-700">
+                                        Untuk tanggal <?= date('d M Y', strtotime($notif['tanggal_pengambilan'])) ?>
+                                    </p>
+                                    <p class="text-xs text-gray-600 mt-1">
+                                        <?= date('d M Y H:i', strtotime($notif['dibuat'])) ?>
+                                    </p>
                                 </a>
                             </li>
                         <?php endforeach; ?>

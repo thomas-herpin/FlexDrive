@@ -63,7 +63,7 @@ if (!isset($_SESSION['user_id'])) {
 
             <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
                 <?php
-                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'MPV'");
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'MPV' AND m.status != 'Tidak Aktif'");
                     while($data=mysqli_fetch_array($ambildatamobil)){
                         $merek = $data['merek_mobil'];
                         $nama = $data['nama_mobil'];
@@ -101,7 +101,7 @@ if (!isset($_SESSION['user_id'])) {
 
                 <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
                 <?php
-                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'SUV'");
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'SUV' AND m.status != 'Tidak Aktif'");
                     while($data=mysqli_fetch_array($ambildatamobil)){
                         $merek = $data['merek_mobil'];
                         $nama = $data['nama_mobil'];
@@ -140,7 +140,7 @@ if (!isset($_SESSION['user_id'])) {
 
                 <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
                 <?php
-                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'Hatchback'");
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'Hatchbac AND m.status != 'Tidak Aktif'k'");
                     while($data=mysqli_fetch_array($ambildatamobil)){
                         $merek = $data['merek_mobil'];
                         $nama = $data['nama_mobil'];
@@ -179,7 +179,7 @@ if (!isset($_SESSION['user_id'])) {
 
                 <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
                 <?php
-                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'Minibus'");
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.tipe_mobil = 'Minibus' AND m.status != 'Tidak Aktif'");
                     while($data=mysqli_fetch_array($ambildatamobil)){
                         $merek = $data['merek_mobil'];
                         $nama = $data['nama_mobil'];
@@ -218,7 +218,7 @@ if (!isset($_SESSION['user_id'])) {
 
                 <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
                 <?php
-                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.transmission = 'Manual'");
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.transmission = 'Manual AND m.status != 'Tidak Aktif''");
                     while($data=mysqli_fetch_array($ambildatamobil)){
                         $merek = $data['merek_mobil'];
                         $nama = $data['nama_mobil'];
@@ -257,7 +257,7 @@ if (!isset($_SESSION['user_id'])) {
 
                 <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
                 <?php
-                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.transmission = 'Automatic'");
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.transmission = 'Automa AND m.status != 'Tidak Aktif'tic'");
                     while($data=mysqli_fetch_array($ambildatamobil)){
                         $merek = $data['merek_mobil'];
                         $nama = $data['nama_mobil'];
@@ -296,7 +296,7 @@ if (!isset($_SESSION['user_id'])) {
 
                 <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
                 <?php
-                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.bahan_bakar = 'Bensin'");
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.bahan_bakar = 'Bensin' AND m.status != 'Tidak Aktif'");
                     while($data=mysqli_fetch_array($ambildatamobil)){
                         $merek = $data['merek_mobil'];
                         $nama = $data['nama_mobil'];
@@ -335,7 +335,7 @@ if (!isset($_SESSION['user_id'])) {
 
                 <div class="car-list flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full px-10">
                 <?php
-                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.bahan_bakar = 'Diesel'");
+                    $ambildatamobil = mysqli_query($conn, "SELECT m.*, h.per_hari FROM mobil m INNER JOIN harga_mobil h ON m.id_mobil = h.id_mobil WHERE m.bahan_bakar = 'Diesel' AND m.status != 'Tidak Aktif'");
                     while($data=mysqli_fetch_array($ambildatamobil)){
                         $merek = $data['merek_mobil'];
                         $nama = $data['nama_mobil'];
