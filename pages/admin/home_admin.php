@@ -58,7 +58,7 @@ if (isset($_POST['ubahstatusberhasil'])) {
             exit();
         }
     }
-} elseif (isset($_POST['ubahstatusbatal'])) {
+} elseif (isset($_POST['ubahstatusditolak'])) {
     // Pastikan id_pesan ada dan valid
     $id_pesan = isset($_POST['id_pesan']) ? (int)$_POST['id_pesan'] : 0;
     
@@ -240,7 +240,8 @@ $total_penyewa = mysqli_num_rows($penyewa);
                                             $status = $data['status_pembayaran'];
                                             $id_mobil = $data['id_mobil'];
                                             $tgl_ambil = date('d/m/Y', strtotime($data['tanggal_pengambilan']));
-                                            $tgl_kembali = date('d/m/Y', strtotime($data['tanggal_pengembalian']));   
+                                            $tgl_kembali = date('d/m/Y', strtotime($data['tanggal_pengembalian']));  
+                                            $inisial = strtoupper(substr($data['first_name'], 0, 1) . substr($data['last_name'],0,1)); 
                                 ?>
                                         <tr class="hover:bg-gray-50">
                                             <td class="px-6 py-4 whitespace-nowrap text-left">
