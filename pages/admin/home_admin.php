@@ -124,6 +124,83 @@ $total_penyewa = mysqli_num_rows($penyewa);
                 }
             }
         }
+
+        function lihatBukti(path) {
+            console.log("Membuka bukti pembayaran:", path);
+
+            const win = window.open('', '_blank', 'width=800,height=700');
+            
+            if (win) {
+                win.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Bukti Pembayaran</title>
+                        <style>
+                            body {
+                                margin: 0;
+                                padding: 20px;                                
+                                background-color: white;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                            }
+                            .container {
+                                text-align: center;
+                                max-width: 100%;
+                            }
+                            h2 {
+                                margin-bottom: 20px;
+                            }
+                            .img-container {
+                                background-color: white;
+                                padding: 10px;
+                                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                                border-radius: 8px;
+                                margin-bottom: 20px;
+                            }
+                            img {
+                                max-width: 100%;
+                                max-height: 80vh;
+                                border-radius: 4px;
+                            }
+                            .error-msg {
+                                color: red;
+                                padding: 20px;
+                                text-align: center;
+                                background-color: white;
+                                border-radius: 8px;
+                                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                                margin-top: 20px;
+                            }
+                            .info {
+                                font-size: 14px;
+                                color: grey;
+                                margin-top: 20px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="container">
+                            <h2>Bukti Pembayaran</h2>
+                            <div class="img-container">
+                                <img src="${path}" alt="Bukti Pembayaran" onerror="this.style.display='none'; document.getElementById('error-message').style.display='block';">
+                            </div>
+                            <div id="error-message" class="error-msg" style="display:none">
+                                <p>Tidak dapat menampilkan gambar. File mungkin tidak ada atau tidak dapat diakses.</p>
+                            </div>
+                            <div class="info">
+                                <p>File: ${path.split('/').pop()}</p>
+                            </div>
+                        </div>
+                    </body>
+                    </html>
+                `);
+                win.document.close();
+            } else {
+                alert("Popup diblokir. Mohon izinkan pop-up untuk melihat bukti pembayaran.");
+            }
+        }
     </script>
 </head>
 <body class="bg-gray-50">
@@ -216,7 +293,8 @@ $total_penyewa = mysqli_num_rows($penyewa);
                                         FROM pemesanan p
                                         INNER JOIN mobil m ON p.id_mobil = m.id_mobil
                                         INNER JOIN users u ON p.id_user = u.id_user
-                                        INNER JOIN pembayaran pb ON p.id_pesan = pb.id_pesan;");
+                                        INNER JOIN pembayaran pb ON p.id_pesan = pb.id_pesan
+                                        ORDER BY pb.tanggal_pembayaran DESC;");
 
                                     if (!$ambildatapesanan) {
                                         die("Query failed: " . mysqli_error($conn));
@@ -240,7 +318,9 @@ $total_penyewa = mysqli_num_rows($penyewa);
                                             $status = $data['status_pembayaran'];
                                             $id_mobil = $data['id_mobil'];
                                             $tgl_ambil = date('d/m/Y', strtotime($data['tanggal_pengambilan']));
-                                            $tgl_kembali = date('d/m/Y', strtotime($data['tanggal_pengembalian']));   
+                                            $tgl_kembali = date('d/m/Y', strtotime($data['tanggal_pengembalian']));
+                                            $inisial = strtoupper(substr($data['first_name'], 0, 1) . substr($data['last_name'], 0, 1));
+                                            $bukti_pembayaran = $data['bukti_pembayaran']; // File bukti pembayaran dari tabel pembayaran
                                 ?>
                                         <tr class="hover:bg-gray-50">
                                             <td class="px-6 py-4 whitespace-nowrap text-left">
@@ -266,20 +346,32 @@ $total_penyewa = mysqli_num_rows($penyewa);
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap"><?=tampilkanStatus($status);?></td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                <form method="POST" action="" style="display: inline;">
-                                                    <input type="hidden" name="id_pesan" value="<?= $data['id_pesan'] ?>">
-                                                    <button type="submit" name="ubahstatusberhasil" class="text-green-600 hover:text-green-900 mr-3">
-                                                        <i class="fas fa-check"></i>
-                                                    </button>
-                                                    <button type="submit" name="ubahstatusditolak" class="text-red-600 hover:text-red-900">
-                                                        <i class="fas fa-times"></i>
-                                                    </button>
-                                                </form>
+                                                <div class="flex items-center space-x-2">
+                                                    <form method="POST" action="" style="display: inline;">
+                                                        <input type="hidden" name="id_pesan" value="<?= $data['id_pesan'] ?>">
+                                                        <button type="submit" name="ubahstatusberhasil" class="text-green-600 hover:text-green-900 mr-2" title="Setujui">
+                                                            <i class="fas fa-check"></i>
+                                                        </button>
+                                                        <button type="submit" name="ubahstatusbatal" class="text-red-600 hover:text-red-900 mr-2" title="Tolak">
+                                                            <i class="fas fa-times"></i>
+                                                        </button>
+                                                    </form>
+                                                    
+                                                    <?php if (!empty($bukti_pembayaran)): ?>
+                                                        <button onclick="lihatBukti('../../uploads/payments/<?= $bukti_pembayaran ?>')" 
+                                                                class="text-blue-600 hover:text-blue-900" 
+                                                                title="Lihat Bukti Pembayaran">
+                                                            <i class="fas fa-receipt"></i>
+                                                        </button>
+                                                    <?php endif; ?>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php
                                         }
-                                    }    
+                                    } else {
+                                        echo '<tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">Tidak ada data pesanan</td></tr>';
+                                    }
                                     ?> 
                                 </tbody>
                             </table>

@@ -220,7 +220,6 @@ $jumlah_bayar = ($pesanan['pelunasan'] == '50') ? $total_biaya * 0.5 : $total_bi
     </div>
     
     <script>
-        // Toggle payment method info
         const transferRadio = document.getElementById('transfer');
         const ewalletRadio = document.getElementById('ewallet');
         const bankInfo = document.getElementById('bank-info');
@@ -234,7 +233,6 @@ $jumlah_bayar = ($pesanan['pelunasan'] == '50') ? $total_biaya * 0.5 : $total_bi
         ewalletRadio.addEventListener('change', function() {
             if (this.checked) {
                 bankInfo.style.display = 'none';
-                // In a real implementation, you would show QR codes or e-wallet instructions here
                 alert('Fitur pembayaran e-wallet akan segera tersedia!');
                 transferRadio.checked = true;
                 bankInfo.style.display = 'block';
