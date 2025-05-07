@@ -132,6 +132,83 @@ $count_rejected = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS tot
                 }
             }
         }
+
+        function lihatBukti(path) {
+            console.log("Membuka bukti pembayaran:", path);
+
+            const win = window.open('', '_blank', 'width=800,height=700');
+            
+            if (win) {
+                win.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Bukti Pembayaran</title>
+                        <style>
+                            body {
+                                margin: 0;
+                                padding: 20px;                                
+                                background-color: white;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                            }
+                            .container {
+                                text-align: center;
+                                max-width: 100%;
+                            }
+                            h2 {
+                                margin-bottom: 20px;
+                            }
+                            .img-container {
+                                background-color: white;
+                                padding: 10px;
+                                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                                border-radius: 8px;
+                                margin-bottom: 20px;
+                            }
+                            img {
+                                max-width: 100%;
+                                max-height: 80vh;
+                                border-radius: 4px;
+                            }
+                            .error-msg {
+                                color: red;
+                                padding: 20px;
+                                text-align: center;
+                                background-color: white;
+                                border-radius: 8px;
+                                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                                margin-top: 20px;
+                            }
+                            .info {
+                                font-size: 14px;
+                                color: grey;
+                                margin-top: 20px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="container">
+                            <h2>Bukti Pembayaran</h2>
+                            <div class="img-container">
+                                <img src="${path}" alt="Bukti Pembayaran" onerror="this.style.display='none'; document.getElementById('error-message').style.display='block';">
+                            </div>
+                            <div id="error-message" class="error-msg" style="display:none">
+                                <p>Tidak dapat menampilkan gambar. File mungkin tidak ada atau tidak dapat diakses.</p>
+                            </div>
+                            <div class="info">
+                                <p>File: ${path.split('/').pop()}</p>
+                            </div>
+                        </div>
+                    </body>
+                    </html>
+                `);
+                win.document.close();
+            } else {
+                alert("Popup diblokir. Mohon izinkan pop-up untuk melihat bukti pembayaran.");
+            }
+        }
     </script>
 </head>
 <body class="bg-gray-50">
@@ -235,6 +312,7 @@ $count_rejected = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS tot
                                             $tgl_ambil = $data['tanggal_pengambilan'];
                                             $tgl_kembali = $data['tanggal_pengembalian'];
                                             $inisial = strtoupper(substr($data['first_name'], 0, 1) . substr($data['last_name'], 0, 1));
+                                            $bukti_pembayaran = $data['bukti_pembayaran']; // File bukti pembayaran dari tabel pembayaran
                                 ?>
                                 <tr class="hover:bg-gray-50">
                                     <td class="px-6 py-4 whitespace-nowrap text-left">
@@ -253,24 +331,37 @@ $count_rejected = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS tot
                                     <td class="px-6 py-4 whitespace-nowrap"><?=$tgl_kembali;?></td>
                                     <td class="px-6 py-4 whitespace-nowrap"><?=tampilkanStatus($status);?></td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <form method="POST" action="" style="display: inline;">
-                                            <input type="hidden" name="id_pesan" value="<?= $data['id_pesan'] ?>">
-                                            <button type="submit" name="ubahstatusberhasil" class="text-green-600 hover:text-green-900 mr-3">
-                                                <i class="fas fa-check"></i>
-                                            </button>
-                                            <button type="submit" name="ubahstatusditolak" class="text-red-600 hover:text-red-900">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </form>
+                                        <div class="flex items-center space-x-2">
+                                            <form method="POST" action="" style="display: inline;">
+                                                <input type="hidden" name="id_pesan" value="<?= $data['id_pesan'] ?>">
+                                                <button type="submit" name="ubahstatusberhasil" class="text-green-600 hover:text-green-900 mr-2" title="Setujui">
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                                <button type="submit" name="ubahstatusditolak" class="text-red-600 hover:text-red-900 mr-2" title="Tolak">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </form>
+                                            
+                                            <?php if (!empty($bukti_pembayaran)): ?>
+                                                <button onclick="lihatBukti('../../uploads/payments/<?= $bukti_pembayaran ?>')" 
+                                                        class="text-blue-600 hover:text-blue-900" 
+                                                        title="Lihat Bukti Pembayaran">
+                                                    <i class="fas fa-receipt"></i>
+                                                </button>
+                                            <?php endif; ?>
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php
                                         }
+                                    } else {
+                                        echo '<tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">Tidak ada data pesanan</td></tr>';
                                     }    
                                 ?> 
                             </tbody>
                         </table>
                     </div>
+                                    
                     <!-- Pagination for Jadwal Sewa -->
                     <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-4 rounded-lg shadow-md">
                         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
