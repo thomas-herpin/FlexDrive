@@ -107,13 +107,9 @@ function tampilkanStatus($status) {
                                 <p><strong>Tanggal Pengambilan:</strong> <?=$tgl_ambil;?></p>
                             </div>
                         </div>
-                        <form action="pemesanan.php" method="POST">
-                            <a href="">
-                            <button type="submit" class="mt-3 w-full bg-black text-white p-2 rounded hover:bg-gray-800 transition">
-                                Hubungi kami
-                            </button>
-                            </a>
-                        </form>
+                        <a href="https://api.whatsapp.com/send?phone=62082273555562&text=Halo%20admin%2C%20saya%20mau%20cek%20pesanan%20saya." target="_blank" class="block mt-3 w-full bg-black text-white text-center p-2 rounded hover:bg-gray-800 transition">
+                            Hubungi kami
+                        </a>
                     </div>
                 <?php
                     }
